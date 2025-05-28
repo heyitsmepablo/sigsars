@@ -1,0 +1,30 @@
+name: sigsars
+services:
+  database:
+    build:
+      context: ./database
+      dockerfile: Dockerfile
+    volumes:
+      - ./docker/database/initdb.sql:/docker-entrypoint-initdb.d/1.sql
+      - ./docker/database/data/postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./docker/database/data/logs:/var/log/postgresql
+    ports:
+      - 5432:5432
+    networks:
+      - sigsars
+    mem_limit: "512mb"
+    cpus: "0.50"
+  pgadmin4:
+    image: dpage/pgadmin4:latest
+    ports:
+      - 8080:80
+    volumes:
+      - ./docker/pgadmin/data:/var/lib/pgadmin/data
+    environment:
+      PGADMIN_DEFAULT_EMAIL: postgres@admin.com
+      PGADMIN_DEFAULT_PASSWORD: postgres
+    networks:
+      - sigsars
+networks:
+  sigsars:
+    driver: bridge
