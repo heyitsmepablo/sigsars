@@ -22,3 +22,21 @@ Este projeto tem como objetivo centralizar e otimizar processos, promover a tran
 Este repositório está em fase inicial de desenvolvimento. Em breve, serão adicionadas atualizações técnicas, melhorias e documentação detalhada sobre a arquitetura, endpoints da API e interface web.
 
 Fique atento às atualizações futuras!
+
+## Próximas Implementações
+
+### API
+
+| Implementação                 | Status |
+| ----------------------------- | ------ |
+| Cadastro de Unidades de Saúde | [ ]    |
+| Cadastro de Boletim           | [ ]    |
+| Em breve mais implementações  | 🔜     |
+
+### Client
+
+| Implementação                | Status |
+| ---------------------------- | ------ |
+| Tela de Cadastro de Unidades | [ ]    |
+| Tela de Cadastro de Boletim  | [ ]    |
+| Em breve mais implementações | 🔜     |
