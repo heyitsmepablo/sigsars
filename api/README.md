@@ -21,6 +21,12 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
+[![Testes Unitarios](https://github.com/heyitsmepablo/sigsars/actions/workflows/testes-unitarios.yml/badge.svg?branch=dev)](https://github.com/heyitsmepablo/sigsars/actions/workflows/testes-unitarios.yml)
+![Statements](.github/badges/badge-statements.svg)
+![Branches](.github/badges/badge-branches.svg)
+![Functions](.github/badges/badge-functions.svg)
+![Lines](.github/badges/badge-lines.svg)
+
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
