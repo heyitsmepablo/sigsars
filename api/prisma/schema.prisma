@@ -1,15 +1,69 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
-  output   = "../prisma/generated"
+  output   = "../generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model boletins {
+  id                                                                                   Int                       @id @default(autoincrement())
+  unidade_id                                                                           Int
+  responsavel                                                                          String
+  referente_ao_dia                                                                     DateTime                  @db.Date
+  admissoes_srag                                                                       Int
+  admissoes_nao_srag                                                                   Int
+  atendimentos_gripal_sd                                                               Int
+  atendimentos_nao_gripal_sd                                                           Int
+  atendimentos_gripal_sn                                                               Int
+  atendimentos_nao_gripal_sn                                                           Int
+  pacientes_uti                                                                        Int
+  pacientes_enfermaria                                                                 Int
+  pacientes_lsvp                                                                       Int
+  pacientes_estabilizacao_vermelha                                                     Int
+  transferencias_externas_id                                                           Int
+  altas                                                                                Int
+  evasao                                                                               Int
+  obitos                                                                               Int
+  criado_em                                                                            DateTime?                 @default(now()) @db.Timestamp(6)
+  atualizado_em                                                                        DateTime?                 @default(now()) @db.Timestamp(6)
+  transferencias_externas_boletins_transferencias_externas_idTotransferencias_externas transferencias_externas   @relation("boletins_transferencias_externas_idTotransferencias_externas", fields: [transferencias_externas_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  unidades                                                                             unidades                  @relation(fields: [unidade_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  transferencias_externas_transferencias_externas_boletim_idToboletins                 transferencias_externas[] @relation("transferencias_externas_boletim_idToboletins")
+}
+
+model tipos_unidades {
+  id       Int        @id @default(autoincrement())
+  nome     String     @unique
+  unidades unidades[]
+}
+
+model transferencias_externas {
+  id                                                                    Int                        @id @default(autoincrement())
+  boletim_id                                                            Int
+  unidade_destino_id                                                    Int
+  tipo                                                                  tipo_transferencia_externa
+  quantidade                                                            Int
+  boletins_boletins_transferencias_externas_idTotransferencias_externas boletins[]                 @relation("boletins_transferencias_externas_idTotransferencias_externas")
+  boletins_transferencias_externas_boletim_idToboletins                 boletins                   @relation("transferencias_externas_boletim_idToboletins", fields: [boletim_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model unidades {
+  id                                          Int             @id @default(autoincrement())
+  nome                                        String
+  numero_leitos_uti                           Int?
+  numero_leitos_enfermaria                    Int?
+  numero_leitos_suporte_ventilatorio_pulmonar Int?
+  tipo_unidade_id                             Int?
+  criado_em                                   DateTime?       @default(now()) @db.Timestamp(6)
+  atualizado_em                               DateTime?       @default(now()) @db.Timestamp(6)
+  boletins                                    boletins[]
+  tipos_unidades                              tipos_unidades? @relation(fields: [tipo_unidade_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+enum tipo_transferencia_externa {
+  PORTA
+  INTERNACAO
 }
