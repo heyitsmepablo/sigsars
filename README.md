@@ -1,6 +1,6 @@
 # SIGSARS – Sistema Integrado de Gestão da SARS
 
-## Cobertura de Testes API
+### Cobertura de Testes API
 
 [![Testes Unitarios](https://github.com/heyitsmepablo/sigsars/actions/workflows/testes-unitarios.yml/badge.svg?branch=dev)](https://github.com/heyitsmepablo/sigsars/actions/workflows/testes-unitarios.yml)
 ![Statements](.github/badges/badge-statements.svg)
