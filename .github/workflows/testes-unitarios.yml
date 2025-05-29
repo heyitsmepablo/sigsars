@@ -1,0 +1,28 @@
+name: Testes Unitarios
+
+on:
+  push:
+    paths:
+      - "api/**"
+  pull_request:
+    paths:
+      - "api/**"
+jobs:
+  API:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./api
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run unit tests with coverage
+        run: npm run test:cov
+      - name: Generating Badges
+        run: npm run test:badges

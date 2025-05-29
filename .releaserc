@@ -1,0 +1,41 @@
+{
+    "branches": [
+        "main",
+        {
+            "name": "1.x",
+            "range": "1.x",
+            "channel": "1.x"
+        },
+        {
+            "name": "dev",
+            "prerelease": "alpha",
+            "channel": "alpha"
+        },
+        {
+            "name": "stage",
+            "prerelease": true,
+            "channel": "beta"
+        }
+    ],
+    "plugins": [
+        "@semantic-release/commit-analyzer",
+        "@semantic-release/release-notes-generator",
+        [
+            "@semantic-release/changelog",
+            {
+                "changelogTitle": "# Histórico de Mudanças\n\nTodas as mudanças notáveis neste projeto serão documentadas neste arquivo. Consulte [Conventional Commits](https://www.conventionalcommits.org/pt-br/v1.0.0/) para diretrizes de commits."
+            }
+        ],
+        [
+            "@semantic-release/git",
+            {
+                "assets": [
+                    "package.json",
+                    "package-lock.json",
+                    "CHANGELOG.md"
+                ],
+                "message": "chore(release): ${nextRelease.version} [skip ci]\n\n\nCompare aqui ${lastRelease.gitTag} com ${nextRelease.gitTag} https://github.com/heyitsmepablo/siq/compare/${lastRelease.gitTag}...${nextRelease.gitTag}\n\n\n\n${nextRelease.notes}"
+            }
+        ]
+    ]
+}
