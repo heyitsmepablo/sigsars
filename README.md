@@ -23,20 +23,30 @@ Este repositório está em fase inicial de desenvolvimento. Em breve, serão adi
 
 Fique atento às atualizações futuras!
 
-## Próximas Implementações
+## 🚀 Próximas Implementações
 
-### API
+### 🛠️ API
 
-| Implementação                 | Status |
-| ----------------------------- | ------ |
-| Cadastro de Unidades de Saúde | [ ]    |
-| Cadastro de Boletim           | [ ]    |
-| Em breve mais implementações  | 🔜     |
+| ✅ Implementação                  | 📌 Status |
+| --------------------------------- | --------- |
+| **Cadastro de Unidades de Saúde** | [ ]       |
+| **Cadastro de Boletim**           | [ ]       |
+| _Em breve mais implementações..._ | 🔜        |
 
-### Client
+---
 
-| Implementação                | Status |
-| ---------------------------- | ------ |
-| Tela de Cadastro de Unidades | [ ]    |
-| Tela de Cadastro de Boletim  | [ ]    |
-| Em breve mais implementações | 🔜     |
+### 💻 Client
+
+| ✅ Implementação                  | 📌 Status |
+| --------------------------------- | --------- |
+| **Tela de Formulario de Boletim** | [ ]       |
+| _Em breve mais implementações..._ | 🔜        |
+
+---
+
+### 🗄️ Database
+
+| ✅ Implementação                  | 📌 Status |
+| --------------------------------- | --------- |
+| **Cadastro das Unidades**         | [ ]       |
+| _Em breve mais implementações..._ | 🔜        |
