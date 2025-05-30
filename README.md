@@ -35,11 +35,12 @@ Fique atento às atualizações futuras!
 
 ### 🛠️ API
 
-| ✅ Implementação                  | 📌 Status |
-| --------------------------------- | --------- |
-| **Cadastro de Unidades de Saúde** | [ ]       |
-| **Cadastro de Boletim**           | [ ]       |
-| _Em breve mais implementações..._ | 🔜        |
+| ✅ Implementação                        | 📌 Status |
+| --------------------------------------- | --------- |
+| **Listar Unidades**                     | [ ]       |
+| **Listar Unidades Filtrados pelo Tipo** | [ ]       |
+| **Cadastro de Boletim**                 | [ ]       |
+| _Em breve mais implementações..._       | 🔜        |
 
 ---
 
