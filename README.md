@@ -54,7 +54,8 @@ Fique atento às atualizações futuras!
 
 ### 🗄️ Database
 
-| ✅ Implementação                  | 📌 Status |
-| --------------------------------- | --------- |
-| **Cadastro das Unidades**         | [ ]       |
-| _Em breve mais implementações..._ | 🔜        |
+| ✅ Implementação                       | 📌 Status |
+| -------------------------------------- | --------- |
+| **Cadastro dos Tipos das Unidades**    | [x]       |
+| **Cadastro das Unidades Hospitalares** | [x]       |
+| _Em breve mais implementações..._      | 🔜        |
