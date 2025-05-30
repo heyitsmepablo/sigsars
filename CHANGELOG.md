@@ -2,6 +2,13 @@
 
 Todas as mudanças notáveis neste projeto serão documentadas neste arquivo. Consulte [Conventional Commits](https://www.conventionalcommits.org/pt-br/v1.0.0/) para diretrizes de commits.
 
+# [1.0.0-alpha.3](https://github.com/heyitsmepablo/sigsars/compare/v1.0.0-alpha.2...v1.0.0-alpha.3) (2025-05-30)
+
+
+### Features
+
+* **api:** documentação automatica com swagger ([c965bd8](https://github.com/heyitsmepablo/sigsars/commit/c965bd8ce51bf3f10023d44508cb88fd1a472fd6))
+
 # [1.0.0-alpha.2](https://github.com/heyitsmepablo/sigsars/compare/v1.0.0-alpha.1...v1.0.0-alpha.2) (2025-05-30)
 
 
