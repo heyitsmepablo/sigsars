@@ -53,10 +53,20 @@ model transferencias_externas {
 model unidades {
   id                                          Int             @id @default(autoincrement())
   nome                                        String
+  sigla                                       String?
+  endereco                                    String?
+  cnes                                        String?
+  cnpj                                        String?
+  email_principal                             String?
+  email_alternativo                           String?
   numero_leitos_uti                           Int?
+  numero_leitos_uci                           Int?
   numero_leitos_enfermaria                    Int?
   numero_leitos_suporte_ventilatorio_pulmonar Int?
+  numero_leitos_existente_total               Int?            @default(dbgenerated("(((numero_leitos_uti + numero_leitos_uci) + numero_leitos_enfermaria) + numero_leitos_suporte_ventilatorio_pulmonar)"))
+  numero_leitos_cnes_total                    Int?
   tipo_unidade_id                             Int?
+  setor                                       String?
   criado_em                                   DateTime?       @default(now()) @db.Timestamp(6)
   atualizado_em                               DateTime?       @default(now()) @db.Timestamp(6)
   boletins                                    boletins[]
