@@ -10,13 +10,16 @@ CREATE TABLE "unidades" (
   "endereco" TEXT,
   "cnes" TEXT,
   "cnpj" TEXT,
-  "email" TEXT,
+  "email_principal" TEXT,
+  "email_alternativo" TEXT,
   "numero_leitos_uti" INT,
+  "numero_leitos_uci" INT,
   "numero_leitos_enfermaria" INT,
   "numero_leitos_suporte_ventilatorio_pulmonar" INT,
-  "numero_leitos_existente_total" INT,
+  "numero_leitos_existente_total" INT GENERATED ALWAYS AS (numero_leitos_uti + numero_leitos_uci + numero_leitos_enfermaria + numero_leitos_suporte_ventilatorio_pulmonar ) STORED,
   "numero_leitos_cnes_total" INT,
   "tipo_unidade_id" INT,
+  "setor" TEXT,
   "criado_em" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   "atualizado_em" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
