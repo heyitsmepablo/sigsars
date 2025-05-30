@@ -60,4 +60,7 @@ Fique atento às atualizações futuras!
 | -------------------------------------- | --------- |
 | **Cadastro dos Tipos das Unidades**    | [x]       |
 | **Cadastro das Unidades Hospitalares** | [x]       |
+| **Cadastro das Causas SRAG**           | [ ]       |
+| **Cadastro das CIDS**                  | [ ]       |
+| **Cadastro das Causas Externas**       | [ ]       |
 | _Em breve mais implementações..._      | 🔜        |
