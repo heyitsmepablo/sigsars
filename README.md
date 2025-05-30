@@ -35,22 +35,33 @@ Fique atento às atualizações futuras!
 
 ### 🛠️ API
 
-| ✅ Implementação                        | 📌 Status |
-| --------------------------------------- | --------- |
-| **Listar Tipos Unidades**               | [ ]       |
-| **Listar Unidades**                     | [ ]       |
-| **Listar Unidades Filtrados pelo Tipo** | [ ]       |
-| **Cadastro de Boletim**                 | [ ]       |
-| _Em breve mais implementações..._       | 🔜        |
+| ✅ Implementação                                   | 📌 Status |
+| -------------------------------------------------- | --------- |
+| **Listar Tipos Unidades**                          | [x]       |
+| **Listar Unidades**                                | [x]       |
+| **Listar Unidades Filtrados pelo Tipo**            | [ ]       |
+| **Listar Causas**                                  | [ ]       |
+| **Listar Causas Filtrados pelo Tipo**              | [ ]       |
+| **Listar Causas SRAG**                             | [ ]       |
+| **Listar CIDs**                                    | [ ]       |
+| **Listar CIDs SRAG**                               | [ ]       |
+| **Cadastro de Boletim de Ocupação da Internação**  | [ ]       |
+| **Cadastro de Boletim de Admissões da Internação** | [ ]       |
+| **Cadastro de Boletim de Atendimentos da Porta**   | [ ]       |
+| **Cadastro de Boletim de Saidas**                  | [ ]       |
+| _Em breve mais implementações..._                  | 🔜        |
 
 ---
 
 ### 💻 Client
 
-| ✅ Implementação                  | 📌 Status |
-| --------------------------------- | --------- |
-| **Tela de Formulario de Boletim** | [ ]       |
-| _Em breve mais implementações..._ | 🔜        |
+| ✅ Implementação                                             | 📌 Status |
+| ------------------------------------------------------------ | --------- |
+| **Tela de Formulario de Boletim de Ocupação da Internação**  | [ ]       |
+| **Tela de Formulario de Boletim de Admissões da Internação** | [ ]       |
+| **Tela de Formulario de Boletim de Atendimentos da Porta**   | [ ]       |
+| **Tela de Formulario de Boletim de Saidas**                  | [ ]       |
+| _Em breve mais implementações..._                            | 🔜        |
 
 ---
 
@@ -60,8 +71,7 @@ Fique atento às atualizações futuras!
 | -------------------------------------- | --------- |
 | **Cadastro dos Tipos das Unidades**    | [x]       |
 | **Cadastro das Unidades Hospitalares** | [x]       |
+| **Cadastro das Causas**                | [ ]       |
 | **Cadastro das Causas SRAG**           | [ ]       |
-| **Cadastro das Queixas**               | [ ]       |
-| **Cadastro das CIDS**                  | [ ]       |
-| **Cadastro das Causas Externas**       | [ ]       |
+| **Cadastro das CIDS SRAG**             | [ ]       |
 | _Em breve mais implementações..._      | 🔜        |
