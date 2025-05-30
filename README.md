@@ -37,6 +37,7 @@ Fique atento às atualizações futuras!
 
 | ✅ Implementação                        | 📌 Status |
 | --------------------------------------- | --------- |
+| **Listar Tipos Unidades**               | [ ]       |
 | **Listar Unidades**                     | [ ]       |
 | **Listar Unidades Filtrados pelo Tipo** | [ ]       |
 | **Cadastro de Boletim**                 | [ ]       |
@@ -57,6 +58,6 @@ Fique atento às atualizações futuras!
 
 | ✅ Implementação                       | 📌 Status |
 | -------------------------------------- | --------- |
-| **Cadastro dos Tipos das Unidades**    | [x]       |
-| **Cadastro das Unidades Hospitalares** | [x]       |
+| **Cadastro dos Tipos das Unidades**    | [ x ]     |
+| **Cadastro das Unidades Hospitalares** | [ x ]     |
 | _Em breve mais implementações..._      | 🔜        |
