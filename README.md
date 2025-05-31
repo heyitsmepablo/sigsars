@@ -83,6 +83,5 @@ Fique atento às atualizações futuras!
 
 - O cadastro das bases de dados relativas aos **Grupos**, **Categorias** e **Subcategorias** da **Classificação Internacional de Doenças (CID-10)** foi realizado com base em informações oficiais disponibilizadas pelo [DATASUS](https://datasus.saude.gov.br/). As tabelas foram extraídas da versão **CID-10 - Versão 2008**, cujos dados estão disponíveis para consulta e download nos seguintes links oficiais:
 
-  #### - 📥 [Tabelas da CID-10 - Versão 2008 (Descrição e Download)](http://www2.datasus.gov.br/cid10/V2008/download.htm)
-
-  #### - Os arquivos utilizados para este processo estão em formato [CSV](http://www2.datasus.gov.br/cid10/V2008/descrcsv.htm), conforme disponibilizado pelo DATASUS.
+  > 📥 [Tabelas da CID-10 - Versão 2008 (Descrição e Download)](http://www2.datasus.gov.br/cid10/V2008/download.htm)
+  > Os arquivos utilizados para este processo estão em formato [CSV](http://www2.datasus.gov.br/cid10/V2008/descrcsv.htm), conforme disponibilizado pelo DATASUS.
