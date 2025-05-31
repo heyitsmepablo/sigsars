@@ -14,7 +14,7 @@ OPTIONS (
     delimiter ','
 );
 
-INSERT INTO tipos_unidades (nome)
+INSERT INTO tipo_unidade (nome)
 SELECT * FROM tipos_unidades_csv;
 
 CREATE FOREIGN TABLE unidades_csv (
@@ -41,5 +41,20 @@ OPTIONS (
     delimiter ','
 );
 
-INSERT INTO unidades (nome,sigla,endereco,cnes,cnpj,email_principal,email_alternativo,numero_leitos_uti,numero_leitos_uci,numero_leitos_enfermaria,numero_leitos_suporte_ventilatorio_pulmonar,numero_leitos_cnes_total,tipo_unidade_id,setor)
+INSERT INTO unidade (nome,sigla,endereco,cnes,cnpj,email_principal,email_alternativo,numero_leitos_uti,numero_leitos_uci,numero_leitos_enfermaria,numero_leitos_suporte_ventilatorio_pulmonar,numero_leitos_cnes_total,tipo_unidade_id,setor)
 SELECT * FROM unidades_csv;
+
+CREATE FOREIGN TABLE cids_csv (
+ "codigo" TEXT,
+ "patologia" TEXT
+)
+SERVER file_server
+OPTIONS (
+    filename '/mnt/tmp/csv/cids/subcategorias.csv',
+    format 'csv',
+    header 'true',
+    delimiter ';'
+);
+
+INSERT INTO cid (codigo,patologia) 
+SELECT * FROM cids_csv;
