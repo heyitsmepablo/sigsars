@@ -2,6 +2,13 @@
 
 Todas as mudanças notáveis neste projeto serão documentadas neste arquivo. Consulte [Conventional Commits](https://www.conventionalcommits.org/pt-br/v1.0.0/) para diretrizes de commits.
 
+# [1.0.0-alpha.4](https://github.com/heyitsmepablo/sigsars/compare/v1.0.0-alpha.3...v1.0.0-alpha.4) (2025-05-31)
+
+
+### Bug Fixes
+
+* **database:** corrigido atualizado_em inserindo timestamp no momento da criação dos registros ([e2bb1d7](https://github.com/heyitsmepablo/sigsars/commit/e2bb1d71e13262300b996dc4d636d5b2af7a0005))
+
 # [1.0.0-alpha.3](https://github.com/heyitsmepablo/sigsars/compare/v1.0.0-alpha.2...v1.0.0-alpha.3) (2025-05-30)
 
 
