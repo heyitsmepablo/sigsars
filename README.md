@@ -31,8 +31,6 @@ Este repositório está em fase inicial de desenvolvimento. Em breve, serão adi
 
 Fique atento às atualizações futuras!
 
----
-
 ## 🧩 Módulos
 
 | ✅ Módulo                                            | 📌 Status       |
@@ -46,8 +44,6 @@ Fique atento às atualizações futuras!
 
 - **Cadastro, Autenticação e Autorização de Usuários**  
   Módulo responsável pelo cadastro de usuários, autenticação via login e autorização básica para controle de acesso às funcionalidades do sistema.
-
----
 
 ## 🚀 Próximas Implementações
 
