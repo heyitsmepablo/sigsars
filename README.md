@@ -31,6 +31,8 @@ Este repositório está em fase inicial de desenvolvimento. Em breve, serão adi
 
 Fique atento às atualizações futuras!
 
+---
+
 ## 🧩 Módulos
 
 | ✅ Módulo                                            | 📌 Status       |
@@ -39,13 +41,13 @@ Fique atento às atualizações futuras!
 | **Cadastro, Autenticação e Autorização de Usuários** | Em planejamento |
 | _Em breve mais módulos..._                           | 🔜              |
 
----
-
 - **Boletim Hospitalar**  
   Módulo responsável pela gestão dos boletins hospitalares, incluindo ocupação de leitos, admissões, atendimentos de urgência e altas hospitalares.
 
 - **Cadastro, Autenticação e Autorização de Usuários**  
   Módulo responsável pelo cadastro de usuários, autenticação via login e autorização básica para controle de acesso às funcionalidades do sistema.
+
+---
 
 ## 🚀 Próximas Implementações
 
@@ -94,6 +96,8 @@ Fique atento às atualizações futuras!
 | **Cadastro das CIDS**                  | [x]       |
 | **Cadastro das CIDS SRAG**             | [ ]       |
 | _Em breve mais implementações..._      | 🔜        |
+
+---
 
 ## 📄 Notas do Desenvolvedor
 
