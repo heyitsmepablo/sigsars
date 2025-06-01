@@ -23,8 +23,6 @@ Este projeto tem como objetivo centralizar e otimizar processos, promover a tran
 - **API Backend:** [NestJS](https://nestjs.com/)
 - **Web Client:** _Em breve..._
 
----
-
 ## 🚧 Projeto em Construção
 
 Este repositório está em fase inicial de desenvolvimento. Em breve, serão adicionadas atualizações técnicas, melhorias e documentação detalhada sobre a arquitetura, endpoints da API e interface web.
