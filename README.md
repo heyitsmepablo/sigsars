@@ -82,17 +82,18 @@ Fique atento às atualizações futuras!
 
 ### 🗄️ Database
 
-| ✅ Implementação                       | 📌 Status |
-| -------------------------------------- | --------- |
-| **Cadastro dos Tipos das Unidades**    | [x]       |
-| **Cadastro das Unidades Hospitalares** | [x]       |
-| **Cadastro das Causas Externas**       | [x]       |
-| **Cadastro das Causas SRAG**           | [ ]       |
-| **Cadastro dos Grupos das CIDS**       | [x]       |
-| **Cadastro das Categorias das CIDS**   | [x]       |
-| **Cadastro das CIDS**                  | [x]       |
-| **Cadastro das CIDS SRAG**             | [ ]       |
-| _Em breve mais implementações..._      | 🔜        |
+| ✅ Implementação                         | 📌 Status |
+| ---------------------------------------- | --------- |
+| **Cadastro dos Tipos das Unidades**      | [x]       |
+| **Cadastro das Unidades Hospitalares**   | [x]       |
+| **Cadastro das Causas do Tipo Externas** | [x]       |
+| **Cadastro das Causas do Tipo Queixas**  | [x]       |
+| **Cadastro das Causas SRAG**             | [x]       |
+| **Cadastro dos Grupos das CIDS**         | [x]       |
+| **Cadastro das Categorias das CIDS**     | [x]       |
+| **Cadastro das CIDS**                    | [x]       |
+| **Cadastro das CIDS SRAG**               | [x]       |
+| _Em breve mais implementações..._        | 🔜        |
 
 ---
 
