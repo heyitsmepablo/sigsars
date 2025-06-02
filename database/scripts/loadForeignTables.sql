@@ -94,3 +94,18 @@ OPTIONS (
 
 INSERT INTO cid  (id,cid_categoria_id,codigo,patologia)
 SELECT * FROM cid_csv;
+
+CREATE FOREIGN TABLE causa_csv (
+ "nome" TEXT,
+ "tipo" tipo_causa
+)
+SERVER file_server
+OPTIONS (
+    filename '/mnt/tmp/csv/causas.csv',
+    format 'csv',
+    header 'true',
+    delimiter ','
+);
+
+INSERT INTO causa  (nome,tipo)
+SELECT * FROM causa_csv;
