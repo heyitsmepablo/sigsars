@@ -2,6 +2,16 @@
 
 Todas as mudanças notáveis neste projeto serão documentadas neste arquivo. Consulte [Conventional Commits](https://www.conventionalcommits.org/pt-br/v1.0.0/) para diretrizes de commits.
 
+# [1.0.0-alpha.5](https://github.com/heyitsmepablo/sigsars/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2025-06-02)
+
+
+### Features
+
+* **database:** cadastrado as causas do tipo queixa ([6537a48](https://github.com/heyitsmepablo/sigsars/commit/6537a48246d9a3eb8b53298bc8c0fb789e18f1ef))
+* **database:** cadastrado as causas externas ([846f088](https://github.com/heyitsmepablo/sigsars/commit/846f088a262887bf2c0146b045d78321b90c682f))
+* **database:** cadastrado cids srags ([2748b06](https://github.com/heyitsmepablo/sigsars/commit/2748b06ebf17f78f2c06b55e6c9c3d7599e0eb5e))
+* **database:** cadastro dos grupos, categorias e subcategorias da cid-10 no banco ([c437686](https://github.com/heyitsmepablo/sigsars/commit/c437686ee0b6bf8d3dbe98bcd143580cb005610f))
+
 # [1.0.0-alpha.4](https://github.com/heyitsmepablo/sigsars/compare/v1.0.0-alpha.3...v1.0.0-alpha.4) (2025-05-31)
 
 
