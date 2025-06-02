@@ -47,21 +47,24 @@ Fique atento às atualizações futuras!
 
 ### 🛠️ API
 
-| ✅ Implementação                                   | 📌 Status |
-| -------------------------------------------------- | --------- |
-| **Listar Tipos Unidades**                          | [x]       |
-| **Listar Unidades**                                | [x]       |
-| **Listar Unidades Filtrados pelo Tipo**            | [ ]       |
-| **Listar Causas**                                  | [ ]       |
-| **Listar Causas Filtrados pelo Tipo**              | [ ]       |
-| **Listar Causas SRAG**                             | [ ]       |
-| **Listar CIDs**                                    | [ ]       |
-| **Listar CIDs SRAG**                               | [ ]       |
-| **Cadastro de Boletim de Ocupação da Internação**  | [ ]       |
-| **Cadastro de Boletim de Admissões da Internação** | [ ]       |
-| **Cadastro de Boletim de Atendimentos da Porta**   | [ ]       |
-| **Cadastro de Boletim de Saidas**                  | [ ]       |
-| _Em breve mais implementações..._                  | 🔜        |
+| ✅ Implementação                                           | 📌 Status |
+| ---------------------------------------------------------- | --------- |
+| **Listar Tipos Unidades**                                  | [x]       |
+| **Listar Unidades**                                        | [x]       |
+| **Listar Unidades Filtrados pelo Tipo**                    | [ ]       |
+| **Listar Causas**                                          | [ ]       |
+| **Listar Causas Filtrados pelo Tipo**                      | [ ]       |
+| **Listar Causas SRAG**                                     | [ ]       |
+| **Listar todos os Grupos das CIDs**                        | [ ]       |
+| **Listar todas as Categoria das CIDs filtrado pelo Grupo** | [ ]       |
+| **Listar todas CIDs filtrado pela Categoria**              | [ ]       |
+| **Buscar CIDs pelo seu codigo**                            | [ ]       |
+| **Listar CIDs SRAG**                                       | [ ]       |
+| **Cadastro de Boletim de Ocupação da Internação**          | [ ]       |
+| **Cadastro de Boletim de Admissões da Internação**         | [ ]       |
+| **Cadastro de Boletim de Atendimentos da Porta**           | [ ]       |
+| **Cadastro de Boletim de Saidas**                          | [ ]       |
+| _Em breve mais implementações..._                          | 🔜        |
 
 ---
 
@@ -83,7 +86,7 @@ Fique atento às atualizações futuras!
 | -------------------------------------- | --------- |
 | **Cadastro dos Tipos das Unidades**    | [x]       |
 | **Cadastro das Unidades Hospitalares** | [x]       |
-| **Cadastro das Causas**                | [ ]       |
+| **Cadastro das Causas Externas**       | [x]       |
 | **Cadastro das Causas SRAG**           | [ ]       |
 | **Cadastro dos Grupos das CIDS**       | [x]       |
 | **Cadastro das Categorias das CIDS**   | [x]       |
