@@ -44,17 +44,53 @@ OPTIONS (
 INSERT INTO unidade (nome,sigla,endereco,cnes,cnpj,email_principal,email_alternativo,numero_leitos_uti,numero_leitos_uci,numero_leitos_enfermaria,numero_leitos_suporte_ventilatorio_pulmonar,numero_leitos_cnes_total,tipo_unidade_id,setor)
 SELECT * FROM unidades_csv;
 
-CREATE FOREIGN TABLE cids_csv (
+CREATE FOREIGN TABLE cid_grupos_csv (
+ "id" INT,
+ "codigo_categoria_inicio" TEXT,
+ "codigo_categoria_fim" TEXT,
+ "descricao" TEXT
+)
+SERVER file_server
+OPTIONS (
+    filename '/mnt/tmp/csv/cids/grupos_rel.csv',
+    format 'csv',
+    header 'true',
+    delimiter ','
+);
+
+INSERT INTO cid_grupo (id,codigo_categoria_inicio,codigo_categoria_fim,descricao)
+SELECT * FROM cid_grupos_csv;
+
+CREATE FOREIGN TABLE cid_categorias_csv (
+ "id" INT,
+ "grupo_id" INT,
+ "codigo" TEXT,
+ "descricao" TEXT
+)
+SERVER file_server
+OPTIONS (
+    filename '/mnt/tmp/csv/cids/categorias_rel.csv',
+    format 'csv',
+    header 'true',
+    delimiter ','
+);
+
+INSERT INTO cid_categoria  (id,cid_grupo_id,codigo,descricao)
+SELECT * FROM cid_categorias_csv;
+
+CREATE FOREIGN TABLE cid_csv (
+ "id" INT,
+ "categoria_id" INT,
  "codigo" TEXT,
  "patologia" TEXT
 )
 SERVER file_server
 OPTIONS (
-    filename '/mnt/tmp/csv/cids/subcategorias.csv',
+    filename '/mnt/tmp/csv/cids/subcategorias_rel.csv',
     format 'csv',
     header 'true',
-    delimiter ';'
+    delimiter ','
 );
 
-INSERT INTO cid (codigo,patologia) 
-SELECT * FROM cids_csv;
+INSERT INTO cid  (id,cid_categoria_id,codigo,patologia)
+SELECT * FROM cid_csv;
