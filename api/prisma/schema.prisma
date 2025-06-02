@@ -8,72 +8,225 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model boletins {
-  id                                                                                   Int                       @id @default(autoincrement())
-  unidade_id                                                                           Int
-  responsavel                                                                          String
-  referente_ao_dia                                                                     DateTime                  @db.Date
-  admissoes_srag                                                                       Int
-  admissoes_nao_srag                                                                   Int
-  atendimentos_gripal_sd                                                               Int
-  atendimentos_nao_gripal_sd                                                           Int
-  atendimentos_gripal_sn                                                               Int
-  atendimentos_nao_gripal_sn                                                           Int
-  pacientes_uti                                                                        Int
-  pacientes_enfermaria                                                                 Int
-  pacientes_lsvp                                                                       Int
-  pacientes_estabilizacao_vermelha                                                     Int
-  transferencias_externas_id                                                           Int
-  altas                                                                                Int
-  evasao                                                                               Int
-  obitos                                                                               Int
-  criado_em                                                                            DateTime?                 @default(now()) @db.Timestamp(6)
-  atualizado_em                                                                        DateTime?                 @default(now()) @db.Timestamp(6)
-  transferencias_externas_boletins_transferencias_externas_idTotransferencias_externas transferencias_externas   @relation("boletins_transferencias_externas_idTotransferencias_externas", fields: [transferencias_externas_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  unidades                                                                             unidades                  @relation(fields: [unidade_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  transferencias_externas_transferencias_externas_boletim_idToboletins                 transferencias_externas[] @relation("transferencias_externas_boletim_idToboletins")
+model boletim_admissoao_internacao_cid {
+  id                          Int                          @id @default(autoincrement())
+  boletim_admissao_id         Int?
+  cid_id                      Int?
+  boletim_internacao_admissao boletim_internacao_admissao? @relation(fields: [boletim_admissao_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  cid                         cid?                         @relation(fields: [cid_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
-model tipos_unidades {
-  id       Int        @id @default(autoincrement())
-  nome     String     @unique
-  unidades unidades[]
+model boletim_atendimento_porta {
+  id                              Int                               @id @default(autoincrement())
+  unidade_id                      Int
+  responsavelPreenchimento        String
+  turno                           tipo_turno?
+  referente_ao_dia                DateTime                          @db.Date
+  origem                          tipo_origem_atendimento_porta?
+  numero_de_atendimentos          Int
+  srag                            Boolean
+  faixa_etaria                    String
+  genero                          tipo_genero?
+  criado_em                       DateTime?                         @default(now()) @db.Timestamp(6)
+  atualizado_em                   DateTime?                         @db.Timestamp(6)
+  unidade                         unidade                           @relation(fields: [unidade_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  boletim_atendimento_porta_causa boletim_atendimento_porta_causa[]
 }
 
-model transferencias_externas {
-  id                                                                    Int                        @id @default(autoincrement())
-  boletim_id                                                            Int
-  unidade_destino_id                                                    Int
-  tipo                                                                  tipo_transferencia_externa
-  quantidade                                                            Int
-  boletins_boletins_transferencias_externas_idTotransferencias_externas boletins[]                 @relation("boletins_transferencias_externas_idTotransferencias_externas")
-  boletins_transferencias_externas_boletim_idToboletins                 boletins                   @relation("transferencias_externas_boletim_idToboletins", fields: [boletim_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+model boletim_atendimento_porta_causa {
+  id                           Int                        @id @default(autoincrement())
+  boletim_atendimento_porta_id Int?
+  causa_id                     Int?
+  boletim_atendimento_porta    boletim_atendimento_porta? @relation(fields: [boletim_atendimento_porta_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "boletim_atendimento_porta_cau_boletim_atendimento_porta_id_fkey")
+  causa                        causa?                     @relation(fields: [causa_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
-model unidades {
-  id                                          Int             @id @default(autoincrement())
-  nome                                        String
-  sigla                                       String?
-  endereco                                    String?
-  cnes                                        String?
-  cnpj                                        String?
-  email_principal                             String?
-  email_alternativo                           String?
-  numero_leitos_uti                           Int?
-  numero_leitos_uci                           Int?
-  numero_leitos_enfermaria                    Int?
-  numero_leitos_suporte_ventilatorio_pulmonar Int?
-  numero_leitos_existente_total               Int?            @default(dbgenerated("(((numero_leitos_uti + numero_leitos_uci) + numero_leitos_enfermaria) + numero_leitos_suporte_ventilatorio_pulmonar)"))
-  numero_leitos_cnes_total                    Int?
-  tipo_unidade_id                             Int?
-  setor                                       String?
-  criado_em                                   DateTime?       @default(now()) @db.Timestamp(6)
-  atualizado_em                               DateTime?       @default(now()) @db.Timestamp(6)
-  boletins                                    boletins[]
-  tipos_unidades                              tipos_unidades? @relation(fields: [tipo_unidade_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+model boletim_internacao_admissao {
+  id                               Int                                @id @default(autoincrement())
+  unidade_id                       Int
+  responsavelPreenchimento         String
+  referente_ao_dia                 DateTime                           @db.Date
+  numero_de_admissoes              Int
+  srag                             Boolean
+  faixa_etaria                     String
+  genero                           tipo_genero?
+  criado_em                        DateTime?                          @default(now()) @db.Timestamp(6)
+  atualizado_em                    DateTime?                          @db.Timestamp(6)
+  boletim_admissoao_internacao_cid boletim_admissoao_internacao_cid[]
+  unidade                          unidade                            @relation(fields: [unidade_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
-enum tipo_transferencia_externa {
+model boletim_internacao_ocupacao {
+  id                               Int       @id @default(autoincrement())
+  unidade_id                       Int
+  responsavelPreenchimento         String
+  referente_ao_dia                 DateTime  @db.Date
+  pacientes_uti                    Int
+  pacientes_uti_isolamento         Int
+  pacientes_enfermaria             Int
+  pacientes_enfermaria_isolamento  Int
+  pacientes_lsvp                   Int
+  pacientes_estabilizacao_vermelha Int
+  criado_em                        DateTime? @default(now()) @db.Timestamp(6)
+  atualizado_em                    DateTime? @db.Timestamp(6)
+  unidade                          unidade   @relation(fields: [unidade_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model boletim_saidas {
+  id                                                 Int                    @id @default(autoincrement())
+  unidade_id                                         Int
+  responsavelPreenchimento                           String
+  local_de_saida                                     tipo_local_de_saida
+  tipo_da_saida                                      tipo_saida
+  unidade_destino_id                                 Int
+  leito_de_destino                                   tipo_leito_de_destino?
+  total_de_saida                                     Int
+  unidade_boletim_saidas_unidade_destino_idTounidade unidade                @relation("boletim_saidas_unidade_destino_idTounidade", fields: [unidade_destino_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  unidade_boletim_saidas_unidade_idTounidade         unidade                @relation("boletim_saidas_unidade_idTounidade", fields: [unidade_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model causa {
+  id                              Int                               @id @default(autoincrement())
+  nome                            String?
+  tipo                            tipo_causa?
+  criado_em                       DateTime?                         @default(now()) @db.Timestamp(6)
+  atualizado_em                   DateTime?                         @db.Timestamp(6)
+  boletim_atendimento_porta_causa boletim_atendimento_porta_causa[]
+  causa_srag                      causa_srag[]
+}
+
+model causa_srag {
+  id            Int       @id @default(autoincrement())
+  causa_id      Int?
+  criado_em     DateTime? @default(now()) @db.Timestamp(6)
+  atualizado_em DateTime? @db.Timestamp(6)
+  causa         causa?    @relation(fields: [causa_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model cid {
+  id                               Int                                @id @default(autoincrement())
+  cid_categoria_id                 Int
+  codigo                           String
+  patologia                        String
+  criado_em                        DateTime?                          @default(now()) @db.Timestamp(6)
+  atualizado_em                    DateTime?                          @db.Timestamp(6)
+  boletim_admissoao_internacao_cid boletim_admissoao_internacao_cid[]
+  cid_categoria                    cid_categoria                      @relation(fields: [cid_categoria_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  cid_srag                         cid_srag[]
+}
+
+model cid_categoria {
+  id            Int       @id @default(autoincrement())
+  cid_grupo_id  Int
+  codigo        String
+  descricao     String
+  criado_em     DateTime? @default(now()) @db.Timestamp(6)
+  atualizado_em DateTime? @db.Timestamp(6)
+  cid           cid[]
+  cid_grupo     cid_grupo @relation(fields: [cid_grupo_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model cid_grupo {
+  id                      Int             @id @default(autoincrement())
+  codigo_categoria_inicio String
+  codigo_categoria_fim    String
+  descricao               String
+  criado_em               DateTime?       @default(now()) @db.Timestamp(6)
+  atualizado_em           DateTime?       @db.Timestamp(6)
+  cid_categoria           cid_categoria[]
+}
+
+model cid_srag {
+  id            Int       @id @default(autoincrement())
+  cid_id        Int?
+  criado_em     DateTime? @default(now()) @db.Timestamp(6)
+  atualizado_em DateTime? @db.Timestamp(6)
+  cid           cid?      @relation(fields: [cid_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model tipo_unidade {
+  id   Int    @id @default(autoincrement())
+  nome String @unique
+}
+
+model unidade {
+  id                                                        Int                           @id @default(autoincrement())
+  nome                                                      String
+  sigla                                                     String?
+  endereco                                                  String?
+  cnes                                                      String?
+  cnpj                                                      String?
+  email_principal                                           String?
+  email_alternativo                                         String?
+  numero_leitos_uti                                         Int?
+  numero_leitos_uci                                         Int?
+  numero_leitos_enfermaria                                  Int?
+  numero_leitos_suporte_ventilatorio_pulmonar               Int?
+  numero_leitos_existente_total                             Int?
+  numero_leitos_cnes_total                                  Int?
+  tipo_unidade_id                                           Int?
+  setor                                                     String?
+  criado_em                                                 DateTime?                     @default(now()) @db.Timestamp(6)
+  atualizado_em                                             DateTime?                     @db.Timestamp(6)
+  boletim_atendimento_porta                                 boletim_atendimento_porta[]
+  boletim_internacao_admissao                               boletim_internacao_admissao[]
+  boletim_internacao_ocupacao                               boletim_internacao_ocupacao[]
+  boletim_saidas_boletim_saidas_unidade_destino_idTounidade boletim_saidas[]              @relation("boletim_saidas_unidade_destino_idTounidade")
+  boletim_saidas_boletim_saidas_unidade_idTounidade         boletim_saidas[]              @relation("boletim_saidas_unidade_idTounidade")
+}
+
+enum tipo_admissao {
   PORTA
   INTERNACAO
+}
+
+enum tipo_boletim {
+  ADMISSAO_INTERNACAO
+  ATENDIMENTO
+  SAIDA
+  INTERNACAO
+}
+
+enum tipo_causa {
+  QUEIXA
+  EXTERNA
+}
+
+enum tipo_genero {
+  M
+  F
+}
+
+enum tipo_leito_de_destino {
+  ENFERMARIA_CLINICA
+  ENFERMARIA_CIRURGICA
+  HEMODINAMICA
+  VERMELHA
+  UTI
+}
+
+enum tipo_local_de_saida {
+  PORTA
+  INTERNACAO
+}
+
+enum tipo_origem_atendimento_porta {
+  DEMANDA_ESPONTANEA_SAO_LUIS
+  DEMANDA_ESPONTANEA_INTERIOR
+  REFERENCIADO_UPAS
+  REFERENCIADO_APS
+  REFERENCIADO_CLINICAS
+  OUTROS
+}
+
+enum tipo_saida {
+  ALTA
+  EVASAO
+  OBITO
+  TRANSFERENCIA
+}
+
+enum tipo_turno {
+  SERVICO_DIURNO
+  SERVICO_NOTURNO
 }

@@ -1,13 +1,14 @@
 import { Injectable } from '@nestjs/common';
+import { UnidadeWhereQueryDto } from 'src/dtos/unidade.dto';
 import { PrismaErrorHandler } from 'src/handlers/prisma-error-handler';
 import PrismaSingleton from 'src/singletons/prisma-singleton/prisma-singleton';
 
 @Injectable()
 export class UnidadesService {
   #database = PrismaSingleton.instance.client;
-  async findAll() {
+  async findAll(where?: UnidadeWhereQueryDto) {
     try {
-      const data = await this.#database.unidades.findMany({
+      const data = await this.#database.unidade.findMany({
         select: {
           id: true,
           nome: true,
@@ -15,6 +16,7 @@ export class UnidadesService {
           criado_em: true,
           atualizado_em: true,
         },
+        where,
       });
       return data;
     } catch (error) {
