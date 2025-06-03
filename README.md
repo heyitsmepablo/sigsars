@@ -47,24 +47,24 @@ Fique atento às atualizações futuras!
 
 ### 🛠️ API
 
-| ✅ Implementação                                           | 📌 Status |
-| ---------------------------------------------------------- | --------- |
-| **Listar Tipos Unidades**                                  | [x]       |
-| **Listar Unidades**                                        | [x]       |
-| **Listar Unidades Filtrados pelo Tipo**                    | [ ]       |
-| **Listar Causas**                                          | [ ]       |
-| **Listar Causas Filtrados pelo Tipo**                      | [ ]       |
-| **Listar Causas SRAG**                                     | [ ]       |
-| **Listar todos os Grupos das CIDs**                        | [ ]       |
-| **Listar todas as Categoria das CIDs filtrado pelo Grupo** | [ ]       |
-| **Listar todas CIDs filtrado pela Categoria**              | [ ]       |
-| **Buscar CIDs pelo seu codigo**                            | [ ]       |
-| **Listar CIDs SRAG**                                       | [ ]       |
-| **Cadastro de Boletim de Ocupação da Internação**          | [ ]       |
-| **Cadastro de Boletim de Admissões da Internação**         | [ ]       |
-| **Cadastro de Boletim de Atendimentos da Porta**           | [ ]       |
-| **Cadastro de Boletim de Saidas**                          | [ ]       |
-| _Em breve mais implementações..._                          | 🔜        |
+| ✅ Implementação                                                     | 📌 Status |
+| -------------------------------------------------------------------- | --------- |
+| **Rota Para Listar Tipos Unidades**                                  | [x]       |
+| **Rota Para Listar Unidades**                                        | [x]       |
+| **Rota Para Listar Unidades Filtrados pelo Tipo**                    | [x]       |
+| **Rota Para Listar Causas**                                          | [ ]       |
+| **Rota Para Listar Causas Filtrados pelo Tipo**                      | [ ]       |
+| **Rota Para Listar Causas SRAG**                                     | [ ]       |
+| **Rota Para Listar todos os Grupos das CIDs**                        | [ ]       |
+| **Rota Para Listar todas as Categoria das CIDs filtrado pelo Grupo** | [ ]       |
+| **Rota Para Listar todas CIDs filtrado pela Categoria**              | [ ]       |
+| **Rota Para Buscar CIDs pelo seu codigo**                            | [ ]       |
+| **Rota Para Listar CIDs SRAG**                                       | [ ]       |
+| **Rota Para Cadastro de Boletim de Ocupação da Internação**          | [ ]       |
+| **Rota Para Cadastro de Boletim de Admissões da Internação**         | [ ]       |
+| **Rota Para Cadastro de Boletim de Atendimentos da Porta**           | [ ]       |
+| **Rota Para Cadastro de Boletim de Saidas**                          | [ ]       |
+| _Em breve mais implementações..._                                    | 🔜        |
 
 ---
 
