@@ -35,6 +35,7 @@ Fique atento às atualizações futuras!
 | ---------------------------------------------------- | --------------- |
 | **Boletim Hospitalar**                               | Em construção   |
 | **Cadastro, Autenticação e Autorização de Usuários** | Em planejamento |
+| **Folha de Pagamento**                               | Em breve        |
 | _Em breve mais módulos..._                           | 🔜              |
 
 - **Boletim Hospitalar**  
