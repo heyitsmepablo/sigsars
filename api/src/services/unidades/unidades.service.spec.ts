@@ -19,7 +19,7 @@ describe('UnidadesService', () => {
   });
 
   describe('findAll', () => {
-    const prismaResponsePayload: Prisma.unidadesGetPayload<{
+    const prismaResponsePayload: Prisma.unidadeGetPayload<{
       select: {
         id: true;
         nome: true;
@@ -39,8 +39,8 @@ describe('UnidadesService', () => {
     const serviceExpectedResponse = prismaResponsePayload;
 
     it('Deve resolver retornando retornando o payload', async () => {
-      prismaMock.unidades.findMany.mockResolvedValue(
-        prismaResponsePayload as Prisma.unidadesGetPayload<true>[],
+      prismaMock.unidade.findMany.mockResolvedValue(
+        prismaResponsePayload as Prisma.unidadeGetPayload<true>[],
       );
       await expect(service.findAll()).resolves.toEqual(serviceExpectedResponse);
     });
