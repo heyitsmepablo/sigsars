@@ -23,7 +23,7 @@ describe('UnidadesService', () => {
       select: {
         id: true;
         nome: true;
-        tipo_unidade_id: true;
+        unidade_tipo_id: true;
         criado_em: true;
         atualizado_em: true;
       };
@@ -31,7 +31,7 @@ describe('UnidadesService', () => {
       {
         id: 1,
         nome: 'texto',
-        tipo_unidade_id: 1,
+        unidade_tipo_id: 1,
         criado_em: null,
         atualizado_em: null,
       },
@@ -44,6 +44,10 @@ describe('UnidadesService', () => {
       );
       await expect(service.findAll()).resolves.toEqual(serviceExpectedResponse);
     });
-    //   it('Deve rejeitar jogando o erro no payload', async () => {});
+    it('Deve rejeitar jogando o erro no payload', async () => {
+      const erroGenerico = new Error('erro generico');
+      prismaMock.unidade.findMany.mockRejectedValue(erroGenerico);
+      await expect(service.findAll()).rejects.toThrow(erroGenerico);
+    });
   });
 });

@@ -12,7 +12,7 @@ export class UnidadesService {
         select: {
           id: true,
           nome: true,
-          tipo_unidade_id: true,
+          unidade_tipo_id: true,
           criado_em: true,
           atualizado_em: true,
         },

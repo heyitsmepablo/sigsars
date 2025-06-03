@@ -4,5 +4,5 @@ import { IsInt } from 'class-validator';
 export class UnidadeWhereQueryDto {
   @Type(() => Number)
   @IsInt()
-  tipo_unidade_id?: number;
+  unidade_tipo_id?: number;
 }

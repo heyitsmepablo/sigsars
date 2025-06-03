@@ -25,7 +25,7 @@ describe('UnidadeController', () => {
       select: {
         id: true;
         nome: true;
-        tipo_unidade_id: true;
+        unidade_tipo_id: true;
         criado_em: true;
         atualizado_em: true;
       };
@@ -35,7 +35,7 @@ describe('UnidadeController', () => {
         atualizado_em: null,
         criado_em: null,
         nome: 'teste',
-        tipo_unidade_id: 1,
+        unidade_tipo_id: 1,
       },
     ];
     it('Deve resolver retornando com payload na resposta', async () => {
