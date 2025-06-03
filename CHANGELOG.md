@@ -2,6 +2,13 @@
 
 Todas as mudanças notáveis neste projeto serão documentadas neste arquivo. Consulte [Conventional Commits](https://www.conventionalcommits.org/pt-br/v1.0.0/) para diretrizes de commits.
 
+# [1.0.0-alpha.7](https://github.com/heyitsmepablo/sigsars/compare/v1.0.0-alpha.6...v1.0.0-alpha.7) (2025-06-03)
+
+
+### Features
+
+* **api:** implementar rota de listar tipos de unidades ([72c0afb](https://github.com/heyitsmepablo/sigsars/commit/72c0afb0a8534dea5e04e75009dda2c97a22151f))
+
 # [1.0.0-alpha.6](https://github.com/heyitsmepablo/sigsars/compare/v1.0.0-alpha.5...v1.0.0-alpha.6) (2025-06-03)
 
 
