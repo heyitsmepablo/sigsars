@@ -2,6 +2,13 @@
 
 Todas as mudanças notáveis neste projeto serão documentadas neste arquivo. Consulte [Conventional Commits](https://www.conventionalcommits.org/pt-br/v1.0.0/) para diretrizes de commits.
 
+# [1.0.0-alpha.8](https://github.com/heyitsmepablo/sigsars/compare/v1.0.0-alpha.7...v1.0.0-alpha.8) (2025-06-03)
+
+
+### Bug Fixes
+
+* **api:** corrigido a obrigatoriedade da query na rota de unidade ([4c6f476](https://github.com/heyitsmepablo/sigsars/commit/4c6f476c7c28cd27df6345221958230ca973ff00))
+
 # [1.0.0-alpha.7](https://github.com/heyitsmepablo/sigsars/compare/v1.0.0-alpha.6...v1.0.0-alpha.7) (2025-06-03)
 
 
