@@ -1,4 +1,4 @@
-name: Testes Unitarios
+name: Testes Unitarios API
 
 on:
   push:
@@ -24,5 +24,14 @@ jobs:
         run: npm ci
       - name: Run unit tests with coverage
         run: npm run test:cov
-      - name: Generating Badges
-        run: npm run test:badges
+
+      - name: Generate coverage badges
+        run: npx jest-coverage-badges --input ./coverage/coverage-summary.json --output .github/badges
+
+      - name: Commit coverage badges
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add .github/badges
+          git commit -m 'chore: update coverage badges [skip ci]' || echo "No changes to commit"
+          git push
