@@ -18,7 +18,7 @@ OPTIONS (
 );
 
 -- COPIANDO DADOS PARA TABELA NO BANCO
-INSERT INTO tipo_unidade (nome)
+INSERT INTO unidade_tipo (nome)
 SELECT * FROM tipos_unidades_csv;
 
 -------------------------------------------------
@@ -37,7 +37,7 @@ CREATE FOREIGN TABLE unidades_csv (
   "numero_leitos_enfermaria" INT,
   "numero_leitos_suporte_ventilatorio_pulmonar" INT,
   "numero_leitos_cnes_total" INT,
-  "tipo_unidade_id" INT,
+  "unidade_tipo_id" INT,
   "setor" TEXT
 )
 SERVER file_server
@@ -49,7 +49,7 @@ OPTIONS (
 );
 
 -- COPIANDO DADOS PARA TABELA NO BANCO
-INSERT INTO unidade (nome,sigla,endereco,cnes,cnpj,email_principal,email_alternativo,numero_leitos_uti,numero_leitos_uci,numero_leitos_enfermaria,numero_leitos_suporte_ventilatorio_pulmonar,numero_leitos_cnes_total,tipo_unidade_id,setor)
+INSERT INTO unidade (nome,sigla,endereco,cnes,cnpj,email_principal,email_alternativo,numero_leitos_uti,numero_leitos_uci,numero_leitos_enfermaria,numero_leitos_suporte_ventilatorio_pulmonar,numero_leitos_cnes_total,unidade_tipo_id,setor)
 SELECT * FROM unidades_csv;
 
 -------------------------------------------------

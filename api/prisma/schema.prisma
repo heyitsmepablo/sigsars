@@ -144,11 +144,6 @@ model cid_srag {
   cid           cid?      @relation(fields: [cid_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
-model tipo_unidade {
-  id   Int    @id @default(autoincrement())
-  nome String @unique
-}
-
 model unidade {
   id                                                        Int                           @id @default(autoincrement())
   nome                                                      String
@@ -164,7 +159,7 @@ model unidade {
   numero_leitos_suporte_ventilatorio_pulmonar               Int?
   numero_leitos_existente_total                             Int?
   numero_leitos_cnes_total                                  Int?
-  tipo_unidade_id                                           Int?
+  unidade_tipo_id                                           Int?
   setor                                                     String?
   criado_em                                                 DateTime?                     @default(now()) @db.Timestamp(6)
   atualizado_em                                             DateTime?                     @db.Timestamp(6)
@@ -173,6 +168,15 @@ model unidade {
   boletim_internacao_ocupacao                               boletim_internacao_ocupacao[]
   boletim_saidas_boletim_saidas_unidade_destino_idTounidade boletim_saidas[]              @relation("boletim_saidas_unidade_destino_idTounidade")
   boletim_saidas_boletim_saidas_unidade_idTounidade         boletim_saidas[]              @relation("boletim_saidas_unidade_idTounidade")
+  unidade_tipo                                              unidade_tipo?                 @relation(fields: [unidade_tipo_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model unidade_tipo {
+  id            Int       @id @default(autoincrement())
+  nome          String    @unique
+  criado_em     DateTime? @default(now()) @db.Timestamp(6)
+  atualizado_em DateTime? @db.Timestamp(6)
+  unidade       unidade[]
 }
 
 enum tipo_admissao {
