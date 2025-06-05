@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -24,10 +26,8 @@ jobs:
         run: npm ci
       - name: Run unit tests with coverage
         run: npm run test:cov
-
       - name: Generate coverage badges
         run: npx jest-coverage-badges --input ./coverage/coverage-summary.json --output .github/badges
-
       - name: Push coverage badges
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
@@ -35,6 +35,7 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
+          git pull origin dev --rebase
           git add .github/badges
           git commit -m 'chore: update coverage badges [skip ci]' || echo "No changes to commit"
           git push
