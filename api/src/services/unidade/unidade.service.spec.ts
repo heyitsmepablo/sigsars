@@ -1,17 +1,17 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { UnidadesService } from './unidade.service';
+import { UnidadeService } from './unidade.service';
 import { Prisma } from 'generated/prisma';
 import { prismaMock } from 'src/__mock__/prisma-singleton';
 
 describe('UnidadesService', () => {
-  let service: UnidadesService;
+  let service: UnidadeService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [UnidadesService],
     }).compile();
 
-    service = module.get<UnidadesService>(UnidadesService);
+    service = module.get<UnidadeService>(UnidadeService);
   });
 
   it('should be defined', () => {
