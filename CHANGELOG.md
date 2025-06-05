@@ -2,6 +2,14 @@
 
 Todas as mudanças notáveis neste projeto serão documentadas neste arquivo. Consulte [Conventional Commits](https://www.conventionalcommits.org/pt-br/v1.0.0/) para diretrizes de commits.
 
+# [1.0.0-alpha.11](https://github.com/heyitsmepablo/sigsars/compare/v1.0.0-alpha.10...v1.0.0-alpha.11) (2025-06-05)
+
+
+### Features
+
+* **api:** implementado rota para listar todas os grupos das cids ([1e0bc35](https://github.com/heyitsmepablo/sigsars/commit/1e0bc35c2831637bf2b651d87280ad10df6ee735))
+* **api:** implementado rota que lista todas as categorias com filtro por grupo ([47ab36e](https://github.com/heyitsmepablo/sigsars/commit/47ab36eee19fe44b345961c29382bef67ab1738b))
+
 # [1.0.0-alpha.10](https://github.com/heyitsmepablo/sigsars/compare/v1.0.0-alpha.9...v1.0.0-alpha.10) (2025-06-05)
 
 
