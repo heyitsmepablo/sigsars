@@ -2,7 +2,7 @@
 
 ### Cobertura de Testes API
 
-[![Testes Unitarios API](https://github.com/heyitsmepablo/sigsars/actions/workflows/testes-unitarios-api.yml/badge.svg?branch=dev)](https://github.com/heyitsmepablo/sigsars/actions/workflows/testes-unitarios-api.yml)
+[![Testes Unitarios API](https://github.com/heyitsmepablo/sigsars/actions/workflows/testes-unitarios-api.yml/badge.svg?branch=dev&event=push)](https://github.com/heyitsmepablo/sigsars/actions/workflows/testes-unitarios-api.yml)
 ![Statements](.github/badges/badge-statements.svg)
 ![Branches](.github/badges/badge-branches.svg)
 ![Functions](.github/badges/badge-functions.svg)
