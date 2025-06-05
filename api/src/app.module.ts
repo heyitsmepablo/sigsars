@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UnidadesService } from './services/unidade/unidade.service';
+import { UnidadeService } from './services/unidade/unidade.service';
 import { UnidadeController } from './controllers/unidade/unidade.controller';
 import { UnidadeTipoController } from './controllers/unidade-tipo/unidade-tipo.controller';
 import { UnidadeTipoService } from './services/unidade-tipo/unidade-tipo.service';
@@ -16,7 +16,7 @@ import { CidService } from './services/cid/cid.service';
   controllers: [AppController, UnidadeController, UnidadeTipoController],
   providers: [
     AppService,
-    UnidadesService,
+    UnidadeService,
     UnidadeTipoService,
     CausaService,
     CausaSragService,

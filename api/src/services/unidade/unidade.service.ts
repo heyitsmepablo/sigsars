@@ -4,7 +4,7 @@ import { PrismaErrorHandler } from 'src/handlers/prisma-error-handler';
 import PrismaSingleton from 'src/singletons/prisma-singleton/prisma-singleton';
 
 @Injectable()
-export class UnidadesService {
+export class UnidadeService {
   #database = PrismaSingleton.instance.client;
   async findAll(where?: UnidadeWhereQueryDto) {
     try {

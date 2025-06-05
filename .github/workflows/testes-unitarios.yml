@@ -7,7 +7,7 @@ on:
     paths:
       - "api/**"
 jobs:
-  API:
+  Execução dos Testes:
     runs-on: ubuntu-latest
     defaults:
       run:
