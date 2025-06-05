@@ -53,7 +53,7 @@ Fique atento às atualizações futuras!
 | **Rota Para Listar Tipos Unidades**                                  | [x]       |
 | **Rota Para Listar Unidades**                                        | [x]       |
 | **Rota Para Listar Unidades Filtrados pelo Tipo**                    | [x]       |
-| **Rota Para Listar Causas**                                          | [ ]       |
+| **Rota Para Listar Causas**                                          | [x]       |
 | **Rota Para Listar Causas Filtrados pelo Tipo**                      | [ ]       |
 | **Rota Para Listar Causas SRAG**                                     | [ ]       |
 | **Rota Para Listar todos os Grupos das CIDs**                        | [ ]       |
