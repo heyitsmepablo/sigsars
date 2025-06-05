@@ -11,10 +11,11 @@ import { CidGrupoService } from './services/cid-grupo/cid-grupo.service';
 import { CidCategoriaService } from './services/cid-categoria/cid-categoria.service';
 import { CidService } from './services/cid/cid.service';
 import { CausaController } from './controllers/causa/causa.controller';
+import { CausaSragController } from './controllers/causa_srag/causa_srag.controller';
 
 @Module({
   imports: [],
-  controllers: [AppController, UnidadeController, UnidadeTipoController, CausaController],
+  controllers: [AppController, UnidadeController, UnidadeTipoController, CausaController, CausaSragController],
   providers: [
     AppService,
     UnidadeService,
