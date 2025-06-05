@@ -1,0 +1,40 @@
+name: Testes Unitarios API
+on:
+  push:
+    paths:
+      - "api/**"
+  pull_request:
+    paths:
+      - "api/**"
+jobs:
+  Execução_dos_Testes:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./api
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run unit tests with coverage
+        run: npm run test:cov
+      - name: Generate coverage badges
+        run: npx jest-coverage-badges --input ./coverage/coverage-summary.json --output .github/badges
+      - name: Push coverage badges
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
+          git pull origin dev --no-rebase
+          git add .github/badges
+          git commit -m 'chore: update coverage badges [skip ci]' || echo "No changes to commit"
+          git push
