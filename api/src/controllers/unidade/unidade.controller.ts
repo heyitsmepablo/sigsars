@@ -1,6 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { UnidadeWhereQueryDto } from 'src/dtos/unidade.dto';
-import { UnidadesService } from 'src/services/unidades/unidades.service';
+import { UnidadesService } from 'src/services/unidade/unidade.service';
 
 @Controller('unidade')
 export class UnidadeController {

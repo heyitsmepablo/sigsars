@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UnidadeController } from './unidade.controller';
 import { Prisma } from 'generated/prisma';
-import { UnidadesService } from 'src/services/unidades/unidades.service';
+import { UnidadesService } from 'src/services/unidade/unidade.service';
 import { unidadeServiceMock } from 'src/__mock__/services/unidade.service';
 
 describe('UnidadeController', () => {
