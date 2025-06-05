@@ -54,10 +54,10 @@ Fique atento às atualizações futuras!
 | **Rota Para Listar Unidades**                                        | [x]       |
 | **Rota Para Listar Unidades Filtrados pelo Tipo**                    | [x]       |
 | **Rota Para Listar Causas**                                          | [x]       |
-| **Rota Para Listar Causas Filtrados pelo Tipo**                      | [ ]       |
-| **Rota Para Listar Causas SRAG**                                     | [ ]       |
-| **Rota Para Listar todos os Grupos das CIDs**                        | [ ]       |
-| **Rota Para Listar todas as Categoria das CIDs filtrado pelo Grupo** | [ ]       |
+| **Rota Para Listar Causas Filtrados pelo Tipo**                      | [x]       |
+| **Rota Para Listar Causas SRAG**                                     | [x]       |
+| **Rota Para Listar todos os Grupos das CIDs**                        | [x]       |
+| **Rota Para Listar todas as Categoria das CIDs filtrado pelo Grupo** | [x]       |
 | **Rota Para Listar todas CIDs filtrado pela Categoria**              | [ ]       |
 | **Rota Para Buscar CIDs pelo seu codigo**                            | [ ]       |
 | **Rota Para Listar CIDs SRAG**                                       | [ ]       |
