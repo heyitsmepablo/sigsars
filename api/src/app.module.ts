@@ -10,10 +10,11 @@ import { CausaSragService } from './services/causa-srag/causa-srag.service';
 import { CidGrupoService } from './services/cid-grupo/cid-grupo.service';
 import { CidCategoriaService } from './services/cid-categoria/cid-categoria.service';
 import { CidService } from './services/cid/cid.service';
+import { CausaController } from './controllers/causa/causa.controller';
 
 @Module({
   imports: [],
-  controllers: [AppController, UnidadeController, UnidadeTipoController],
+  controllers: [AppController, UnidadeController, UnidadeTipoController, CausaController],
   providers: [
     AppService,
     UnidadeService,
