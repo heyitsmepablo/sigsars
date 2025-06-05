@@ -2,6 +2,14 @@
 
 Todas as mudanças notáveis neste projeto serão documentadas neste arquivo. Consulte [Conventional Commits](https://www.conventionalcommits.org/pt-br/v1.0.0/) para diretrizes de commits.
 
+# [1.0.0-alpha.10](https://github.com/heyitsmepablo/sigsars/compare/v1.0.0-alpha.9...v1.0.0-alpha.10) (2025-06-05)
+
+
+### Features
+
+* **api:** implementado rota para listar causas com filtro ([4a228b5](https://github.com/heyitsmepablo/sigsars/commit/4a228b5c46333b5172a1fa0769fde44044312419))
+* **api:** Implementado rota para listar todas as causas srags ([3710da7](https://github.com/heyitsmepablo/sigsars/commit/3710da7df854a11c8c4018607303f9e6c257b5fe))
+
 # [1.0.0-alpha.9](https://github.com/heyitsmepablo/sigsars/compare/v1.0.0-alpha.8...v1.0.0-alpha.9) (2025-06-05)
 
 
