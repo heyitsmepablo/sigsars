@@ -58,9 +58,9 @@ Fique atento às atualizações futuras!
 | **Rota Para Listar Causas SRAG**                                     | [x]       |
 | **Rota Para Listar todos os Grupos das CIDs**                        | [x]       |
 | **Rota Para Listar todas as Categoria das CIDs filtrado pelo Grupo** | [x]       |
-| **Rota Para Listar todas CIDs filtrado pela Categoria**              | [ ]       |
-| **Rota Para Buscar CIDs pelo seu codigo**                            | [ ]       |
-| **Rota Para Listar CIDs SRAG**                                       | [ ]       |
+| **Rota Para Listar todas CIDs filtrado pela Categoria**              | [x]       |
+| **Rota Para Buscar CIDs pelo seu codigo**                            | [x]       |
+| **Rota Para Listar CIDs SRAG**                                       | [x]       |
 | **Rota Para Cadastro de Boletim de Ocupação da Internação**          | [ ]       |
 | **Rota Para Cadastro de Boletim de Admissões da Internação**         | [ ]       |
 | **Rota Para Cadastro de Boletim de Atendimentos da Porta**           | [ ]       |
