@@ -1,4 +1,22 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
+import { CidPaginationQuerysDto, CidWhereQuerysDto } from 'src/dtos/cid.dto';
+import { CidService } from 'src/services/cid/cid.service';
 
 @Controller('cid')
-export class CidController {}
+export class CidController {
+  constructor(private readonly cidService: CidService) {}
+  /** Lista todas as CIDs cadastradas por categoria */
+  @Get()
+  async findAll(
+    @Query() where?: CidWhereQuerysDto,
+    @Query() pagination?: CidPaginationQuerysDto,
+  ) {
+    return await this.cidService.findAll({
+      where: {
+        cid_categoria_id: where?.cid_categoria_id,
+        codigo: { contains: where?.codigo, mode: 'insensitive' },
+      },
+      ...pagination,
+    });
+  }
+}
