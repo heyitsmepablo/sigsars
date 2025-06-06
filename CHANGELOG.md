@@ -2,6 +2,14 @@
 
 Todas as mudanças notáveis neste projeto serão documentadas neste arquivo. Consulte [Conventional Commits](https://www.conventionalcommits.org/pt-br/v1.0.0/) para diretrizes de commits.
 
+# [1.0.0-alpha.12](https://github.com/heyitsmepablo/sigsars/compare/v1.0.0-alpha.11...v1.0.0-alpha.12) (2025-06-06)
+
+
+### Features
+
+* **api:** implentado rota para listar cid ([b1188d1](https://github.com/heyitsmepablo/sigsars/commit/b1188d1c81f6b89a8eff71b01d3346e817c17e2b))
+* **api:** implentado rota para listar cid do tipos srag ([a9982c4](https://github.com/heyitsmepablo/sigsars/commit/a9982c4468789cba72f9bac454b18f97cea6b597))
+
 # [1.0.0-alpha.11](https://github.com/heyitsmepablo/sigsars/compare/v1.0.0-alpha.10...v1.0.0-alpha.11) (2025-06-05)
 
 
