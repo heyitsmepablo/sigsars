@@ -1,17 +1,17 @@
-# SIGSARS – Sistema Integrado de Gestão da SARS
+# e-SEMUS – Sistema Integrado de Gestão da SEMUS
 
 ### Cobertura de Testes API
 
-[![Testes Unitarios API](https://github.com/heyitsmepablo/sigsars/actions/workflows/testes-unitarios-api.yml/badge.svg?branch=dev&event=push)](https://github.com/heyitsmepablo/sigsars/actions/workflows/testes-unitarios-api.yml)
-![Statements](.github/badges/badge-statements.svg)
-![Branches](.github/badges/badge-branches.svg)
-![Functions](.github/badges/badge-functions.svg)
+[![Testes Unitarios API](https://github.com/heyitsmepablo/sigsars/actions/workflows/testes-unitarios-api.yml/badge.svg?branch=dev&event=push)](https://github.com/heyitsmepablo/sigsars/actions/workflows/testes-unitarios-api.yml)  
+![Statements](.github/badges/badge-statements.svg)  
+![Branches](.github/badges/badge-branches.svg)  
+![Functions](.github/badges/badge-functions.svg)  
 ![Lines](.github/badges/badge-lines.svg)
 
 **Autor:** Pablo Eduardo Silva Santos  
 **Status:** Em desenvolvimento
 
-O **SIGSARS** (Sistema Integrado de Gestão da SARS) é um sistema de informação voltado para a gestão e integração de dados da **Superintendência de Assistência à Rede de Saúde (SARS)**, órgão vinculado à **Secretaria Municipal de Saúde (SEMUS)**.  
+O **e-SEMUS** (Sistema Integrado de Gestão da SEMUS) é um sistema de informação voltado para a gestão e integração de dados da **Secretaria Municipal de Saúde (SEMUS)**, abrangendo todas as suas **superintendências**.  
 Este projeto tem como objetivo centralizar e otimizar processos, promover a transparência e facilitar o acesso às informações essenciais para a tomada de decisões estratégicas no setor de saúde pública municipal.
 
 ---

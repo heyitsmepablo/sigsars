@@ -1,4 +1,4 @@
-name: sigsars
+name: e-semus
 services:
   database:
     build:
@@ -18,7 +18,7 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
     networks:
-      - sigsars
+      - e-semus
   pgadmin4:
     image: dpage/pgadmin4:latest
     ports:
@@ -29,7 +29,7 @@ services:
       PGADMIN_DEFAULT_EMAIL: postgres@admin.com
       PGADMIN_DEFAULT_PASSWORD: postgres
     networks:
-      - sigsars
+      - e-semus
 networks:
-  sigsars:
+  e-semus:
     driver: bridge
