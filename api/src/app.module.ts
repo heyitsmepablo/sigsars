@@ -15,10 +15,12 @@ import { CausaSragController } from './controllers/causa_srag/causa_srag.control
 import { CidGrupoController } from './controllers/cid-grupo/cid-grupo.controller';
 import { CidCategoriaController } from './controllers/cid-categoria/cid-categoria.controller';
 import { CidController } from './controllers/cid/cid.controller';
+import { CidSragService } from './services/cid-srag/cid-srag.service';
+import { CidSragController } from './controllers/cid-srag/cid-srag.controller';
 
 @Module({
   imports: [],
-  controllers: [AppController, UnidadeController, UnidadeTipoController, CausaController, CausaSragController, CidGrupoController, CidCategoriaController, CidController],
+  controllers: [AppController, UnidadeController, UnidadeTipoController, CausaController, CausaSragController, CidGrupoController, CidCategoriaController, CidController, CidSragController],
   providers: [
     AppService,
     UnidadeService,
@@ -28,6 +30,7 @@ import { CidController } from './controllers/cid/cid.controller';
     CidGrupoService,
     CidCategoriaService,
     CidService,
+    CidSragService,
   ],
 })
 export class AppModule {}
