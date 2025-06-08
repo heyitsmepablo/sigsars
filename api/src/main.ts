@@ -9,7 +9,7 @@ async function bootstrap() {
   const swaggerConfig = new DocumentBuilder()
     .setTitle('SIGSARS')
     .setDescription(
-      'O SIGSARS (Sistema Integrado de Gestão da SARS) é um sistema de informação voltado para a gestão e integração de dados da Superintendência de Assistência à Rede de Saúde (SARS), órgão vinculado à Secretaria Municipal de Saúde (SEMUS).',
+      'O e-SEMUS (Sistema Integrado de SEMUS) é um sistema de informação voltado para a gestão e integração de dados da Secretaria Municipal de Saude (SEMUS)',
     )
     .setVersion('1.0')
     .build();
