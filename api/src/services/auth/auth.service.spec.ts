@@ -1,9 +1,7 @@
 import { argon2Mock } from 'src/__mock__/argon.mock';
 import msMock from 'src/__mock__/ms.mock';
-import { UsuarioService } from '../usuario/usuario.service';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthService } from './auth.service';
-import { usuarioServiceMock } from 'src/__mock__/services/usuario.service';
 import { JwtService } from '@nestjs/jwt';
 import { jwtServiceMock } from 'src/__mock__/services/jwt.service';
 import { prismaMock } from 'src/__mock__/prisma-singleton';
@@ -11,11 +9,14 @@ import { Prisma } from 'generated/prisma';
 import 'jest-extended';
 import { ConfigService } from '@nestjs/config';
 import { configServiceMock } from 'src/__mock__/services/config.service';
-import { AuthServiceSignUpData } from 'src/dtos/auth.dto';
-jest.mock('ms', () => ({
-  __esModule: true,
-  default: require('src/__mock__/ms.mock').default,
-}));
+import {
+  AuthServiceSignInArgs,
+  AuthServiceSignUpData,
+} from 'src/dtos/auth.dto';
+import { BadRequestException } from '@nestjs/common';
+jest.mock('ms', () => {
+  return msMock;
+});
 
 jest.mock('argon2', () => argon2Mock);
 describe('AuthService', () => {
@@ -61,6 +62,7 @@ describe('AuthService', () => {
       configServiceMock.getOrThrow.mockReturnValue('env');
       argon2Mock.hash.mockResolvedValue('hash');
       prismaMock.usuario.create.mockResolvedValue(prismaResponsePayload);
+
       await expect(service.signUp(signUpData)).resolves.toEqual(
         expectedResponse,
       );
@@ -84,8 +86,12 @@ describe('AuthService', () => {
     });
   });
   describe('signIn', () => {
-    const signInArgs = { login: 'teste', senha: 'test' };
-    const prismaResponsePayload: Prisma.usuarioGetPayload<{
+    const signInArgs: AuthServiceSignInArgs = {
+      usuario: 'teste',
+      senha: 'test',
+    };
+
+    const prismaUsuarioResponsePayload: Prisma.usuarioGetPayload<{
       include: { acesso: true };
     }> = {
       id: 'uuid',
@@ -106,19 +112,34 @@ describe('AuthService', () => {
       criado_em: null,
       atualizado_em: null,
     };
+
+    const prismaTokenDeAcessoResponsePayload: Prisma.token_de_acessoGetPayload<true> =
+      {
+        id: 1,
+        acesso_id: 1,
+        token: 'string',
+        valido_ate: new Date(Date.now()),
+        expirado_em: null,
+        atualizado_em: null,
+        criado_em: null,
+      };
+
     it('Deve resolver retornando payload', async () => {
       prismaMock.usuario.findFirstOrThrow.mockResolvedValue(
-        prismaResponsePayload,
+        prismaUsuarioResponsePayload,
+      );
+      prismaMock.token_de_acesso.create.mockResolvedValue(
+        prismaTokenDeAcessoResponsePayload,
       );
       argon2Mock.verify.mockResolvedValue(true);
       jwtServiceMock.signAsync.mockResolvedValue('token');
       configServiceMock.getOrThrow.mockReturnValue('env');
-      msMock.mockReturnValue(36000);
+      msMock.mockReturnValue(360000);
       await expect(service.signIn(signInArgs)).resolves.toMatchObject({
         token: expect.toBeString(),
         tipo: 'Bearer',
-        expira_dentro_de: expect.toBeNumber(),
-        expira_em: expect.toBeNumber(),
+        expira_em_milisegundos: expect.toBeNumber(),
+        valido_ate_timestamp: expect.toBeNumber(),
         usuario: expect.anything(),
         ultimo_login: expect.toBeOneOf([null, expect.toBeDateString()]),
       });
@@ -131,7 +152,7 @@ describe('AuthService', () => {
     it('Deve rejeitar caso argon falhe jogando o erro', async () => {
       const erroGenerico = new Error('Generico');
       prismaMock.usuario.findFirstOrThrow.mockResolvedValue(
-        prismaResponsePayload,
+        prismaUsuarioResponsePayload,
       );
       argon2Mock.verify.mockRejectedValue(erroGenerico);
       await expect(service.signIn(signInArgs)).rejects.toThrow(erroGenerico);
@@ -139,7 +160,7 @@ describe('AuthService', () => {
     it('Deve rejeitar caso servico jwt falhe jogando o erro', async () => {
       const erroGenerico = new Error('Generico');
       prismaMock.usuario.findFirstOrThrow.mockResolvedValue(
-        prismaResponsePayload,
+        prismaUsuarioResponsePayload,
       );
       argon2Mock.verify.mockResolvedValue(true);
       jwtServiceMock.signAsync.mockRejectedValue(erroGenerico);
@@ -151,11 +172,49 @@ describe('AuthService', () => {
         throw erroGenerico;
       });
       prismaMock.usuario.findFirstOrThrow.mockResolvedValue(
-        prismaResponsePayload,
+        prismaUsuarioResponsePayload,
       );
       argon2Mock.verify.mockResolvedValue(true);
       jwtServiceMock.signAsync.mockResolvedValue('token');
       await expect(service.signIn(signInArgs)).rejects.toThrow(erroGenerico);
+    });
+  });
+
+  describe('logout', () => {
+    const logoutTokenJWTArg = 'Bearer token';
+
+    const prismaTokenDeAcessoResponsePayload: Prisma.token_de_acessoGetPayload<true> =
+      {
+        id: 1,
+        acesso_id: 1,
+        token: 'string',
+        valido_ate: new Date(Date.now()),
+        expirado_em: null,
+        criado_em: null,
+        atualizado_em: null,
+      };
+    it('Deve resolver com retornando payload', async () => {
+      const expectedServiceResponse = { message: 'success' };
+      prismaMock.token_de_acesso.update.mockResolvedValue(
+        prismaTokenDeAcessoResponsePayload,
+      );
+      await expect(service.logout(logoutTokenJWTArg)).resolves.toEqual(
+        expectedServiceResponse,
+      );
+    });
+    it('Deve falhar caso não tenha Bearer no token', async () => {
+      const jwtMailFormed = 'token asdkasdkasdkasd';
+      const expectedError = new BadRequestException('Tipo do token invalido');
+      await expect(service.logout(jwtMailFormed)).rejects.toThrow(
+        expectedError,
+      );
+    });
+    it('Deve rejeitar caso prisma falhe jogando o erro', async () => {
+      const erroGenerico = new Error('Generico');
+      prismaMock.token_de_acesso.update.mockRejectedValue(erroGenerico);
+      await expect(service.logout(logoutTokenJWTArg)).rejects.toThrow(
+        erroGenerico,
+      );
     });
   });
 });

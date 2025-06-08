@@ -1,4 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import * as argon2 from 'argon2';
 import {
   AuthServiceSignInArgs,
@@ -9,7 +13,7 @@ import { PrismaErrorHandler } from 'src/handlers/prisma-error-handler';
 import { Prisma } from 'generated/prisma';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
-import ms from 'ms';
+import * as ms from 'ms';
 
 @Injectable()
 export class AuthService {
@@ -21,53 +25,82 @@ export class AuthService {
 
   async signUp(data: AuthServiceSignUpData) {
     const { senha, ...usuario } = data;
-    const argonSecret = this.configService.getOrThrow<string>('ARGON2_SECRET');
-    const argonSalt = this.configService.getOrThrow<string>('ARGON2_SALT');
 
-    data.senha = await argon2.hash(senha, {
+    const argonSecret = this.configService.getOrThrow<string>('ARGON2_SECRET');
+
+    const senhaCriptografada = await argon2.hash(senha, {
       secret: Buffer.from(argonSecret),
-      salt: Buffer.from(argonSalt),
     });
 
     await this.#database.usuario.create({
-      data: { ...usuario, acesso: { create: { senha } } },
+      data: { ...usuario, acesso: { create: { senha: senhaCriptografada } } },
     });
+
     return { message: 'success' };
   }
 
   async signIn(credencials: AuthServiceSignInArgs) {
-    const { login, senha } = credencials;
-
+    const argonSecret = this.configService.getOrThrow<string>('ARGON2_SECRET');
     const jwtExpireIn =
       this.configService.getOrThrow<ms.StringValue>('JWT_EXPIRES_IN');
-
+    const { usuario, senha } = credencials;
     try {
-      const usuario: Prisma.usuarioGetPayload<{ include: { acesso: true } }> =
-        await this.#database.usuario.findFirstOrThrow({
-          include: { acesso: true },
-          where: {
-            OR: [{ cpf: login }, { email: login }, { matricula: login }],
-          },
-        });
-      const { acesso, ...payload } = usuario;
+      const ususarioDatabase: Prisma.usuarioGetPayload<{
+        include: { acesso: true };
+      }> = await this.#database.usuario.findFirstOrThrow({
+        include: { acesso: true },
+        where: {
+          OR: [{ cpf: usuario }, { email: usuario }, { matricula: usuario }],
+        },
+      });
+      const { acesso, ...payload } = ususarioDatabase;
 
       if (acesso?.senha) {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-        if (await argon2.verify(acesso?.senha, senha)) {
+        if (
+          await argon2.verify(acesso?.senha, senha, {
+            secret: Buffer.from(argonSecret),
+          })
+        ) {
           const token = await this.jwtService.signAsync(payload);
-          const duration = ms(jwtExpireIn);
-          const expireIn = duration / 1000;
-          const expireAt = Date.now() + duration;
+          const expira_em_milisegundos = ms(jwtExpireIn);
+          const valido_ate_timestamp = Date.now() + expira_em_milisegundos;
+          await this.#database.token_de_acesso.create({
+            data: {
+              token: token,
+              valido_ate: new Date(valido_ate_timestamp),
+              acesso_id: acesso?.id,
+            },
+          });
           return {
             token: token,
             tipo: 'Bearer',
-            expira_dentro_de: expireIn,
-            expira_em: expireAt,
+            expira_em_milisegundos: expira_em_milisegundos,
+            valido_ate_timestamp: valido_ate_timestamp,
             usuario: payload,
             ultimo_login: acesso.ultimo_login,
           };
         }
       }
+    } catch (error) {
+      new PrismaErrorHandler(error).handle();
+    }
+  }
+
+  async logout(tokenJWT: string) {
+    try {
+      const [type, token] = tokenJWT.split(' ');
+      if (type != 'Bearer') {
+        throw new BadRequestException('Tipo do token invalido');
+      }
+      await this.#database.token_de_acesso.update({
+        where: { token },
+        data: {
+          expirado_em: new Date(Date.now()),
+          atualizado_em: new Date(Date.now()),
+        },
+      });
+      return { message: 'success' };
     } catch (error) {
       new PrismaErrorHandler(error).handle();
     }

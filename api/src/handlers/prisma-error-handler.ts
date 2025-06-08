@@ -24,7 +24,7 @@ export class PrismaErrorHandler {
         }
         case 'P2025': {
           throw new NotFoundException({
-            message: `Registro para atualizar não encontrado`,
+            message: `Registro não encontrado`,
           });
         }
       }

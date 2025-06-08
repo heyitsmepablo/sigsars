@@ -99,7 +99,8 @@
       "app.module.ts",
       "__mock__/*",
       "scripts/*",
-      "src/dtos"
+      "src/dtos",
+      "src/app.service.ts"
     ],
     "testEnvironment": "node",
     "clearMocks": true,

@@ -1,3 +1,2 @@
-const msMock = jest.fn().mockImplementation((val) => val); // ou sua lógica
-
+const msMock = jest.fn().mockImplementation((val) => val);
 export default msMock;

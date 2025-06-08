@@ -36,7 +36,6 @@ import { AuthController } from './controllers/auth/auth.controller';
         JWT_SECRET: Joi.string().required(),
         JWT_EXPIRES_IN: Joi.string().required(),
         ARGON2_SECRET: Joi.string().required(),
-        ARGON2_SALT: Joi.string().allow('').required(),
         PORT: Joi.number().default(3000),
       }),
     }),
