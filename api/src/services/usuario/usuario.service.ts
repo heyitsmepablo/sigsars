@@ -24,12 +24,6 @@ export class UsuarioService {
     try {
       const { cpf, matricula, id } = where;
 
-      if (!where) {
-        throw new Error(
-          'É necessário fornecer pelo menos um campo de valor unico',
-        );
-      }
-
       if (cpf) {
         return this.#database.usuario.findUniqueOrThrow({
           where: { cpf },

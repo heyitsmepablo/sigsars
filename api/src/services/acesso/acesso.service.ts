@@ -8,11 +8,6 @@ export class AcessoService {
   #database = PrismaSingleton.instance.client;
   async findOne(where: AcessoServiceFindOneWhereArg) {
     try {
-      if (!where) {
-        throw new Error(
-          'É necessário fornecer pelo menos um campo de valor unico',
-        );
-      }
       const { usuario_id } = where;
       if (usuario_id) {
         return await this.#database.acesso.findUniqueOrThrow({
