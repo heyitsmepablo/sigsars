@@ -1,24 +1,21 @@
 import { Injectable } from '@nestjs/common';
-import {
-  UsuarioServiceCreateData,
-  UsuarioServiceFindOneWhereArg,
-} from 'src/dtos/usuario.dto';
+import { UsuarioServiceFindOneWhereArg } from 'src/dtos/usuario.dto';
 import { PrismaErrorHandler } from 'src/handlers/prisma-error-handler';
 import PrismaSingleton from 'src/singletons/prisma-singleton/prisma-singleton';
 
 @Injectable()
 export class UsuarioService {
   #database = PrismaSingleton.instance.client;
-  async create(data: UsuarioServiceCreateData) {
-    const { senha, ...usuario } = data;
-    try {
-      return await this.#database.usuario.create({
-        data: { ...usuario, acesso: { create: { senha } } },
-      });
-    } catch (error) {
-      new PrismaErrorHandler(error).handle();
-    }
-  }
+  // async create(data: UsuarioServiceCreateData) {
+  //   const { senha, ...usuario } = data;
+  //   try {
+  //     return await this.#database.usuario.create({
+  //       data: { ...usuario, acesso: { create: { senha } } },
+  //     });
+  //   } catch (error) {
+  //     new PrismaErrorHandler(error).handle();
+  //   }
+  // }
 
   async findOne(where: UsuarioServiceFindOneWhereArg) {
     try {

@@ -21,9 +21,11 @@ import { UsuarioService } from './services/usuario/usuario.service';
 import { AcessoService } from './services/acesso/acesso.service';
 import { AuthService } from './services/auth/auth.service';
 import { ConfigModule } from '@nestjs/config';
-import Joi from 'joi';
+import * as Joi from 'joi';
 import { JwtModule } from '@nestjs/jwt';
 import { env } from 'process';
+import { UsuarioController } from './controllers/usuario/usuario.controller';
+import { AuthController } from './controllers/auth/auth.controller';
 
 @Module({
   imports: [
@@ -34,7 +36,7 @@ import { env } from 'process';
         JWT_SECRET: Joi.string().required(),
         JWT_EXPIRES_IN: Joi.string().required(),
         ARGON2_SECRET: Joi.string().required(),
-        ARGON2_SALT: Joi.string().required(),
+        ARGON2_SALT: Joi.string().allow('').required(),
         PORT: Joi.number().default(3000),
       }),
     }),
@@ -54,6 +56,8 @@ import { env } from 'process';
     CidCategoriaController,
     CidController,
     CidSragController,
+    UsuarioController,
+    AuthController,
   ],
   providers: [
     AppService,

@@ -4,7 +4,6 @@ import { UsuarioService } from '../usuario/usuario.service';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthService } from './auth.service';
 import { usuarioServiceMock } from 'src/__mock__/services/usuario.service';
-import { UsuarioServiceCreateData } from 'src/dtos/usuario.dto';
 import { JwtService } from '@nestjs/jwt';
 import { jwtServiceMock } from 'src/__mock__/services/jwt.service';
 import { prismaMock } from 'src/__mock__/prisma-singleton';
@@ -12,6 +11,7 @@ import { Prisma } from 'generated/prisma';
 import 'jest-extended';
 import { ConfigService } from '@nestjs/config';
 import { configServiceMock } from 'src/__mock__/services/config.service';
+import { AuthServiceSignUpData } from 'src/dtos/auth.dto';
 jest.mock('ms', () => ({
   __esModule: true,
   default: require('src/__mock__/ms.mock').default,
@@ -24,7 +24,6 @@ describe('AuthService', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         AuthService,
-        { provide: UsuarioService, useValue: usuarioServiceMock },
         { provide: JwtService, useValue: jwtServiceMock },
         { provide: ConfigService, useValue: configServiceMock },
       ],
@@ -36,7 +35,19 @@ describe('AuthService', () => {
     expect(service).toBeDefined();
   });
   describe('signUp', () => {
-    const signUpData: UsuarioServiceCreateData = {
+    const prismaResponsePayload: Prisma.usuarioGetPayload<true> = {
+      id: 'teste',
+      nome: 'teste',
+      cargo: 'teste',
+      usuario_tipo_id: 1,
+      cpf: 'teste',
+      email: 'teste',
+      matricula: 'teste',
+      criado_em: null,
+      atualizado_em: null,
+    };
+
+    const signUpData: AuthServiceSignUpData = {
       nome: 'teste',
       cargo: 'teste',
       cpf: 'teste',
@@ -49,7 +60,7 @@ describe('AuthService', () => {
       const expectedResponse = { message: 'success' };
       configServiceMock.getOrThrow.mockReturnValue('env');
       argon2Mock.hash.mockResolvedValue('hash');
-      usuarioServiceMock.create.mockResolvedValue('payload');
+      prismaMock.usuario.create.mockResolvedValue(prismaResponsePayload);
       await expect(service.signUp(signUpData)).resolves.toEqual(
         expectedResponse,
       );
@@ -62,11 +73,11 @@ describe('AuthService', () => {
         expectedResponse,
       );
     });
-    it('Deve rejeitar jogando erro do servico do usuario', async () => {
+    it('Deve rejeitar jogando erro do prisma', async () => {
       const expectedResponse = new Error('generico');
       configServiceMock.getOrThrow.mockReturnValue('env');
       argon2Mock.hash.mockResolvedValue('hash');
-      usuarioServiceMock.create.mockRejectedValue(expectedResponse);
+      prismaMock.usuario.create.mockRejectedValue(expectedResponse);
       await expect(service.signUp(signUpData)).rejects.toThrow(
         expectedResponse,
       );
