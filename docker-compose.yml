@@ -8,6 +8,7 @@ services:
       - ./database/csv:/mnt/tmp/csv
       - ./database/initdb.sql:/docker-entrypoint-initdb.d/1.sql
       - ./database/scripts/loadForeignTables.sql:/docker-entrypoint-initdb.d/2.sql
+      - ./database/scripts/insertTipoDeUsuarios.sql:/docker-entrypoint-initdb.d/3.sql
       - ./docker/database/data/postgresql.conf:/etc/postgresql/postgresql.conf
       - ./docker/database/data/logs:/var/log/postgresql
     mem_limit: "512mb"

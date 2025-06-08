@@ -1,4 +1,5 @@
 FROM postgres:17.5
+
 ENV  POSTGRES_INITDB_ARGS='--lc-numeric=pt_BR.UTF-8 --lc-monetary=pt_BR.UTF-8 --lc-collate=pt_BR.UTF-8 --lc-ctype=pt_BR.UTF-8'
 ENV  POSTGRESQL_LOGGING_COLLECTOR="on"
 ENV  POSTGRESQL_LOG_DIRECTORY="/var/log/postgresql"
@@ -8,6 +9,8 @@ ENV  POSTGRESQL_LOG_DURATION="on"
 ENV  POSTGRESQL_LOG_MIN_DURATION_STATEMENT="1000"
 
 COPY ./initdb.sql /docker-entrypoint-initdb.d/1.sql
+COPY ./scripts/loadForeignTables.sql /docker-entrypoint-initdb.d/2.sql
+COPY ./scripts/insertTipoDeUsuarios.sql /docker-entrypoint-initdb.d/3.sql
 
 # Instalar pacotes de localidade
 RUN apt-get update && apt-get install -y locales
