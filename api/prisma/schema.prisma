@@ -17,20 +17,21 @@ model boletim_admissoao_internacao_cid {
 }
 
 model boletim_atendimento_porta {
-  id                              Int                               @id @default(autoincrement())
-  unidade_id                      Int
-  responsavelPreenchimento        String
-  turno                           tipo_turno?
-  referente_ao_dia                DateTime                          @db.Date
-  origem                          tipo_origem_atendimento_porta?
-  numero_de_atendimentos          Int
-  srag                            Boolean
-  faixa_etaria                    String
-  genero                          tipo_genero?
-  criado_em                       DateTime?                         @default(now()) @db.Timestamp(6)
-  atualizado_em                   DateTime?                         @db.Timestamp(6)
-  unidade                         unidade                           @relation(fields: [unidade_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  boletim_atendimento_porta_causa boletim_atendimento_porta_causa[]
+  id                                   Int                               @id @default(autoincrement())
+  unidade_id                           Int
+  usuario_responsavel_preenchimento_id String                            @db.Uuid
+  turno                                tipo_turno?
+  referente_ao_dia                     DateTime                          @db.Date
+  origem                               tipo_origem_atendimento_porta?
+  numero_de_atendimentos               Int
+  srag                                 Boolean
+  faixa_etaria                         String
+  genero                               tipo_genero?
+  criado_em                            DateTime?                         @default(now()) @db.Timestamp(6)
+  atualizado_em                        DateTime?                         @db.Timestamp(6)
+  unidade                              unidade                           @relation(fields: [unidade_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  usuario                              usuario                           @relation(fields: [usuario_responsavel_preenchimento_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  boletim_atendimento_porta_causa      boletim_atendimento_porta_causa[]
 }
 
 model boletim_atendimento_porta_causa {
@@ -42,40 +43,42 @@ model boletim_atendimento_porta_causa {
 }
 
 model boletim_internacao_admissao {
-  id                               Int                                @id @default(autoincrement())
-  unidade_id                       Int
-  responsavelPreenchimento         String
-  referente_ao_dia                 DateTime                           @db.Date
-  numero_de_admissoes              Int
-  srag                             Boolean
-  faixa_etaria                     String
-  genero                           tipo_genero?
-  criado_em                        DateTime?                          @default(now()) @db.Timestamp(6)
-  atualizado_em                    DateTime?                          @db.Timestamp(6)
-  boletim_admissoao_internacao_cid boletim_admissoao_internacao_cid[]
-  unidade                          unidade                            @relation(fields: [unidade_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  id                                   Int                                @id @default(autoincrement())
+  unidade_id                           Int
+  usuario_responsavel_preenchimento_id String                             @db.Uuid
+  referente_ao_dia                     DateTime                           @db.Date
+  numero_de_admissoes                  Int
+  srag                                 Boolean
+  faixa_etaria                         String
+  genero                               tipo_genero?
+  criado_em                            DateTime?                          @default(now()) @db.Timestamp(6)
+  atualizado_em                        DateTime?                          @db.Timestamp(6)
+  boletim_admissoao_internacao_cid     boletim_admissoao_internacao_cid[]
+  unidade                              unidade                            @relation(fields: [unidade_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  usuario                              usuario                            @relation(fields: [usuario_responsavel_preenchimento_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model boletim_internacao_ocupacao {
-  id                               Int       @id @default(autoincrement())
-  unidade_id                       Int
-  responsavelPreenchimento         String
-  referente_ao_dia                 DateTime  @db.Date
-  pacientes_uti                    Int
-  pacientes_uti_isolamento         Int
-  pacientes_enfermaria             Int
-  pacientes_enfermaria_isolamento  Int
-  pacientes_lsvp                   Int
-  pacientes_estabilizacao_vermelha Int
-  criado_em                        DateTime? @default(now()) @db.Timestamp(6)
-  atualizado_em                    DateTime? @db.Timestamp(6)
-  unidade                          unidade   @relation(fields: [unidade_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  id                                   Int       @id @default(autoincrement())
+  unidade_id                           Int
+  usuario_responsavel_preenchimento_id String    @db.Uuid
+  referente_ao_dia                     DateTime  @db.Date
+  pacientes_uti                        Int
+  pacientes_uti_isolamento             Int
+  pacientes_enfermaria                 Int
+  pacientes_enfermaria_isolamento      Int
+  pacientes_lsvp                       Int
+  pacientes_estabilizacao_vermelha     Int
+  criado_em                            DateTime? @default(now()) @db.Timestamp(6)
+  atualizado_em                        DateTime? @db.Timestamp(6)
+  unidade                              unidade   @relation(fields: [unidade_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  usuario                              usuario   @relation(fields: [usuario_responsavel_preenchimento_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model boletim_saidas {
   id                                                 Int                    @id @default(autoincrement())
   unidade_id                                         Int
-  responsavelPreenchimento                           String
+  usuario_responsavel_preenchimento_id               String                 @db.Uuid
   local_de_saida                                     tipo_local_de_saida
   tipo_da_saida                                      tipo_saida
   unidade_destino_id                                 Int
@@ -83,6 +86,7 @@ model boletim_saidas {
   total_de_saida                                     Int
   unidade_boletim_saidas_unidade_destino_idTounidade unidade                @relation("boletim_saidas_unidade_destino_idTounidade", fields: [unidade_destino_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   unidade_boletim_saidas_unidade_idTounidade         unidade                @relation("boletim_saidas_unidade_idTounidade", fields: [unidade_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  usuario                                            usuario                @relation(fields: [usuario_responsavel_preenchimento_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model causa {
@@ -177,6 +181,56 @@ model unidade_tipo {
   criado_em     DateTime? @default(now()) @db.Timestamp(6)
   atualizado_em DateTime? @db.Timestamp(6)
   unidade       unidade[]
+}
+
+model acesso {
+  id            Int       @id @default(autoincrement())
+  usuario_id    String    @unique @db.Uuid
+  senha         String
+  ultimo_login  DateTime? @db.Timestamp(6)
+  criado_em     DateTime? @default(now()) @db.Timestamp(6)
+  atualizado_em DateTime? @db.Timestamp(6)
+  usuario       usuario   @relation(fields: [usuario_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  token         token[]
+}
+
+model token {
+  id                         Int       @id @default(autoincrement())
+  acesso_id                  Int
+  token_de_acesso            String    @unique
+  token_de_refresh           String?   @unique
+  expiracao_token_de_acesso  DateTime  @db.Timestamp(6)
+  expiracao_token_de_refresh DateTime? @db.Timestamp(6)
+  criado_em                  DateTime? @default(now()) @db.Timestamp(6)
+  atualizado_em              DateTime? @db.Timestamp(6)
+  acesso                     acesso    @relation(fields: [acesso_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model usuario {
+  id                          String                        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  nome                        String
+  cargo                       String
+  matricula                   String                        @unique
+  cpf                         String                        @unique
+  email                       String?
+  usuario_tipo_id             Int
+  criado_em                   DateTime?                     @default(now()) @db.Timestamp(6)
+  atualizado_em               DateTime?                     @db.Timestamp(6)
+  acesso                      acesso?
+  boletim_atendimento_porta   boletim_atendimento_porta[]
+  boletim_internacao_admissao boletim_internacao_admissao[]
+  boletim_internacao_ocupacao boletim_internacao_ocupacao[]
+  boletim_saidas              boletim_saidas[]
+  usuario_tipo                usuario_tipo                  @relation(fields: [usuario_tipo_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model usuario_tipo {
+  id            Int       @id @default(autoincrement())
+  nome          String?
+  descricao     String?
+  criado_em     DateTime? @default(now()) @db.Timestamp(6)
+  atualizado_em DateTime? @db.Timestamp(6)
+  usuario       usuario[]
 }
 
 enum tipo_admissao {
