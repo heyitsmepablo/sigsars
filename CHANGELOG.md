@@ -2,6 +2,14 @@
 
 Todas as mudanças notáveis neste projeto serão documentadas neste arquivo. Consulte [Conventional Commits](https://www.conventionalcommits.org/pt-br/v1.0.0/) para diretrizes de commits.
 
+# [1.0.0-alpha.13](https://github.com/heyitsmepablo/sigsars/compare/v1.0.0-alpha.12...v1.0.0-alpha.13) (2025-06-08)
+
+
+### Features
+
+* **database:** implementado fk para referenciar usuario nas tabelas ([8d5aed0](https://github.com/heyitsmepablo/sigsars/commit/8d5aed032562891485b03a58bf899319f8b771b8))
+* **database:** implementado script sql  para cadastro de tipo de usuario ([48324c1](https://github.com/heyitsmepablo/sigsars/commit/48324c14a847f87b7373dbbbfeac5864f02f41a2))
+
 # [1.0.0-alpha.12](https://github.com/heyitsmepablo/sigsars/compare/v1.0.0-alpha.11...v1.0.0-alpha.12) (2025-06-06)
 
 
