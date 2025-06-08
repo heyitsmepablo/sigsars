@@ -60,7 +60,7 @@ export class AuthService {
           const expireAt = Date.now() + duration;
           return {
             token: token,
-            tipo_token: 'Bearer',
+            tipo: 'Bearer',
             expira_dentro_de: expireIn,
             expira_em: expireAt,
             usuario: payload,
