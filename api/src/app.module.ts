@@ -17,10 +17,44 @@ import { CidCategoriaController } from './controllers/cid-categoria/cid-categori
 import { CidController } from './controllers/cid/cid.controller';
 import { CidSragService } from './services/cid-srag/cid-srag.service';
 import { CidSragController } from './controllers/cid-srag/cid-srag.controller';
+import { UsuarioService } from './services/usuario/usuario.service';
+import { AcessoService } from './services/acesso/acesso.service';
+import { AuthService } from './services/auth/auth.service';
+import { ConfigModule } from '@nestjs/config';
+import Joi from 'joi';
+import { JwtModule } from '@nestjs/jwt';
+import { env } from 'process';
 
 @Module({
-  imports: [],
-  controllers: [AppController, UnidadeController, UnidadeTipoController, CausaController, CausaSragController, CidGrupoController, CidCategoriaController, CidController, CidSragController],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      validationSchema: Joi.object({
+        DATABASE_URL: Joi.string().uri().required(),
+        JWT_SECRET: Joi.string().required(),
+        JWT_EXPIRES_IN: Joi.string().required(),
+        ARGON2_SECRET: Joi.string().required(),
+        ARGON2_SALT: Joi.string().required(),
+        PORT: Joi.number().default(3000),
+      }),
+    }),
+    JwtModule.register({
+      global: true,
+      secret: env.JWT_SECRET,
+      signOptions: { expiresIn: env.JWT_EXPIRES_IN },
+    }),
+  ],
+  controllers: [
+    AppController,
+    UnidadeController,
+    UnidadeTipoController,
+    CausaController,
+    CausaSragController,
+    CidGrupoController,
+    CidCategoriaController,
+    CidController,
+    CidSragController,
+  ],
   providers: [
     AppService,
     UnidadeService,
@@ -31,6 +65,9 @@ import { CidSragController } from './controllers/cid-srag/cid-srag.controller';
     CidCategoriaService,
     CidService,
     CidSragService,
+    UsuarioService,
+    AcessoService,
+    AuthService,
   ],
 })
 export class AppModule {}
