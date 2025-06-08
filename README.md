@@ -31,12 +31,12 @@ Fique atento às atualizações futuras!
 
 ## 🧩 Módulos
 
-| ✅ Módulo                                            | 📌 Status       |
-| ---------------------------------------------------- | --------------- |
-| **Boletim Hospitalar**                               | Em construção   |
-| **Cadastro, Autenticação e Autorização de Usuários** | Em planejamento |
-| **Folha de Pagamento**                               | Em breve        |
-| _Em breve mais módulos..._                           | 🔜              |
+| ✅ Módulo                                            | 📌 Status     |
+| ---------------------------------------------------- | ------------- |
+| **Boletim Hospitalar**                               | Em construção |
+| **Cadastro, Autenticação e Autorização de Usuários** | Em construção |
+| **Folha de Pagamento**                               | Em breve      |
+| _Em breve mais módulos..._                           | 🔜            |
 
 - **Boletim Hospitalar**  
   Módulo responsável pela gestão dos boletins hospitalares, incluindo ocupação de leitos, admissões, atendimentos de urgência e altas hospitalares.
@@ -65,6 +65,9 @@ Fique atento às atualizações futuras!
 | **Rota Para Cadastro de Boletim de Admissões da Internação**         | [ ]       |
 | **Rota Para Cadastro de Boletim de Atendimentos da Porta**           | [ ]       |
 | **Rota Para Cadastro de Boletim de Saidas**                          | [ ]       |
+| **Rota Para Login**                                                  | [ ]       |
+| **Rota Para Logout**                                                 | [ ]       |
+| **Guard de Autenticação (Protege rotas com validação de token JWT)** | [ ]       |
 | _Em breve mais implementações..._                                    | 🔜        |
 
 ---
