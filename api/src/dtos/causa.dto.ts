@@ -1,5 +1,5 @@
-import { IsEnum, IsOptional, IsString } from 'class-validator';
-import { $Enums } from 'generated/prisma';
+import { IsEnum, IsOptional } from 'class-validator';
+
 enum tipo_causa {
   EXTERNA = 'EXTERNA',
   QUEIXA = 'QUEIXA',
