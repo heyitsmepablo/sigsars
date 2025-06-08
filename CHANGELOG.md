@@ -2,6 +2,13 @@
 
 Todas as mudanças notáveis neste projeto serão documentadas neste arquivo. Consulte [Conventional Commits](https://www.conventionalcommits.org/pt-br/v1.0.0/) para diretrizes de commits.
 
+# [1.0.0-alpha.14](https://github.com/heyitsmepablo/sigsars/compare/v1.0.0-alpha.13...v1.0.0-alpha.14) (2025-06-08)
+
+
+### Features
+
+* **auth:** implementadas rotas para login, signup e logout ([690e05e](https://github.com/heyitsmepablo/sigsars/commit/690e05e8c8c5f07b76b25e55bbadc1b11efdcca3))
+
 # [1.0.0-alpha.13](https://github.com/heyitsmepablo/sigsars/compare/v1.0.0-alpha.12...v1.0.0-alpha.13) (2025-06-08)
 
 
