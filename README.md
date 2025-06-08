@@ -61,13 +61,14 @@ Fique atento às atualizações futuras!
 | **Rota Para Listar todas CIDs filtrado pela Categoria**              | [x]       |
 | **Rota Para Buscar CIDs pelo seu codigo**                            | [x]       |
 | **Rota Para Listar CIDs SRAG**                                       | [x]       |
+| **Rota Para SignUp (Cadastro de novos usuarios)**                    | [x]       |
+| **Rota Para Login**                                                  | [x]       |
+| **Rota Para Logout**                                                 | [x]       |
+| **Guard de Autenticação (Protege rotas com validação de token JWT)** | [ ]       |
 | **Rota Para Cadastro de Boletim de Ocupação da Internação**          | [ ]       |
 | **Rota Para Cadastro de Boletim de Admissões da Internação**         | [ ]       |
 | **Rota Para Cadastro de Boletim de Atendimentos da Porta**           | [ ]       |
 | **Rota Para Cadastro de Boletim de Saidas**                          | [ ]       |
-| **Rota Para Login**                                                  | [ ]       |
-| **Rota Para Logout**                                                 | [ ]       |
-| **Guard de Autenticação (Protege rotas com validação de token JWT)** | [ ]       |
 | _Em breve mais implementações..._                                    | 🔜        |
 
 ---
