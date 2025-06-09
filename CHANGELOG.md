@@ -2,6 +2,14 @@
 
 Todas as mudanças notáveis neste projeto serão documentadas neste arquivo. Consulte [Conventional Commits](https://www.conventionalcommits.org/pt-br/v1.0.0/) para diretrizes de commits.
 
+# [1.0.0-alpha.15](https://github.com/heyitsmepablo/sigsars/compare/v1.0.0-alpha.14...v1.0.0-alpha.15) (2025-06-09)
+
+
+### Features
+
+* **api:** implementado guard de autenticação ([a8d6c98](https://github.com/heyitsmepablo/sigsars/commit/a8d6c9846514f6f67c20e9b35bd009ffa91631c6))
+* **database:** reorganização de tabelas e colunas dos boletins ([7b4ed8a](https://github.com/heyitsmepablo/sigsars/commit/7b4ed8a0feb54c0cadc60cabe49c3e2d0d2c460d))
+
 # [1.0.0-alpha.14](https://github.com/heyitsmepablo/sigsars/compare/v1.0.0-alpha.13...v1.0.0-alpha.14) (2025-06-08)
 
 
