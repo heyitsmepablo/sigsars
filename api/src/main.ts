@@ -12,6 +12,13 @@ async function bootstrap() {
       'O e-SEMUS (Sistema Integrado de SEMUS) é um sistema de informação voltado para a gestão e integração de dados da Secretaria Municipal de Saude (SEMUS)',
     )
     .setVersion('1.0')
+    .addBearerAuth({
+      type: 'http',
+      bearerFormat: 'JWT',
+      name: 'authorization',
+      description: 'Token para autenticação do usuario',
+      in: 'header',
+    })
     .addTag('Autenticação') // Adiciona primeiro
     .build();
 

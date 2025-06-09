@@ -87,8 +87,11 @@ export class AuthService {
     }
   }
 
-  async logout(tokenJWT: string) {
+  async logout(tokenJWT: string | null | undefined) {
     try {
+      if (!tokenJWT) {
+        throw new BadRequestException('Token não fornecido');
+      }
       const [type, token] = tokenJWT.split(' ');
       if (type != 'Bearer') {
         throw new BadRequestException('Tipo do token invalido');

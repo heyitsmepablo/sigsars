@@ -1,7 +1,10 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Query, UseGuards } from '@nestjs/common';
 import { CausaWhereQueryDto } from 'src/dtos/causa.dto';
+import { AuthGuard } from 'src/guards/auth/auth.guard';
 import { CausaService } from 'src/services/causa/causa.service';
-
+import { ApiBearerAuth } from '@nestjs/swagger';
+@ApiBearerAuth()
+@UseGuards(AuthGuard)
 @Controller('causa')
 export class CausaController {
   constructor(private readonly causaService: CausaService) {}

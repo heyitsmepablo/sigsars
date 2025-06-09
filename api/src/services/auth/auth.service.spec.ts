@@ -216,5 +216,10 @@ describe('AuthService', () => {
         erroGenerico,
       );
     });
+    it('Deve jogar BadRequest se o jwt  null ou undefined', async () => {
+      const badResquestError = new BadRequestException('Token não fornecido');
+      await expect(service.logout(null)).rejects.toThrow(badResquestError);
+      await expect(service.logout(undefined)).rejects.toThrow(badResquestError);
+    });
   });
 });

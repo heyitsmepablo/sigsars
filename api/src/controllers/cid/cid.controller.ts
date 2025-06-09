@@ -1,7 +1,10 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Query, UseGuards } from '@nestjs/common';
 import { CidPaginationQuerysDto, CidWhereQuerysDto } from 'src/dtos/cid.dto';
+import { AuthGuard } from 'src/guards/auth/auth.guard';
 import { CidService } from 'src/services/cid/cid.service';
-
+import { ApiBearerAuth } from '@nestjs/swagger';
+@ApiBearerAuth()
+@UseGuards(AuthGuard)
 @Controller('cid')
 export class CidController {
   constructor(private readonly cidService: CidService) {}

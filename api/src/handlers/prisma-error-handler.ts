@@ -18,12 +18,14 @@ export class PrismaErrorHandler {
             : 'campo único desconhecido';
 
           throw new InternalServerErrorException({
+            code: this.error?.code,
             message: `Já existe um registro com o valor informado para o(s) campo(s) único(s)`,
             fields: target,
           });
         }
         case 'P2025': {
           throw new NotFoundException({
+            code: this.error?.code,
             message: `Registro não encontrado`,
           });
         }
