@@ -2,6 +2,18 @@
 
 Todas as mudanças notáveis neste projeto serão documentadas neste arquivo. Consulte [Conventional Commits](https://www.conventionalcommits.org/pt-br/v1.0.0/) para diretrizes de commits.
 
+# [1.0.0-alpha.16](https://github.com/heyitsmepablo/sigsars/compare/v1.0.0-alpha.15...v1.0.0-alpha.16) (2025-06-09)
+
+
+### Bug Fixes
+
+* **database:** correção de nome da tabela ([0a17342](https://github.com/heyitsmepablo/sigsars/commit/0a1734224fe8fbb34fb654955901faa52fc1dc28))
+
+
+### Features
+
+* **api:** implementado rota para cadastro do boletim de atendimento porta ([63da558](https://github.com/heyitsmepablo/sigsars/commit/63da558e7f4ce624ed1cc7ef7b8f77be4dce90f8))
+
 # [1.0.0-alpha.15](https://github.com/heyitsmepablo/sigsars/compare/v1.0.0-alpha.14...v1.0.0-alpha.15) (2025-06-09)
 
 
