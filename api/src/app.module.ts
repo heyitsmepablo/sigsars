@@ -26,6 +26,10 @@ import { JwtModule } from '@nestjs/jwt';
 import { env } from 'process';
 import { UsuarioController } from './controllers/usuario/usuario.controller';
 import { AuthController } from './controllers/auth/auth.controller';
+import { BoletimAtendimentoPortaService } from './services/boletim-atendimento-porta/boletim-atendimento-porta.service';
+import { BoletimInternacaoAdmissaoService } from './services/boletim-internacao-admissao/boletim-internacao-admissao.service';
+import { BoletimInternacaoOcupacaoService } from './services/boletim-internacao-ocupacao/boletim-internacao-ocupacao.service';
+import { BoletimSaidaService } from './services/boletim-saida/boletim-saida.service';
 
 @Module({
   imports: [
@@ -71,6 +75,10 @@ import { AuthController } from './controllers/auth/auth.controller';
     UsuarioService,
     AcessoService,
     AuthService,
+    BoletimAtendimentoPortaService,
+    BoletimInternacaoAdmissaoService,
+    BoletimInternacaoOcupacaoService,
+    BoletimSaidaService,
   ],
 })
 export class AppModule {}
