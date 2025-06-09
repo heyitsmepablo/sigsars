@@ -3,6 +3,7 @@ import { CidGrupoController } from './cid-grupo.controller';
 import { CidGrupoService } from 'src/services/cid-grupo/cid-grupo.service';
 import { cidGrupoServiceMock } from 'src/__mock__/services/cid-grupo.service';
 import { Prisma } from 'generated/prisma';
+import { AuthGuard } from 'src/guards/auth/auth.guard';
 
 describe('CidGrupoController', () => {
   let controller: CidGrupoController;
@@ -11,7 +12,10 @@ describe('CidGrupoController', () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [CidGrupoController],
       providers: [{ provide: CidGrupoService, useValue: cidGrupoServiceMock }],
-    }).compile();
+    })
+      .overrideGuard(AuthGuard)
+      .useValue({ canActivate: () => true }) // mock do guard
+      .compile();
 
     controller = module.get<CidGrupoController>(CidGrupoController);
   });

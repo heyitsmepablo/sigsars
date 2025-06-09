@@ -3,6 +3,7 @@ import { CidCategoriaController } from './cid-categoria.controller';
 import { Prisma } from 'generated/prisma';
 import { cidCategoriaServiceMock } from 'src/__mock__/services/cid-categoria.service';
 import { CidCategoriaService } from 'src/services/cid-categoria/cid-categoria.service';
+import { AuthGuard } from 'src/guards/auth/auth.guard';
 
 describe('CidCategoriaController', () => {
   let controller: CidCategoriaController;
@@ -13,7 +14,10 @@ describe('CidCategoriaController', () => {
       providers: [
         { provide: CidCategoriaService, useValue: cidCategoriaServiceMock },
       ],
-    }).compile();
+    })
+      .overrideGuard(AuthGuard)
+      .useValue({ canActivate: () => true }) // mock do guard
+      .compile();
 
     controller = module.get<CidCategoriaController>(CidCategoriaController);
   });

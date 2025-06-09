@@ -3,6 +3,7 @@ import { UnidadeController } from './unidade.controller';
 import { Prisma } from 'generated/prisma';
 import { UnidadeService } from 'src/services/unidade/unidade.service';
 import { unidadeServiceMock } from 'src/__mock__/services/unidade.service';
+import { AuthGuard } from 'src/guards/auth/auth.guard';
 
 describe('UnidadeController', () => {
   let controller: UnidadeController;
@@ -11,7 +12,10 @@ describe('UnidadeController', () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [UnidadeController],
       providers: [{ useValue: unidadeServiceMock, provide: UnidadeService }],
-    }).compile();
+    })
+      .overrideGuard(AuthGuard)
+      .useValue({ canActivate: () => true }) // mock do guard
+      .compile();
 
     controller = module.get<UnidadeController>(UnidadeController);
   });

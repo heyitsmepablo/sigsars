@@ -3,6 +3,7 @@ import { CausaSragController } from './causa_srag.controller';
 import { Prisma } from 'generated/prisma';
 import { causaSragServiceMock } from 'src/__mock__/services/causa-srag.service';
 import { CausaSragService } from 'src/services/causa-srag/causa-srag.service';
+import { AuthGuard } from 'src/guards/auth/auth.guard';
 
 describe('CausaSragController', () => {
   let controller: CausaSragController;
@@ -13,7 +14,10 @@ describe('CausaSragController', () => {
       providers: [
         { provide: CausaSragService, useValue: causaSragServiceMock },
       ],
-    }).compile();
+    })
+      .overrideGuard(AuthGuard)
+      .useValue({ canActivate: () => true }) // mock do guard
+      .compile();
 
     controller = module.get<CausaSragController>(CausaSragController);
   });

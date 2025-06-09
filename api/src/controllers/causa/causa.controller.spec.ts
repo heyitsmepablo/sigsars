@@ -3,6 +3,7 @@ import { CausaController } from './causa.controller';
 import { CausaService } from 'src/services/causa/causa.service';
 import { causaServiceMock } from 'src/__mock__/services/causa.service';
 import { Prisma } from 'generated/prisma';
+import { AuthGuard } from 'src/guards/auth/auth.guard';
 
 describe('CausaController', () => {
   let controller: CausaController;
@@ -11,7 +12,10 @@ describe('CausaController', () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [CausaController],
       providers: [{ provide: CausaService, useValue: causaServiceMock }],
-    }).compile();
+    })
+      .overrideGuard(AuthGuard)
+      .useValue({ canActivate: () => true }) // mock do guard
+      .compile();
 
     controller = module.get<CausaController>(CausaController);
   });

@@ -3,6 +3,7 @@ import { AuthController } from './auth.controller';
 import { AuthService } from 'src/services/auth/auth.service';
 import { authServiceMock } from 'src/__mock__/services/auth.service';
 import { AuthLoginDto, AuthSignUpDto } from 'src/dtos/auth.dto';
+import { Request } from 'express';
 
 describe('AuthController', () => {
   let controller: AuthController;
@@ -75,22 +76,27 @@ describe('AuthController', () => {
     });
   });
   describe('logout', () => {
-    const logoutRequestToken = 'Bearer token';
+    const logoutRequestToken: Partial<Request> = {
+      headers: { authorization: 'Bearer token' },
+    };
+
     it('Deve resolver retornando payload do servico Auth', async () => {
       const authServiceResponse = 'resposta com sucesso';
 
       authServiceMock.logout.mockResolvedValue(authServiceResponse);
-      await expect(controller.logout(logoutRequestToken)).resolves.toEqual(
-        authServiceResponse,
-      );
+      await expect(
+        controller.logout(logoutRequestToken as Request),
+      ).resolves.toEqual(authServiceResponse);
     });
     it('Ao servico auth falhar deve rejeitar jogando erro do servico ', async () => {
-      const logoutRequestToken = 'Bearer token';
+      const logoutRequestToken = {
+        headers: { authorization: 'Bearer token' },
+      };
       const erroGenerico = new Error('generico');
       authServiceMock.logout.mockRejectedValue(erroGenerico);
-      await expect(controller.logout(logoutRequestToken)).rejects.toThrow(
-        erroGenerico,
-      );
+      await expect(
+        controller.logout(logoutRequestToken as Request),
+      ).rejects.toThrow(erroGenerico);
     });
   });
 });

@@ -3,6 +3,7 @@ import { CidController } from './cid.controller';
 import { Prisma } from 'generated/prisma';
 import { CidService } from 'src/services/cid/cid.service';
 import { cidServiceMock } from 'src/__mock__/services/cid.service';
+import { AuthGuard } from 'src/guards/auth/auth.guard';
 
 describe('CidController', () => {
   let controller: CidController;
@@ -11,7 +12,10 @@ describe('CidController', () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [CidController],
       providers: [{ provide: CidService, useValue: cidServiceMock }],
-    }).compile();
+    })
+      .overrideGuard(AuthGuard)
+      .useValue({ canActivate: () => true }) // mock do guard
+      .compile();
 
     controller = module.get<CidController>(CidController);
   });

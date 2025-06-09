@@ -100,7 +100,8 @@
       "__mock__/*",
       "scripts/*",
       "src/dtos",
-      "src/app.service.ts"
+      "src/app.service.ts",
+      "src/decorators"
     ],
     "testEnvironment": "node",
     "clearMocks": true,
@@ -111,7 +112,8 @@
     ],
     "moduleNameMapper": {
       "^src/(.*)$": "<rootDir>/$1",
-      "^prisma/(.*)$": "<rootDir>/../prisma/$1"
+      "^prisma/(.*)$": "<rootDir>/../prisma/$1",
+      "^generated/prisma$": "<rootDir>/../generated/prisma"
     }
   }
 }

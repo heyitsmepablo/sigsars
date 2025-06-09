@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UsuarioController } from './usuario.controller';
 import { UsuarioService } from 'src/services/usuario/usuario.service';
 import { usuarioServiceMock } from 'src/__mock__/services/usuario.service';
+import { AuthGuard } from 'src/guards/auth/auth.guard';
 
 describe('UsuarioController', () => {
   let controller: UsuarioController;
@@ -10,7 +11,10 @@ describe('UsuarioController', () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [UsuarioController],
       providers: [{ provide: UsuarioService, useValue: usuarioServiceMock }],
-    }).compile();
+    })
+      .overrideGuard(AuthGuard)
+      .useValue({ canActivate: () => true }) // mock do guard
+      .compile();
 
     controller = module.get<UsuarioController>(UsuarioController);
   });
