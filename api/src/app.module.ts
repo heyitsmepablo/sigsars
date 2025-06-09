@@ -30,6 +30,7 @@ import { BoletimAtendimentoPortaService } from './services/boletim-atendimento-p
 import { BoletimInternacaoAdmissaoService } from './services/boletim-internacao-admissao/boletim-internacao-admissao.service';
 import { BoletimInternacaoOcupacaoService } from './services/boletim-internacao-ocupacao/boletim-internacao-ocupacao.service';
 import { BoletimSaidaService } from './services/boletim-saida/boletim-saida.service';
+import { BoletimAtendimentoPortaController } from './controllers/boletim-atendimento-porta/boletim-atendimento-porta.controller';
 
 @Module({
   imports: [
@@ -61,6 +62,7 @@ import { BoletimSaidaService } from './services/boletim-saida/boletim-saida.serv
     CidSragController,
     UsuarioController,
     AuthController,
+    BoletimAtendimentoPortaController,
   ],
   providers: [
     AppService,
