@@ -3,6 +3,7 @@ import { BoletimAtendimentoPortaController } from './boletim-atendimento-porta.c
 import { BoletimAtendimentoPortaService } from 'src/services/boletim-atendimento-porta/boletim-atendimento-porta.service';
 import { boletimAtendimentoPortaServiceMock } from 'src/__mock__/services/boletim-atendimento-porta.service';
 import { BoletimAtendimentoPortaCreateDto } from 'src/dtos/boletim-atendimento-porta.dto';
+import { AuthGuard } from 'src/guards/auth/auth.guard';
 
 describe('BoletimAtendimentoPortaController', () => {
   let controller: BoletimAtendimentoPortaController;
@@ -18,7 +19,7 @@ describe('BoletimAtendimentoPortaController', () => {
       ],
     })
       .overrideGuard(AuthGuard)
-      .useValue({ canActivate: () => true }) // mock do guard
+      .useValue({ canActivate: () => true })
       .compile();
 
     controller = module.get<BoletimAtendimentoPortaController>(
@@ -31,11 +32,9 @@ describe('BoletimAtendimentoPortaController', () => {
   });
   describe('create', () => {
     const mockRequest: BoletimAtendimentoPortaCreateDto = {
-      boletim: {
-        referente_ao_dia: new Date(),
-        unidade_id: 1,
-        usuario_responsavel_preenchimento_id: 'uuid',
-      },
+      referente_ao_dia: new Date(),
+      unidade_id: 1,
+      usuario_responsavel_preenchimento_id: 'uuid',
       items: [
         {
           causa_id: 1,
@@ -53,7 +52,7 @@ describe('BoletimAtendimentoPortaController', () => {
       boletimAtendimentoPortaServiceMock.create.mockResolvedValue(
         mockServicePayloadResponse,
       );
-      await expect(controller.create(mockRequest)).resolves.toEqual(
+      await expect(controller.create(mockRequest, 'uuid')).resolves.toEqual(
         mockServicePayloadResponse,
       );
     });

@@ -22,16 +22,14 @@ describe('BoletimAtendimentoPortaService', () => {
   });
   describe('create', () => {
     const requestPayload: BoletimAtendimentoPortaServiceCreateArgs = {
-      boletim: {
-        referente_ao_dia: new Date(),
-        unidade_id: 1,
-        usuario_responsavel_preenchimento_id: 'uuid',
-      },
+      referente_ao_dia: new Date(),
+      unidade_id: 1,
+      usuario_responsavel_preenchimento_id: 'uuid',
+
       items: [
         {
           causa_id: 1,
           faixa_etaria: 'teste',
-          boletim_atendimento_porta_id: 1,
           genero: 'F',
           numero_de_atendimentos: 123,
           origem: 'DEMANDA_ESPONTANEA_INTERIOR',
