@@ -22,11 +22,9 @@ describe('BoletimInternacaoAdmissaoService', () => {
   });
   describe('create', () => {
     const requestPayload: BoletimInternacaoAdmissaoServiceCreateArgs = {
-      boletim: {
-        referente_ao_dia: new Date(),
-        unidade_id: 1,
-        usuario_responsavel_preenchimento_id: 'uuid',
-      },
+      referente_ao_dia: new Date(),
+      unidade_id: 1,
+      usuario_responsavel_preenchimento_id: 'uuid',
       items: [
         {
           boletim_internacao_admissao_id: 1,

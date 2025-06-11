@@ -1,10 +1,9 @@
+import { ApiHideProperty, OmitType } from '@nestjs/swagger';
 import { $Enums, Prisma } from 'generated/prisma';
+import { BoletimAtendimentoPortaCreateDto } from './boletim-atendimento-porta.dto';
+import { IsArray, IsDateString, IsInt } from 'class-validator';
+import { Type } from 'class-transformer';
 
-class BoletimInternacaoAdmissaoData {
-  unidade_id: number;
-  referente_ao_dia: string | Date;
-  usuario_responsavel_preenchimento_id: string;
-}
 class BoletimInternacaoAdmissaoItemData {
   boletim_internacao_admissao_id: number;
   numero_de_admissoes: number;
@@ -13,6 +12,20 @@ class BoletimInternacaoAdmissaoItemData {
   genero: $Enums.tipo_genero;
 }
 export class BoletimInternacaoAdmissaoServiceCreateArgs {
-  boletim: BoletimInternacaoAdmissaoData;
+  unidade_id: number;
+  referente_ao_dia: string | Date;
+  usuario_responsavel_preenchimento_id: string;
+  items: BoletimInternacaoAdmissaoItemData[];
+}
+
+export class BoletimInternacaoAdmissaoCreateDto {
+  @Type(() => Number)
+  @IsInt()
+  unidade_id: number;
+  @IsDateString()
+  referente_ao_dia: Date;
+  @ApiHideProperty()
+  usuario_responsavel_preenchimento_id: string;
+  @IsArray()
   items: BoletimInternacaoAdmissaoItemData[];
 }

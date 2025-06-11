@@ -7,12 +7,12 @@ import PrismaSingleton from 'src/singletons/prisma-singleton/prisma-singleton';
 export class BoletimInternacaoAdmissaoService {
   #database = PrismaSingleton.instance.client;
   async create(data: BoletimInternacaoAdmissaoServiceCreateArgs) {
-    const { boletim, items } = data;
+    const { items, ...boletim } = data;
     try {
       await this.#database.boletim_internacao_admissao.create({
         data: {
           ...boletim,
-          boletim_admissao_internacao_item: { create: items },
+          boletim_internacao_admissao_item: { create: items },
         },
       });
       return { message: 'success' };
