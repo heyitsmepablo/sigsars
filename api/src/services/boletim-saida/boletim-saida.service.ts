@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { BoletimInternacaoOcupacaoServiceCreateArgs } from 'src/dtos/boletim-internacao-ocupacao';
+import { BoletimInternacaoOcupacaoServiceCreateArgs } from 'src/dtos/boletim-internacao-ocupacao.dto';
 import { BoletimSaidaServiceCreateArgs } from 'src/dtos/boletim-saida.dto';
 import { PrismaErrorHandler } from 'src/handlers/prisma-error-handler';
 import PrismaSingleton from 'src/singletons/prisma-singleton/prisma-singleton';
@@ -8,7 +8,7 @@ import PrismaSingleton from 'src/singletons/prisma-singleton/prisma-singleton';
 export class BoletimSaidaService {
   #database = PrismaSingleton.instance.client;
   async create(data: BoletimSaidaServiceCreateArgs) {
-    const { boletim, items } = data;
+    const { items, ...boletim } = data;
     try {
       await this.#database.boletim_saida.create({
         data: {

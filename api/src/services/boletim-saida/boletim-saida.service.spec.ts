@@ -20,11 +20,9 @@ describe('BoletimSaidaService', () => {
   });
   describe('create', () => {
     const requestPayload: BoletimSaidaServiceCreateArgs = {
-      boletim: {
-        referente_ao_dia: new Date(),
-        unidade_id: 1,
-        usuario_responsavel_preenchimento_id: 'uuid',
-      },
+      referente_ao_dia: new Date(),
+      unidade_id: 1,
+      usuario_responsavel_preenchimento_id: 'uuid',
       items: [
         {
           boletim_saida_id: 1,
