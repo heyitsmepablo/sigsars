@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { BoletimInternacaoOcupacaoService } from './boletim-internacao-ocupacao.service';
 import { prismaMock } from 'src/__mock__/prisma-singleton';
 import { Prisma } from 'generated/prisma';
-import { BoletimInternacaoOcupacaoServiceCreateArgs } from 'src/dtos/boletim-internacao-ocupacao';
+import { BoletimInternacaoOcupacaoServiceCreateArgs } from 'src/dtos/boletim-internacao-ocupacao.dto';
 
 describe('BoletimInternacaoOcupacaoService', () => {
   let service: BoletimInternacaoOcupacaoService;

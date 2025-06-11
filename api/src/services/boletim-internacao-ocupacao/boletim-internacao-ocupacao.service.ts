@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { BoletimInternacaoAdmissaoServiceCreateArgs } from 'src/dtos/boletim-internacao-admissao.dto';
-import { BoletimInternacaoOcupacaoServiceCreateArgs } from 'src/dtos/boletim-internacao-ocupacao';
+import { BoletimInternacaoOcupacaoServiceCreateArgs } from 'src/dtos/boletim-internacao-ocupacao.dto';
 import { PrismaErrorHandler } from 'src/handlers/prisma-error-handler';
 import PrismaSingleton from 'src/singletons/prisma-singleton/prisma-singleton';
 
