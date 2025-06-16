@@ -64,11 +64,14 @@ Fique atento às atualizações futuras!
 | **Rota Para SignUp (Cadastro de novos usuarios)**                    | [x]       |
 | **Rota Para Login**                                                  | [x]       |
 | **Rota Para Logout**                                                 | [x]       |
-| **Guard de Autenticação (Protege rotas com validação de token JWT)** | [ ]       |
-| **Rota Para Cadastro de Boletim de Ocupação da Internação**          | [ ]       |
-| **Rota Para Cadastro de Boletim de Admissões da Internação**         | [ ]       |
-| **Rota Para Cadastro de Boletim de Atendimentos da Porta**           | [ ]       |
-| **Rota Para Cadastro de Boletim de Saidas**                          | [ ]       |
+| **Guard de Autenticação (Protege rotas com validação de token JWT)** | [x]       |
+| **Rota Para Cadastro de Boletim da Sindrome Gripal**                 | [ ]       |
+| **Rota Para Listar Todos os Boletins da Sindrome Gripal**            | [ ]       |
+| **Rota Para Cadastrar Boletim da Sindrome Gripal**                   | [ ]       |
+| **Rota Para Atualizar Boletim da Sindrome Gripal**                   | [ ]       |
+| **Rota Para Cadastrar Ficha de SPA**                                 | [ ]       |
+| **Rota Para Listar Todas as Ficha de SPA**                           | [ ]       |
+| **Rota Para Abrir Detalhes de uma Ficha de SPA**                     | [ ]       |
 | _Em breve mais implementações..._                                    | 🔜        |
 
 ---
@@ -77,7 +80,7 @@ Fique atento às atualizações futuras!
 
 | ✅ Implementação                                             | 📌 Status |
 | ------------------------------------------------------------ | --------- |
-| **Tela de Formulario de Boletim de Ocupação da Internação**  | [ ]       |
+| **Tela de Formulario de Boletim da Sindrome Gripal**         | [ ]       |
 | **Tela de Formulario de Boletim de Admissões da Internação** | [ ]       |
 | **Tela de Formulario de Boletim de Atendimentos da Porta**   | [ ]       |
 | **Tela de Formulario de Boletim de Saidas**                  | [ ]       |
