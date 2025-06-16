@@ -72,6 +72,7 @@ Fique atento às atualizações futuras!
 | **Rota Para Cadastrar Ficha de SPA**                                 | [ ]       |
 | **Rota Para Listar Todas as Ficha de SPA**                           | [ ]       |
 | **Rota Para Abrir Detalhes de uma Ficha de SPA**                     | [ ]       |
+| **Rota Para Atualizar de uma Ficha de SPA**                          | [ ]       |
 | _Em breve mais implementações..._                                    | 🔜        |
 
 ---
