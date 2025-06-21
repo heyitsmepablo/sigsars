@@ -2,6 +2,15 @@
 
 Todas as mudanças notáveis neste projeto serão documentadas neste arquivo. Consulte [Conventional Commits](https://www.conventionalcommits.org/pt-br/v1.0.0/) para diretrizes de commits.
 
+# [1.0.0-alpha.17](https://github.com/heyitsmepablo/sigsars/compare/v1.0.0-alpha.16...v1.0.0-alpha.17) (2025-06-11)
+
+
+### Features
+
+* **api:** implementado cadastro do boletim de admissao da internação ([59813f0](https://github.com/heyitsmepablo/sigsars/commit/59813f080afe9d88bbd1380ad48c20b8c6d5cf7d))
+* **api:** implementado cadastro do boletim de ocupação da internação ([7924c09](https://github.com/heyitsmepablo/sigsars/commit/7924c098b8b6d1b4733190692c60903293f54d03))
+* **api:** implementado cadastro do boletim de saida ([32bc1f9](https://github.com/heyitsmepablo/sigsars/commit/32bc1f969bf134843338fe1de6e59d54c8802d2c))
+
 # [1.0.0-alpha.16](https://github.com/heyitsmepablo/sigsars/compare/v1.0.0-alpha.15...v1.0.0-alpha.16) (2025-06-09)
 
 
