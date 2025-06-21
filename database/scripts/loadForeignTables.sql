@@ -158,17 +158,35 @@ SELECT * FROM cid_srag_csv;
 -------------------------------------------------
 
 -- CRIANDO TABELA ESTRANGEIRA
-CREATE FOREIGN TABLE causa_srag_csv (
+CREATE FOREIGN TABLE causa_sg_csv (
  "causa_id" INT
 )
 SERVER file_server
 OPTIONS (
-    filename '/mnt/tmp/csv/causas/causas_srag.csv',
+    filename '/mnt/tmp/csv/causas/causas_sg.csv',
     format 'csv',
     header 'true',
     delimiter ','
 );
 
 -- COPIANDO DADOS PARA TABELA NO BANCO
-INSERT INTO causa_srag  (causa_id)
-SELECT * FROM causa_srag_csv;
+INSERT INTO causa_sg  (causa_id)
+SELECT * FROM causa_sg_csv;
+
+-- CRIANDO TABELA ESTRANGEIRA
+CREATE FOREIGN TABLE municipio_csv (
+ "estado_id" INT,
+ "codigo_ibge" TEXT,
+ "nome" TEXT
+)
+SERVER file_server
+OPTIONS (
+    filename '/mnt/tmp/csv/municipios.csv',
+    format 'csv',
+    header 'true',
+    delimiter ','
+);
+
+-- COPIANDO DADOS PARA TABELA NO BANCO
+INSERT INTO municipio  (estado_id,codigo_ibge,nome)
+SELECT * FROM municipio_csv;
