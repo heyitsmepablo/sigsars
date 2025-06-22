@@ -2,6 +2,13 @@
 
 Todas as mudanças notáveis neste projeto serão documentadas neste arquivo. Consulte [Conventional Commits](https://www.conventionalcommits.org/pt-br/v1.0.0/) para diretrizes de commits.
 
+# [1.0.0-alpha.18](https://github.com/heyitsmepablo/sigsars/compare/v1.0.0-alpha.17...v1.0.0-alpha.18) (2025-06-21)
+
+
+### Features
+
+* **database:** nova modelagem do schema do banco ([23adbb5](https://github.com/heyitsmepablo/sigsars/commit/23adbb5235898435d04e08aea520d186487159c2))
+
 # [1.0.0-alpha.17](https://github.com/heyitsmepablo/sigsars/compare/v1.0.0-alpha.16...v1.0.0-alpha.17) (2025-06-11)
 
 
