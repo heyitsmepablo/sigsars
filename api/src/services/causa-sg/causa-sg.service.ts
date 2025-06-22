@@ -4,14 +4,14 @@ import { PrismaErrorHandler } from 'src/handlers/prisma-error-handler';
 import PrismaSingleton from 'src/singletons/prisma-singleton/prisma-singleton';
 
 @Injectable()
-export class CausaSragService {
+export class CausaSgService {
   #database = PrismaSingleton.instance.client;
   async findAll() {
     try {
-      const prismaArgs: Prisma.causa_sragFindManyArgs = {
+      const prismaArgs: Prisma.causa_sgFindManyArgs = {
         select: { id: true, causa: {}, criado_em: true, atualizado_em: true },
       };
-      const databaseData = this.#database.causa_srag.findMany(prismaArgs);
+      const databaseData = this.#database.causa_sg.findMany(prismaArgs);
       return databaseData;
     } catch (error) {
       new PrismaErrorHandler(error).handle();

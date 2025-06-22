@@ -1,17 +1,17 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CausaSragService } from './causa-srag.service';
+import { CausaSgService } from './causa-sg.service';
 import { Prisma } from 'generated/prisma';
 import { prismaMock } from 'src/__mock__/prisma-singleton';
 
-describe('CausaSragService', () => {
-  let service: CausaSragService;
+describe('CausaSgService', () => {
+  let service: CausaSgService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [CausaSragService],
+      providers: [CausaSgService],
     }).compile();
 
-    service = module.get<CausaSragService>(CausaSragService);
+    service = module.get<CausaSgService>(CausaSgService);
   });
 
   it('should be defined', () => {
@@ -19,7 +19,7 @@ describe('CausaSragService', () => {
   });
 
   describe('findAll', () => {
-    const prismaPayloadResponse: Prisma.causa_sragGetPayload<{
+    const prismaPayloadResponse: Prisma.causa_sgGetPayload<{
       select: { id: true; causa: {}; criado_em: true; atualizado_em: true };
     }>[] = [
       {
@@ -37,15 +37,15 @@ describe('CausaSragService', () => {
     ];
 
     it('Deve resolver com payload na resposta', async () => {
-      prismaMock.causa_srag.findMany.mockResolvedValue(
-        prismaPayloadResponse as unknown as Prisma.causa_sragGetPayload<true>[],
+      prismaMock.causa_sg.findMany.mockResolvedValue(
+        prismaPayloadResponse as unknown as Prisma.causa_sgGetPayload<true>[],
       );
 
       await expect(service.findAll()).resolves.toEqual(prismaPayloadResponse);
     });
     it('Deve rejeitar jogando erro no payload de resposta', async () => {
       const erroGenerico = new Error('generico');
-      prismaMock.causa_srag.findMany.mockRejectedValue(erroGenerico);
+      prismaMock.causa_sg.findMany.mockRejectedValue(erroGenerico);
       await expect(service.findAll()).rejects.toThrow(erroGenerico);
     });
   });

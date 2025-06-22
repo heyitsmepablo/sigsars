@@ -8,18 +8,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model boletim_atendimento_porta {
-  id                                   Int                              @id @default(autoincrement())
-  unidade_id                           Int
-  usuario_responsavel_preenchimento_id String                           @db.Uuid
-  referente_ao_dia                     DateTime                         @db.Date
-  criado_em                            DateTime?                        @default(now()) @db.Timestamp(6)
-  atualizado_em                        DateTime?                        @db.Timestamp(6)
-  unidade                              unidade                          @relation(fields: [unidade_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  usuario                              usuario                          @relation(fields: [usuario_responsavel_preenchimento_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  boletim_atendimento_porta_item       boletim_atendimento_porta_item[]
-}
-
 model boletim_internacao_admissao {
   id                                   Int                                @id @default(autoincrement())
   unidade_id                           Int
@@ -50,21 +38,14 @@ model boletim_internacao_ocupacao {
 }
 
 model causa {
-  id                             Int                              @id @default(autoincrement())
-  nome                           String?
-  tipo                           tipo_causa?
-  criado_em                      DateTime?                        @default(now()) @db.Timestamp(6)
-  atualizado_em                  DateTime?                        @db.Timestamp(6)
-  boletim_atendimento_porta_item boletim_atendimento_porta_item[]
-  causa_srag                     causa_srag[]
-}
-
-model causa_srag {
-  id            Int       @id @default(autoincrement())
-  causa_id      Int?
-  criado_em     DateTime? @default(now()) @db.Timestamp(6)
-  atualizado_em DateTime? @db.Timestamp(6)
-  causa         causa?    @relation(fields: [causa_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  id                      Int                       @id @default(autoincrement())
+  nome                    String?
+  tipo                    tipo_causa?
+  criado_em               DateTime?                 @default(now()) @db.Timestamp(6)
+  atualizado_em           DateTime?                 @db.Timestamp(6)
+  causa_sg                causa_sg[]
+  ficha_spa_classificacao ficha_spa_classificacao[]
+  ficha_spa_queixa        ficha_spa_queixa[]
 }
 
 model cid {
@@ -109,7 +90,7 @@ model cid_srag {
 }
 
 model unidade {
-  id                                              Int                           @id @default(autoincrement())
+  id                                              Int                                   @id @default(autoincrement())
   nome                                            String
   sigla                                           String?
   endereco                                        String?
@@ -125,13 +106,15 @@ model unidade {
   numero_leitos_cnes_total                        Int?
   unidade_tipo_id                                 Int?
   setor                                           String?
-  criado_em                                       DateTime?                     @default(now()) @db.Timestamp(6)
-  atualizado_em                                   DateTime?                     @db.Timestamp(6)
-  boletim_atendimento_porta                       boletim_atendimento_porta[]
+  criado_em                                       DateTime?                             @default(now()) @db.Timestamp(6)
+  atualizado_em                                   DateTime?                             @db.Timestamp(6)
   boletim_internacao_admissao                     boletim_internacao_admissao[]
   boletim_internacao_ocupacao                     boletim_internacao_ocupacao[]
-  boletim_saida_boletim_saida_unidade_idTounidade boletim_saida[]               @relation("boletim_saida_unidade_idTounidade")
-  unidade_tipo                                    unidade_tipo?                 @relation(fields: [unidade_tipo_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  boletim_saida_boletim_saida_unidade_idTounidade boletim_saida[]                       @relation("boletim_saida_unidade_idTounidade")
+  boletim_sindrome_gripal                         boletim_sindrome_gripal[]
+  ficha_spa                                       ficha_spa[]
+  ficha_spa_destino_final_do_paciente             ficha_spa_destino_final_do_paciente[]
+  unidade_tipo                                    unidade_tipo?                         @relation(fields: [unidade_tipo_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model unidade_tipo {
@@ -164,10 +147,11 @@ model usuario {
   criado_em                   DateTime?                     @default(now()) @db.Timestamp(6)
   atualizado_em               DateTime?                     @db.Timestamp(6)
   acesso                      acesso?
-  boletim_atendimento_porta   boletim_atendimento_porta[]
   boletim_internacao_admissao boletim_internacao_admissao[]
   boletim_internacao_ocupacao boletim_internacao_ocupacao[]
   boletim_saida               boletim_saida[]
+  boletim_sindrome_gripal     boletim_sindrome_gripal[]
+  ficha_spa                   ficha_spa[]
   usuario_tipo                usuario_tipo                  @relation(fields: [usuario_tipo_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
@@ -189,21 +173,6 @@ model token_de_acesso {
   criado_em     DateTime? @default(now()) @db.Timestamp(6)
   atualizado_em DateTime? @db.Timestamp(6)
   acesso        acesso    @relation(fields: [acesso_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
-}
-
-model boletim_atendimento_porta_item {
-  id                           Int                            @id @default(autoincrement())
-  boletim_atendimento_porta_id Int?
-  origem                       tipo_origem_atendimento_porta?
-  turno                        tipo_turno?
-  numero_de_atendimentos       Int
-  causa_id                     Int?
-  genero                       tipo_genero?
-  faixa_etaria                 String
-  criado_em                    DateTime?                      @default(now()) @db.Timestamp(6)
-  atualizado_em                DateTime?                      @db.Timestamp(6)
-  boletim_atendimento_porta    boletim_atendimento_porta?     @relation(fields: [boletim_atendimento_porta_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "boletim_atendimento_porta_ite_boletim_atendimento_porta_id_fkey")
-  causa                        causa?                         @relation(fields: [causa_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model boletim_saida {
@@ -244,6 +213,222 @@ model boletim_internacao_admissao_item {
   cid                            cid?                         @relation(fields: [cid_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
+model boletim_sindrome_gripal {
+  id                                                            Int       @id @default(autoincrement())
+  unidade_id                                                    Int
+  usuario_responsavel_preenchimento_id                          String?   @db.Uuid
+  referente_ao_dia                                              DateTime  @db.Date
+  total_atendimentos_sd_com_queixa_gripal                       Int
+  total_atendimentos_sd_sem_queixa_gripal                       Int
+  total_atendimentos_sn_com_queixa_gripal                       Int
+  total_atendimentos_sn_sem_queixa_gripal                       Int
+  total_internacoes_apos_atendimento_urgencia_com_queixa_gripal Int
+  total_internacoes_apos_atendimento_urgencia_sem_queixa_gripal Int
+  total_obitos                                                  Int
+  total_transferencias                                          Int
+  criado_em                                                     DateTime? @default(now()) @db.Timestamp(6)
+  atualizado_em                                                 DateTime? @db.Timestamp(6)
+  unidade                                                       unidade   @relation(fields: [unidade_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  usuario                                                       usuario?  @relation(fields: [usuario_responsavel_preenchimento_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model causa_sg {
+  id            Int       @id @default(autoincrement())
+  causa_id      Int?
+  criado_em     DateTime? @default(now()) @db.Timestamp(6)
+  atualizado_em DateTime? @db.Timestamp(6)
+  causa         causa?    @relation(fields: [causa_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model estado {
+  id            Int         @id
+  nome          String      @unique
+  uf            String      @unique
+  regiao_id     Int
+  criado_em     DateTime?   @default(now()) @db.Timestamp(6)
+  atualizado_em DateTime?   @db.Timestamp(6)
+  regiao        regiao      @relation(fields: [regiao_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  municipio     municipio[]
+}
+
+model ficha_spa {
+  id                                   Int                                   @id @default(autoincrement())
+  unidade_id                           Int
+  usuario_responsavel_preenchimento_id String                                @db.Uuid
+  data_da_ficha                        DateTime                              @db.Date
+  criado_em                            DateTime?                             @default(now()) @db.Timestamp(6)
+  atualizado_em                        DateTime?                             @db.Timestamp(6)
+  unidade                              unidade                               @relation(fields: [unidade_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  usuario                              usuario                               @relation(fields: [usuario_responsavel_preenchimento_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  ficha_spa_atendimento_medico         ficha_spa_atendimento_medico[]
+  ficha_spa_classificacao              ficha_spa_classificacao[]
+  ficha_spa_destino_final_do_paciente  ficha_spa_destino_final_do_paciente[]
+  ficha_spa_plano_terapeutico          ficha_spa_plano_terapeutico[]
+  ficha_spa_recepcao                   ficha_spa_recepcao[]
+}
+
+model ficha_spa_atendimento_medico {
+  id                            Int                          @id @default(autoincrement())
+  horario_do_atendimento_medico DateTime                     @db.Time(6)
+  ficha_spa_id                  Int
+  criado_em                     DateTime?                    @default(now()) @db.Timestamp(6)
+  atualizado_em                 DateTime?                    @db.Timestamp(6)
+  ficha_spa                     ficha_spa                    @relation(fields: [ficha_spa_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  ficha_spa_exame_solicitado    ficha_spa_exame_solicitado[]
+}
+
+model ficha_spa_classificacao {
+  id                                      Int                                       @id @default(autoincrement())
+  ficha_spa_id                            Int?
+  hora_da_classificacao                   DateTime                                  @db.Time(6)
+  retornou_com_menos_ou_igual_48h         Boolean
+  causa_externa_id                        Int?
+  manchester                              tipo_manchester
+  criado_em                               DateTime?                                 @default(now()) @db.Timestamp(6)
+  atualizado_em                           DateTime?                                 @db.Timestamp(6)
+  causa                                   causa?                                    @relation(fields: [causa_externa_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  ficha_spa                               ficha_spa?                                @relation(fields: [ficha_spa_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  ficha_spa_doenca_preexistente           ficha_spa_doenca_preexistente[]
+  ficha_spa_encaminhamento                ficha_spa_encaminhamento[]
+  ficha_spa_protocolo_e_condicao_especial ficha_spa_protocolo_e_condicao_especial[]
+  ficha_spa_queixa                        ficha_spa_queixa[]
+}
+
+model ficha_spa_destino_final_do_paciente {
+  id                                          Int                 @id @default(autoincrement())
+  ficha_spa_id                                Int
+  horario_da_saida                            DateTime?           @db.Time(6)
+  destino_final                               tipo_destino_final?
+  unidade_transferida_id                      Int?
+  horario_da_saida_para_o_setor_de_internacao DateTime?           @db.Time(6)
+  criado_em                                   DateTime?           @default(now()) @db.Timestamp(6)
+  atualizado_em                               DateTime?           @db.Timestamp(6)
+  ficha_spa                                   ficha_spa           @relation(fields: [ficha_spa_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  unidade                                     unidade?            @relation(fields: [unidade_transferida_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model ficha_spa_doenca_preexistente {
+  id                         Int                     @id @default(autoincrement())
+  ficha_spa_classificacao_id Int
+  has                        Boolean
+  dm                         Boolean
+  drc                        Boolean
+  outros                     String?
+  criado_em                  DateTime?               @default(now()) @db.Timestamp(6)
+  atualizado_em              DateTime?               @db.Timestamp(6)
+  ficha_spa_classificacao    ficha_spa_classificacao @relation(fields: [ficha_spa_classificacao_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model ficha_spa_encaminhamento {
+  id                         Int                      @id @default(autoincrement())
+  ficha_spa_classificacao_id Int?
+  encaminhado_para_1         tipo_encaminhamento
+  encaminhado_para_2         tipo_encaminhamento
+  hora_da_realizacao_ecg     DateTime?                @db.Time(6)
+  criado_em                  DateTime?                @default(now()) @db.Timestamp(6)
+  atualizado_em              DateTime?                @db.Timestamp(6)
+  ficha_spa_classificacao    ficha_spa_classificacao? @relation(fields: [ficha_spa_classificacao_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model ficha_spa_exame_solicitado {
+  id                              Int                          @id @default(autoincrement())
+  ficha_spa_atendimento_medico_id Int
+  raio_x                          Boolean?
+  tomografia                      Boolean?
+  ecg                             Boolean?
+  ultrassonografia                Boolean?
+  laboratorio                     Boolean?
+  criado_em                       DateTime?                    @default(now()) @db.Timestamp(6)
+  atualizado_em                   DateTime?                    @db.Timestamp(6)
+  ficha_spa_atendimento_medico    ficha_spa_atendimento_medico @relation(fields: [ficha_spa_atendimento_medico_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model ficha_spa_plano_terapeutico {
+  id                                             Int       @id @default(autoincrement())
+  ficha_spa_id                                   Int
+  horario_do_atentimento_na_medicacao_observacao DateTime? @db.Time(6)
+  criado_em                                      DateTime? @default(now()) @db.Timestamp(6)
+  atualizado_em                                  DateTime? @db.Timestamp(6)
+  ficha_spa                                      ficha_spa @relation(fields: [ficha_spa_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model ficha_spa_protocolo_e_condicao_especial {
+  id                         Int                     @id @default(autoincrement())
+  ficha_spa_classificacao_id Int
+  sepse                      Boolean
+  dor_toracica               Boolean
+  avc                        Boolean
+  notificacao                Boolean
+  notificacao_agravo_id      Int?
+  criado_em                  DateTime?               @default(now()) @db.Timestamp(6)
+  atualizado_em              DateTime?               @db.Timestamp(6)
+  ficha_spa_classificacao    ficha_spa_classificacao @relation(fields: [ficha_spa_classificacao_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "ficha_spa_protocolo_e_condicao__ficha_spa_classificacao_id_fkey")
+  notificacao_agravo         notificacao_agravo?     @relation(fields: [notificacao_agravo_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "ficha_spa_protocolo_e_condicao_espec_notificacao_agravo_id_fkey")
+}
+
+model ficha_spa_queixa {
+  id                         Int                      @id @default(autoincrement())
+  ficha_spa_classificacao_id Int?
+  causa_id                   Int?
+  criado_em                  DateTime?                @default(now()) @db.Timestamp(6)
+  atualizado_em              DateTime?                @db.Timestamp(6)
+  causa                      causa?                   @relation(fields: [causa_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  ficha_spa_classificacao    ficha_spa_classificacao? @relation(fields: [ficha_spa_classificacao_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model ficha_spa_recepcao {
+  id                                                                        Int            @id @default(autoincrement())
+  ficha_spa_id                                                              Int?
+  hora_da_recepcao                                                          DateTime       @db.Time(6)
+  nao_identificado                                                          Boolean?       @default(false)
+  nome_paciente                                                             String?
+  genero                                                                    tipo_genero?
+  data_de_nascimento                                                        DateTime?      @db.Date
+  cartao_sus_ou_cpf                                                         String?
+  municipio_rg_id                                                           Int?
+  raca_cor                                                                  tipo_raca_cor?
+  procedencia                                                               tipo_origem?
+  municipio_procedencia_interior_id                                         Int?
+  criado_em                                                                 DateTime?      @default(now()) @db.Timestamp(6)
+  atualizado_em                                                             DateTime?      @db.Timestamp(6)
+  ficha_spa                                                                 ficha_spa?     @relation(fields: [ficha_spa_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  municipio_ficha_spa_recepcao_municipio_procedencia_interior_idTomunicipio municipio?     @relation("ficha_spa_recepcao_municipio_procedencia_interior_idTomunicipio", fields: [municipio_procedencia_interior_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  municipio_ficha_spa_recepcao_municipio_rg_idTomunicipio                   municipio?     @relation("ficha_spa_recepcao_municipio_rg_idTomunicipio", fields: [municipio_rg_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model municipio {
+  id                                                                                 Int                  @id @default(autoincrement())
+  codigo_ibge                                                                        String
+  estado_id                                                                          Int
+  nome                                                                               String
+  criado_em                                                                          DateTime?            @default(now()) @db.Timestamp(6)
+  atualizado_em                                                                      DateTime?            @db.Timestamp(6)
+  ficha_spa_recepcao_ficha_spa_recepcao_municipio_procedencia_interior_idTomunicipio ficha_spa_recepcao[] @relation("ficha_spa_recepcao_municipio_procedencia_interior_idTomunicipio")
+  ficha_spa_recepcao_ficha_spa_recepcao_municipio_rg_idTomunicipio                   ficha_spa_recepcao[] @relation("ficha_spa_recepcao_municipio_rg_idTomunicipio")
+  estado                                                                             estado               @relation(fields: [estado_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model notificacao_agravo {
+  id                                      Int                                       @id @default(autoincrement())
+  nome_agravo                             String?
+  tipo_notificacao                        String?
+  sistema_notificacao                     String?
+  servicos_permitidos                     tipo_servico[]
+  observacoes                             String?
+  ativo                                   Boolean?                                  @default(true)
+  criado_em                               DateTime?                                 @default(now()) @db.Timestamp(6)
+  atualizado_em                           DateTime?                                 @db.Timestamp(6)
+  ficha_spa_protocolo_e_condicao_especial ficha_spa_protocolo_e_condicao_especial[]
+}
+
+model regiao {
+  id            Int       @id @default(autoincrement())
+  nome          String
+  criado_em     DateTime? @default(now()) @db.Timestamp(6)
+  atualizado_em DateTime? @db.Timestamp(6)
+  estado        estado[]
+}
+
 enum tipo_admissao {
   PORTA
   INTERNACAO
@@ -279,15 +464,6 @@ enum tipo_local_de_saida {
   INTERNACAO
 }
 
-enum tipo_origem_atendimento_porta {
-  DEMANDA_ESPONTANEA_SAO_LUIS
-  DEMANDA_ESPONTANEA_INTERIOR
-  REFERENCIADO_UPAS
-  REFERENCIADO_APS
-  REFERENCIADO_CLINICAS
-  OUTROS
-}
-
 enum tipo_saida {
   ALTA
   EVASAO
@@ -298,4 +474,59 @@ enum tipo_saida {
 enum tipo_turno {
   SERVICO_DIURNO
   SERVICO_NOTURNO
+}
+
+enum tipo_destino_final {
+  ALTA
+  ALTA_COM_DECLARACAO_DE_COMPARECIMENTO
+  ALTA_COM_ATESTADO_MEDICO
+  EVASAO
+  TRANSFERIDO
+  INTERNADO
+  OBITO
+  NAO_SE_APLICA
+}
+
+enum tipo_encaminhamento {
+  ESTABILIZACAO
+  ODONTOLOGIA
+  CLINICO
+  ECG
+  CURATIVO
+  SUTURA
+  VACIONA_ANTIRRABICA
+  TROCA_DE_SONDA
+}
+
+enum tipo_manchester {
+  AZUL
+  VERDE
+  AMARELO
+  LARANJA
+  VERMELHO
+}
+
+enum tipo_origem {
+  DEMANDA_ESPONTANEA_SAO_LUIS
+  DEMANDA_ESPONTANEA_INTERIOR
+  REFERENCIADO_UPAS
+  REFERENCIADO_APS
+  REFERENCIADO_CLINICAS
+  OUTROS
+}
+
+enum tipo_raca_cor {
+  BRANCA
+  PRETA
+  PARDA
+  AMARELA
+  INDIGENA
+}
+
+enum tipo_servico {
+  URGENCIA_EMERGENCIA
+  ATENCAO_PRIMARIA
+  AMBULATORIO
+  HOSPITALAR
+  LABORATORIO
 }

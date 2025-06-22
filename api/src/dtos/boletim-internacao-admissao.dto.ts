@@ -1,6 +1,5 @@
 import { ApiHideProperty, OmitType } from '@nestjs/swagger';
 import { $Enums, Prisma } from 'generated/prisma';
-import { BoletimAtendimentoPortaCreateDto } from './boletim-atendimento-porta.dto';
 import { IsArray, IsDateString, IsInt } from 'class-validator';
 import { Type } from 'class-transformer';
 

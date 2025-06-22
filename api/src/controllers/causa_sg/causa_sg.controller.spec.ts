@@ -1,32 +1,30 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CausaSragController } from './causa_srag.controller';
+import { CausaSgController } from './causa_sg.controller';
 import { Prisma } from 'generated/prisma';
-import { causaSragServiceMock } from 'src/__mock__/services/causa-srag.service';
-import { CausaSragService } from 'src/services/causa-srag/causa-srag.service';
+import { causaSgServiceMock } from 'src/__mock__/services/causa-sg.service';
+import { CausaSgService } from 'src/services/causa-sg/causa-sg.service';
 import { AuthGuard } from 'src/guards/auth/auth.guard';
 
-describe('CausaSragController', () => {
-  let controller: CausaSragController;
+describe('CausaSgController', () => {
+  let controller: CausaSgController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [CausaSragController],
-      providers: [
-        { provide: CausaSragService, useValue: causaSragServiceMock },
-      ],
+      controllers: [CausaSgController],
+      providers: [{ provide: CausaSgService, useValue: causaSgServiceMock }],
     })
       .overrideGuard(AuthGuard)
       .useValue({ canActivate: () => true }) // mock do guard
       .compile();
 
-    controller = module.get<CausaSragController>(CausaSragController);
+    controller = module.get<CausaSgController>(CausaSgController);
   });
 
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
   describe('findAll', () => {
-    const serviceResponsePayload: Prisma.causa_sragGetPayload<{
+    const serviceResponsePayload: Prisma.causa_sgGetPayload<{
       select: { id: true; causa: {}; criado_em: true; atualizado_em: true };
     }>[] = [
       {
@@ -44,14 +42,14 @@ describe('CausaSragController', () => {
     ];
     it('Deve resolver retornando com payload na resposta', async () => {
       const expectedResponse = serviceResponsePayload;
-      causaSragServiceMock.findAll.mockResolvedValue(serviceResponsePayload);
+      causaSgServiceMock.findAll.mockResolvedValue(serviceResponsePayload);
       await expect(controller.findAll()).resolves.toEqual(
-        expectedResponse as unknown as Prisma.causa_sragGetPayload<true>,
+        expectedResponse as unknown as Prisma.causa_sgGetPayload<true>,
       );
     });
     it('Deve rejeitar jogando com erro na resposta', async () => {
       const expectedResponse = new Error('Erro Genereico');
-      causaSragServiceMock.findAll.mockRejectedValue(expectedResponse);
+      causaSgServiceMock.findAll.mockRejectedValue(expectedResponse);
       await expect(controller.findAll()).rejects.toEqual(expectedResponse);
     });
   });
