@@ -1,0 +1,53 @@
+<div class="main-container">
+  <div class="side-container">
+    <div class="text-container">
+      <p>Bem-vindo ao <br />e-SEMUS👋</p>
+      <small
+        >Entre com sua conta para acessar <br />
+        o sistema
+      </small>
+    </div>
+  </div>
+  <div class="form-container">
+    <h1 class="titulo-sistema">e-SEMUS</h1>
+    <form [formGroup]="loginForm" class="form">
+      <div class="input-container">
+        <label for="usuario" class="font-semibold">Usuario</label>
+        <input
+          pInputText
+          id="usuario"
+          autocomplete="off"
+          formControlName="username"
+          pSize="large"
+        />
+      </div>
+
+      <div class="input-container">
+        <label for="senha" class="font-semibold">Senha</label>
+        <input
+          pInputText
+          id="senha"
+          autocomplete="off"
+          formControlName="password"
+          pSize="large"
+          type="password"
+        />
+      </div>
+      <button class="botao-entrar" (click)="onSubmit()"><p>Entrar</p></button>
+    </form>
+    <div class="footer-container">
+      <footer>
+        <p>Desenhado e desenvolvido por Pablo Eduardo</p>
+        <p>
+          Para me conhecer
+          <a
+            href="https://www.linkedin.com/in/pabloeduardoss/"
+            target="_blank"
+            rel="noopener norefrrer"
+            >clique aqui !</a
+          >
+        </p>
+      </footer>
+    </div>
+  </div>
+</div>

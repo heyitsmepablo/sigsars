@@ -27,7 +27,10 @@ async function bootstrap() {
   SwaggerModule.setup('api/v1/doc', app, document);
 
   app.useGlobalPipes(new ValidationPipe({ transform: true, whitelist: true }));
-
+  app.enableCors({
+    origin: 'http://localhost:4200',
+    methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'],
+  });
   await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();

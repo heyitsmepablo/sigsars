@@ -1,0 +1,52 @@
+@reference 'tailwindcss';
+
+.main-container {
+  @apply w-screen h-screen flex flex-col bg-gradient-to-br from-[#4AC1A8] to-[#2BA7DB] items-center justify-center max-md:relative lg:flex-row lg:justify-end from-25%;
+}
+
+.side-container {
+  @apply hidden lg:flex flex-col h-full w-[50%]  justify-center items-center;
+}
+.text-container {
+  @apply lg:mb-4;
+  p {
+    @apply xl:text-6xl lg:text-5xl leading-tight font-extrabold;
+  }
+  small {
+    @apply font-normal;
+  }
+}
+.form-container {
+  @apply flex flex-col h-[30rem] w-96 bg-white text-black items-center max-lg:rounded-xl justify-center lg:h-full lg:w-[50%]  lg:relative;
+}
+
+.input-container {
+  @apply flex flex-col gap-2 lg:w-96;
+}
+
+.form {
+  @apply flex flex-col gap-y-6;
+}
+
+.botao-entrar {
+  @apply flex text-white justify-center px-6 py-4 w-56 bg-cyan-950 rounded-xl  lg:w-96 lg:py-3 lg:mt-4;
+
+  > p {
+    @apply font-bold text-xl lg:text-sm;
+  }
+}
+
+.titulo-sistema {
+  @apply text-3xl font-medium mb-6;
+}
+
+.footer-container {
+  @apply flex flex-col absolute w-full bottom-6;
+}
+
+footer {
+  @apply flex flex-col text-[0.95rem] lg:text-[1.05rem] font-semibold whitespace-nowrap text-sm  items-center;
+  p > a {
+    @apply text-white lg:text-blue-600 md:hover:text-[#4AC1A8] lg:transition-all;
+  }
+}
