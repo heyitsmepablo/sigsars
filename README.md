@@ -21,7 +21,7 @@ Este projeto tem como objetivo centralizar e otimizar processos, promover a tran
 - **Banco de Dados:** [PostgreSQL 17.5](https://www.postgresql.org/)
 - **ORM** [Prisma](https://www.prisma.io/)
 - **API Backend:** [NestJS](https://nestjs.com/)
-- **Web Client:** _Em breve..._
+- **Web Client:** [Angular V20](https://angular.dev/)
 
 ## 🚧 Projeto em Construção
 
