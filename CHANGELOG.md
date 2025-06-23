@@ -2,6 +2,13 @@
 
 Todas as mudanças notáveis neste projeto serão documentadas neste arquivo. Consulte [Conventional Commits](https://www.conventionalcommits.org/pt-br/v1.0.0/) para diretrizes de commits.
 
+# [1.0.0-alpha.19](https://github.com/heyitsmepablo/sigsars/compare/v1.0.0-alpha.18...v1.0.0-alpha.19) (2025-06-22)
+
+
+### Features
+
+* **api:** Implementado boletim da sindrome gripal ([5d7e90a](https://github.com/heyitsmepablo/sigsars/commit/5d7e90a6935d0dd2b6036db224e865f0a3c0af80))
+
 # [1.0.0-alpha.18](https://github.com/heyitsmepablo/sigsars/compare/v1.0.0-alpha.17...v1.0.0-alpha.18) (2025-06-21)
 
 
