@@ -14,10 +14,11 @@ import { CookieService } from 'ngx-cookie-service';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import axios from 'axios';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   imports: [InputTextModule, ReactiveFormsModule, ButtonModule, ToastModule],
-  providers: [CookieService, ESemusApiClient,MessageService],
+  providers: [CookieService, ESemusApiClient, MessageService],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -33,7 +34,8 @@ export class Login {
   constructor(
     private readonly apiClientService: ESemusApiClient,
     private readonly cookieService: CookieService,
-    private readonly messageService: MessageService
+    private readonly messageService: MessageService,
+    private readonly router: Router
   ) {}
 
   get usuario() {
@@ -48,11 +50,6 @@ export class Login {
     return control.dirty && control.touched;
   }
 
-  showError(data:{code:string|number|null,message:string}){
-    this.messageService.clear();
-    this.messageService.add({severity:'error', summary: data.code ? `Erro ${data.code}`: undefined , detail:data.message});
-  }
-
   async onSubmit() {
     try {
       if (this.loginForm.invalid) {
@@ -65,11 +62,25 @@ export class Login {
         senha: password,
       });
       const expiracao = new Date(Date.now() + response.expira_em_milisegundos);
+      const usuarioJSON = JSON.stringify(response.usuario);
       this.cookieService.set('token', response.token, expiracao);
-      localStorage.setItem('usuario', JSON.stringify(response.usuario));
-      console.log('funcionou');
+      localStorage.setItem('usuario', usuarioJSON);
+      this.router.navigate(['/home']);
     } catch (error: any) {
-      console.log(error)
+      this.messageService.clear();
+      if (error.status == 404) {
+        this.messageService.add({
+          severity: 'warn',
+          summary: `Erro ${error.status}`,
+          detail: 'Usuario não encontrado ou incorreto',
+        });
+      } else if (error.status == 500) {
+        this.messageService.add({
+          severity: 'error',
+          summary: `Erro ${error.code}`,
+          detail: 'Erro interno de servidor',
+        });
+      }
     }
   }
 }
