@@ -32,6 +32,25 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: postgres@admin.com
       PGADMIN_DEFAULT_PASSWORD: postgres
+    mem_limit: "2gb"
+    cpus: "1"
+    networks:
+      - e-semus
+  api:
+    depends_on:
+      - database
+    build:
+      context: ./api
+      dockerfile: Dockerfile.dev
+    ports:
+      - 3000:3000
+    volumes:
+      - ./api:/app
+    command: sh -c "npx prisma db pull && npx prisma generate && npm run start:dev"
+    mem_limit: "2gb"
+    cpus: "1"
+    env_file:
+      - ./api/.env
     networks:
       - e-semus
 networks:

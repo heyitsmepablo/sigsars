@@ -17,11 +17,10 @@ export class ESemusApiClient {
       ).data;
       return response;
     } catch (error) {
-      if (!axios.isAxiosError(error)) {
-        throw error;
+      if (axios.isAxiosError(error)) {
+        throw error
       }
-      console.log(error);
-      throw error.cause;
+      throw error;
     }
   }
 }

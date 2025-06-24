@@ -50,3 +50,7 @@ footer {
     @apply text-white lg:text-blue-600 md:hover:text-[#4AC1A8] lg:transition-all;
   }
 }
+
+.input-text-error {
+  @apply text-sm text-red-500;
+}

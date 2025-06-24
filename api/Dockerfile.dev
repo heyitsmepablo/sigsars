@@ -1,0 +1,7 @@
+FROM node:22
+RUN apt-get update && apt-get upgrade -y
+WORKDIR /app
+COPY . .
+RUN  npm install @nestjs/cli
+RUN  npm i --no-cache
+EXPOSE 3000
