@@ -8,7 +8,7 @@ export type UsuarioPayload = {
   usuario_tipo_id: number;
   criado_em: string;
   autalizado_em: string;
-};
+} | null;
 
 export type LoginPayload = {
   token: string;
