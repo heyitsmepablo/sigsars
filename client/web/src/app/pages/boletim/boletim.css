@@ -1,0 +1,9 @@
+@reference 'tailwindcss';
+
+.main-container {
+  @apply flex flex-col h-screen w-screen;
+}
+
+.body-wrapper {
+  @apply hidden h-full w-full lg:flex;
+}
