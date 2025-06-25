@@ -1,0 +1,29 @@
+@reference 'tailwindcss';
+
+.main-container {
+  @apply flex w-full h-24 lg:h-16 px-6  bg-gradient-to-r from-[#4AC1A8] to-[#2BA7DB] items-center drop-shadow-lg lg:pl-12 lg:rounded-br-sm;
+}
+
+.esemus-container {
+  @apply hidden h-full items-center text-white text-lg w-[12.75rem] lg:flex;
+}
+
+.header-info-container {
+  @apply flex  text-white text-2xl justify-center items-center gap-2 lg:text-lg;
+}
+
+.home-icon-container {
+  @apply flex bg-white/32 h-12 w-12 rounded-lg items-center justify-center lg:h-12 lg:w-12;
+}
+
+.header-body-container {
+  @apply flex w-full h-full  justify-end pr-6;
+}
+
+.user-info-container {
+  @apply text-white flex gap-2 text-sm items-center;
+}
+
+.user-icon {
+  @apply h-6 w-6;
+}
