@@ -2,6 +2,13 @@
 
 Todas as mudanças notáveis neste projeto serão documentadas neste arquivo. Consulte [Conventional Commits](https://www.conventionalcommits.org/pt-br/v1.0.0/) para diretrizes de commits.
 
+# [1.0.0-alpha.21](https://github.com/heyitsmepablo/sigsars/compare/v1.0.0-alpha.20...v1.0.0-alpha.21) (2025-06-25)
+
+
+### Features
+
+* **client:** Home Page ([61c79d6](https://github.com/heyitsmepablo/sigsars/commit/61c79d607aa8b77cb992300dd0df379d30db964e))
+
 # [1.0.0-alpha.20](https://github.com/heyitsmepablo/sigsars/compare/v1.0.0-alpha.19...v1.0.0-alpha.20) (2025-06-24)
 
 
