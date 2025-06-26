@@ -3,10 +3,11 @@ import { Header } from '../../shared/header/header';
 import { UsuarioPayload } from '../../types/api-client.type';
 import { CardModule } from 'primeng/card';
 import { Sidebar } from '../../shared/sidebar/sidebar';
+import { MobileModuleCard } from '../../shared/mobile-module-card/mobile-module-card';
 
 @Component({
   selector: 'app-home',
-  imports: [Header, CardModule, Sidebar],
+  imports: [Header, CardModule, Sidebar, MobileModuleCard],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

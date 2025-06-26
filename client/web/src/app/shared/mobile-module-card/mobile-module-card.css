@@ -1,0 +1,9 @@
+@reference 'tailwindcss';
+
+.module-card {
+  @apply flex flex-col w-44 h-44 border border-gray-400 rounded-lg items-center justify-center;
+}
+
+.module-icon-container {
+  @apply flex flex-col justify-center items-center bg-gray-400/12 w-12 h-12 rounded-lg mb-2;
+}

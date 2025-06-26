@@ -1,9 +1,26 @@
 @reference 'tailwindcss';
-
 .main-container {
   @apply flex flex-col h-screen w-screen;
 }
 
+.mobile-nav {
+  @apply flex flex-col gap-2 p-4;
+  p {
+    @apply text-lg pl-1;
+  }
+}
+.module-icon {
+  @apply opacity-100 fill-gray-600;
+}
+
+.modules-card-area-container {
+  @apply flex gap-6;
+}
+
 .body-wrapper {
   @apply hidden h-full w-full lg:flex;
+}
+
+.content-wrapper {
+  @apply hidden;
 }

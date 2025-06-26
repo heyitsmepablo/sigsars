@@ -65,7 +65,7 @@ export class Login {
       const usuarioJSON = JSON.stringify(response.usuario);
       this.cookieService.set('token', response.token, expiracao);
       localStorage.setItem('usuario', usuarioJSON);
-      this.router.navigate(['/home']);
+      this.router.navigate(['/inicio']);
     } catch (error: any) {
       this.messageService.clear();
       if (error.status == 404) {

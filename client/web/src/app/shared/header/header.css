@@ -1,7 +1,7 @@
 @reference 'tailwindcss';
 
 .main-container {
-  @apply flex w-full h-24 lg:h-16 px-6  bg-gradient-to-r from-[#4AC1A8] to-[#2BA7DB] items-center drop-shadow-lg lg:pl-12 lg:rounded-br-sm;
+  @apply flex w-full h-24 lg:h-16  bg-gradient-to-r from-[#4AC1A8] to-[#2BA7DB] items-center drop-shadow-lg lg:pl-12 lg:rounded-br-sm;
 }
 
 .esemus-container {
@@ -21,7 +21,7 @@
 }
 
 .user-info-container {
-  @apply text-white flex gap-2 text-sm items-center;
+  @apply text-white hidden gap-2 text-sm items-center;
 }
 
 .user-icon {

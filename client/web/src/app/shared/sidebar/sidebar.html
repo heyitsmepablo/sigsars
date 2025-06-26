@@ -1,6 +1,6 @@
 <div class="main-container">
   <div class="buttons-wrapper">
-    <button class="button">
+    <button class="button" [routerLink]="['/','inicio']">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -54,7 +54,9 @@
       </button>
       @if(boletinsIsOpened){
       <ul class="list transition-all delay-75">
-        <li class="item">Sindrome Gripal</li>
+        <li class="item" [routerLink]="['/boletim','sindrome-gripal']">
+          Sindrome Gripal
+        </li>
       </ul>
 
       }
