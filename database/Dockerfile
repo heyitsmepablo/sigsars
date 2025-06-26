@@ -8,9 +8,14 @@ ENV  POSTGRESQL_LOG_STATEMENT="all"
 ENV  POSTGRESQL_LOG_DURATION="on"
 ENV  POSTGRESQL_LOG_MIN_DURATION_STATEMENT="1000"
 
+COPY ./csv /mnt/tmp/csv
 COPY ./initdb.sql /docker-entrypoint-initdb.d/1.sql
-COPY ./scripts/loadForeignTables.sql /docker-entrypoint-initdb.d/2.sql
-COPY ./scripts/insertTipoDeUsuarios.sql /docker-entrypoint-initdb.d/3.sql
+COPY ./scripts/loadRegiao.sql /docker-entrypoint-initdb.d/2.sql
+COPY ./scripts/loadEstado.sql /docker-entrypoint-initdb.d/3.sql
+COPY ./scripts/loadForeignTables.sql /docker-entrypoint-initdb.d/4.sql
+COPY ./scripts/insertTipoDeUsuarios.sql /docker-entrypoint-initdb.d/5.sql
+COPY ./scripts/loadNotificacaoAgravo.sql /docker-entrypoint-initdb.d/6.sql
+COPY ./scripts/loadTestData.sql /docker-entrypoint-initdb.d/7.sql
 
 # Instalar pacotes de localidade
 RUN apt-get update && apt-get install -y locales

@@ -336,7 +336,7 @@ CREATE TABLE "boletim_saida_item" (
   "boletim_saida_id" INT,
   "local_de_saida" tipo_local_de_saida NOT NULL,
   "tipo_da_saida" tipo_saida NOT NULL,
-  "unidade_destino_id" INT NOT NULL,
+  "unidade_destino_id" INT,
   "leito_de_destino" tipo_leito_de_destino,
   "total_de_saida" INT NOT NULL,
   "criado_em" TIMESTAMP DEFAULT (CURRENT_TIMESTAMP),
