@@ -9,7 +9,7 @@
 }
 
 .header-info-container {
-  @apply flex  text-white text-2xl justify-center items-center gap-2 lg:text-lg;
+  @apply flex text-white text-2xl lg:pl-4 justify-center items-center gap-2 lg:text-lg;
 }
 
 .home-icon-container {

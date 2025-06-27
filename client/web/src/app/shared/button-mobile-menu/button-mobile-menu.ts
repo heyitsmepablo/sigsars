@@ -16,6 +16,7 @@ export class ButtonMobileMenu {
   openBoletins() {
     this.boletinsIsOpened = !this.boletinsIsOpened;
   }
+  
   @ViewChild('drawerRef') drawerRef!: Drawer;
 
   closeCallback(e: any): void {

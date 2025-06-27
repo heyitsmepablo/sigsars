@@ -1,7 +1,23 @@
-<div class="card flex justify-center">
+<div class="card flex justify-center lg:hidden">
   <p-drawer #drawerRef [(visible)]="visible">
     <ng-template #headless>
       <div class="main-container">
+        <span class="flex justify-end mr-5 h-14 items-center"
+          ><button (click)="closeCallback($event)">
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="size-6 close-icon"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M12.97 3.97a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 1 1-1.06-1.06l6.22-6.22H3a.75.75 0 0 1 0-1.5h16.19l-6.22-6.22a.75.75 0 0 1 0-1.06Z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
+        </span>
         <div class="buttons-wrapper">
           <button class="button" [routerLink]="['/','inicio']">
             <svg
@@ -20,7 +36,7 @@
             <p>Inicio</p>
           </button>
           <div class="button-list-wrapper">
-            <button class="button-list" (click)="openBoletins()">
+            <button class="button" (click)="openBoletins()">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -89,5 +105,20 @@
       </div>
     </ng-template>
   </p-drawer>
-  <p-button (click)="visible = true" icon="pi pi-bars" />
+  <button (click)="visible = true" class="button-open">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="size-6 sidebar-icon"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+      />
+    </svg>
+  </button>
 </div>

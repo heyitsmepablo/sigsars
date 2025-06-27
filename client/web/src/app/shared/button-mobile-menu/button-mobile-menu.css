@@ -1,31 +1,39 @@
 @reference 'tailwindcss';
 
 .main-container {
-  @apply flex flex-col border h-full w-52 bg-[#1F3A52] lg:flex;
+  @apply flex flex-col border h-full w-full bg-[#1F3A52];
 }
 
 .buttons-wrapper {
-  @apply flex flex-col text-white gap-2 w-full justify-center items-center py-16;
+  @apply flex flex-col text-white gap-6 w-full justify-center pl-5 py-16;
+
   .button {
-    @apply flex w-44 h-9 py-1.5 pl-2  text-sm font-light gap-2 rounded-lg hover:bg-[#3C9DD475]/50;
+    @apply flex w-full  h-9 py-1.5 pl-2  text-xl font-light gap-2 rounded-lg;
   }
 
-  .button-list {
-    @apply flex w-44 h-9 py-1.5 pl-2  text-sm font-light gap-2 rounded-lg hover:bg-[#3C9DD475]/50;
-    .arrow-icon {
-      @apply ml-14 mt-[0.114rem] w-4 h-4 transition-transform;
-    }
+  .arrow-icon {
+    @apply ml-14 mt-[0.114rem] w-7 h-7 transition-transform;
   }
   .list {
+    @apply mt-6;
   }
   .item {
-    @apply flex w-38 h-9  items-center justify-center text-xs font-light gap-2 rounded-lg hover:bg-[#3C9DD475]/50;
+    @apply flex w-full h-9  items-center pl-12  text-lg font-light gap-2 rounded-lg hover:bg-[#3C9DD475]/50;
+  }
+
+  .button-list-wrapper {
+    @apply flex flex-col;
   }
 }
 
 .sidebar-icon {
-  @apply w-4.5 h-4.5;
+  @apply w-8 h-8;
 }
-.button-list-wrapper {
-  @apply flex flex-col;
+
+.button-open {
+  @apply text-white p-4;
+}
+
+.close-icon {
+  @apply text-white h-10 w-10 rotate-180;
 }

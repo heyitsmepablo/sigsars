@@ -1,0 +1,8 @@
+@reference 'tailwindcss';
+
+:host {
+  @apply flex w-full h-full;
+}
+.main-container {
+  @apply flex w-full h-full  border-3 border-red-500;
+}
