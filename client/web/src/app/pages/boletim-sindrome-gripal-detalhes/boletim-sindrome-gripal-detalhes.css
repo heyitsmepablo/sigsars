@@ -1,0 +1,20 @@
+@reference 'tailwindcss';
+.main-container {
+  @apply min-w-screen min-h-screen flex flex-col;
+}
+
+.body-wrapper {
+  @apply flex flex-col w-full h-full border border-blue-800;
+}
+
+.content-wrapper {
+  @apply flex flex-col w-full h-full  items-center border border-red-500;
+}
+
+.field {
+  @apply flex flex-col w-70;
+}
+
+.button-back {
+  @apply flex  py-4 px-14 rounded-lg bg-black text-white font-bold;
+}

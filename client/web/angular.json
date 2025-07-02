@@ -5,6 +5,9 @@
   "projects": {
     "e-semus": {
       "projectType": "application",
+      "i18n": {
+        "sourceLocale": "pt"
+      },
       "schematics": {},
       "root": "",
       "sourceRoot": "src",

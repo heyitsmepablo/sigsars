@@ -9,19 +9,19 @@
 }
 
 .header-info-container {
-  @apply flex text-white text-2xl lg:pl-4 justify-center items-center gap-2 lg:text-lg;
+  @apply flex text-white w-full text-2xl lg:pl-4  items-center gap-2 lg:text-lg;
 }
 
-.home-icon-container {
+.header-icon-container {
   @apply flex bg-white/32 h-12 w-12 rounded-lg items-center justify-center lg:h-12 lg:w-12;
 }
 
 .header-body-container {
-  @apply flex w-full h-full  justify-end pr-6;
+  @apply w-full h-full  justify-end pr-6 hidden lg:flex;
 }
 
 .user-info-container {
-  @apply text-white hidden gap-2 text-sm items-center;
+  @apply text-white hidden gap-2 text-sm items-center lg:flex;
 }
 
 .user-icon {

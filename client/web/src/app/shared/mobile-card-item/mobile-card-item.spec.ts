@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Boletim } from './boletim';
+import { MobileCardItem } from './mobile-card-item';
 
-describe('Boletim', () => {
-  let component: Boletim;
-  let fixture: ComponentFixture<Boletim>;
+describe('MobileCardItem', () => {
+  let component: MobileCardItem;
+  let fixture: ComponentFixture<MobileCardItem>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Boletim]
+      imports: [MobileCardItem]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Boletim);
+    fixture = TestBed.createComponent(MobileCardItem);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

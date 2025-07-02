@@ -1,0 +1,63 @@
+@reference 'tailwindcss';
+
+.main-container {
+  @apply flex flex-col h-screen w-screen;
+}
+
+.body-wrapper {
+  @apply h-full w-full flex flex-col lg:flex-row;
+}
+
+.content-wrapper {
+  @apply flex  w-full h-full;
+}
+
+.body-container {
+  @apply flex flex-col w-full h-full;
+}
+
+.content-container {
+  @apply flex flex-col w-full h-full pt-5 items-center gap-6;
+}
+
+.mobile-card-content {
+  @apply flex flex-col w-80 h-22 justify-around;
+
+  p {
+    @apply text-sm text-gray-600;
+  }
+  small {
+    @apply text-xs text-gray-600;
+  }
+
+  .usuario-info-container {
+    @apply flex items-center gap-1;
+
+    svg {
+      @apply fill-gray-600 w-5 h-5;
+    }
+  }
+
+  .footer-card-container {
+    @apply flex justify-between mt-2;
+    svg {
+      @apply w-4 h-4;
+    }
+  }
+}
+
+.mobile-card-item-empty {
+  @apply flex flex-col w-80 h-22 justify-center;
+
+  p {
+    @apply text-gray-600;
+  }
+
+  .empty-info-container {
+    @apply flex flex-col items-center gap-1;
+
+    svg {
+      @apply fill-gray-600;
+    }
+  }
+}

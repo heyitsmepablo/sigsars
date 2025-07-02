@@ -1,0 +1,8 @@
+@reference 'tailwindcss';
+.mobile-card-item {
+  @apply flex flex-col border items-center justify-center border-slate-300 w-96 h-32 rounded-lg drop-shadow-[0px,1px,4px,0px] shadow-[rgba(12,12,13,0.05)];
+}
+
+.mobile-card-item-empty {
+  @apply flex flex-col border-0 bg-gray-400/10 items-center justify-center w-96 h-32 rounded-lg drop-shadow-[0px,1px,4px,0px] shadow-[rgba(12,12,13,0.05)];
+}

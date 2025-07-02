@@ -23,6 +23,7 @@ export class BoletimSindromeGripalService {
           id: true,
           unidade: { select: { id: true, nome: true } },
           usuario: { omit: { usuario_tipo_id: true } },
+          referente_ao_dia: true,
           criado_em: true,
           atualizado_em: true,
         },
@@ -37,6 +38,7 @@ export class BoletimSindromeGripalService {
         where: options.where,
         include: {
           usuario: { select: { nome: true, cargo: true, matricula: true } },
+          unidade: { select: { nome: true, sigla: true } },
         },
       });
     } catch (error) {

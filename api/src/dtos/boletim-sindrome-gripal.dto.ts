@@ -1,3 +1,4 @@
+import { ApiHideProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsDateString, IsInt, IsUUID } from 'class-validator';
 
@@ -21,7 +22,7 @@ export class BoletimSindromeGripalCreateDto {
   unidade_id: number;
   @IsDateString()
   referente_ao_dia: Date;
-  @IsUUID()
+  @ApiHideProperty()
   usuario_responsavel_preenchimento_id: string;
   @Type(() => Number)
   @IsInt()
