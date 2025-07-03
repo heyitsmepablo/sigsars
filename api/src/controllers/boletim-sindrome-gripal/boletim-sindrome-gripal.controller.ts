@@ -8,8 +8,10 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ApiBearerAuth } from '@nestjs/swagger';
-import { UsuarioUUID } from 'src/decorators/usuario-uuid/usuario-uuid.decorator';
+import { usuario } from 'generated/prisma';
+import { Usuario } from 'src/decorators/usuario/usuario.decorator';
 import { BoletimSindromeGripalCreateDto } from 'src/dtos/boletim-sindrome-gripal.dto';
+import { UsuarioDecoratorPayload } from 'src/dtos/usuario.dto';
 import { AuthGuard } from 'src/guards/auth/auth.guard';
 import { BoletimSindromeGripalService } from 'src/services/boletim-sindrome-gripal/boletim-sindrome-gripal.service';
 @ApiBearerAuth()
@@ -20,15 +22,18 @@ export class BoletimSindromeGripalController {
     private readonly boletimSindromeGripalService: BoletimSindromeGripalService,
   ) {}
   @Get()
-  async findAll() {
-    return await this.boletimSindromeGripalService.findAll();
+  async findAll(@Usuario() usuario: UsuarioDecoratorPayload) {
+    return await this.boletimSindromeGripalService.findAll({
+      where: { unidade_id: usuario.unidade.id },
+    });
   }
   @Post()
   async create(
     @Body() data: BoletimSindromeGripalCreateDto,
-    @UsuarioUUID() usuario_id: string,
+    @Usuario() usuario: UsuarioDecoratorPayload,
   ) {
-    data.usuario_responsavel_preenchimento_id = usuario_id;
+    data.usuario_responsavel_preenchimento_id = usuario.id;
+    data.unidade_id = usuario.unidade.id;
     return await this.boletimSindromeGripalService.create(data);
   }
   @Get(':id')

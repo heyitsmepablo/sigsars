@@ -405,6 +405,7 @@ CREATE TABLE "usuario" (
   "nome" TEXT NOT NULL,
   "cargo" TEXT NOT NULL,
   "matricula" TEXT UNIQUE NOT NULL,
+  "unidade_lotada_id" INT NOT NULL,
   "cpf" TEXT UNIQUE NOT NULL,
   "email" TEXT,
   "usuario_tipo_id" INT NOT NULL,
@@ -520,3 +521,5 @@ ALTER TABLE "boletim_internacao_admissao" ADD FOREIGN KEY ("usuario_responsavel_
 ALTER TABLE "boletim_internacao_ocupacao" ADD FOREIGN KEY ("usuario_responsavel_preenchimento_id") REFERENCES "usuario" ("id");
 
 ALTER TABLE "boletim_saida_item" ADD FOREIGN KEY ("boletim_saida_id") REFERENCES "boletim_saida" ("id") ON DELETE CASCADE;
+
+ALTER TABLE "usuario" ADD FOREIGN KEY ("unidade_lotada_id") REFERENCES "unidade" ("id");

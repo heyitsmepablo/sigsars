@@ -45,15 +45,41 @@ export class AuthService {
       this.configService.getOrThrow<ms.StringValue>('JWT_EXPIRES_IN');
     const { usuario, senha } = credencials;
     try {
-      const ususarioDatabase: Prisma.usuarioGetPayload<{
-        include: { acesso: true };
+      const usuarioDatabase: Prisma.usuarioGetPayload<{
+        select: {
+          id: true;
+          usuario_tipo: { select: { id: true; nome: true } };
+          unidade: { select: { id: true; nome: true; sigla: true } };
+          matricula: true;
+          cargo: true;
+          nome: true;
+          cpf: true;
+          email: true;
+          criado_em: true;
+          atualizado_em: true;
+        };
       }> = await this.#database.usuario.findFirstOrThrow({
-        include: { acesso: true },
+        select: {
+          id: true,
+          usuario_tipo: { select: { id: true, nome: true } },
+          unidade: { select: { id: true, nome: true, sigla: true } },
+          matricula: true,
+          cargo: true,
+          nome: true,
+          cpf: true,
+          email: true,
+          criado_em: true,
+          atualizado_em: true,
+        },
         where: {
           OR: [{ cpf: usuario }, { email: usuario }, { matricula: usuario }],
         },
       });
-      const { acesso, ...payload } = ususarioDatabase;
+
+      const acesso: Prisma.acessoGetPayload<true> | null =
+        await this.#database.acesso.findUnique({
+          where: { usuario_id: usuarioDatabase.id },
+        });
 
       if (acesso?.senha) {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
@@ -62,7 +88,7 @@ export class AuthService {
             secret: Buffer.from(argonSecret),
           })
         ) {
-          const token = await this.jwtService.signAsync(payload);
+          const token = await this.jwtService.signAsync(usuarioDatabase);
           const expira_em_milisegundos = ms(jwtExpireIn);
           const valido_ate_timestamp = Date.now() + expira_em_milisegundos;
           await this.#database.token_de_acesso.create({
@@ -77,7 +103,7 @@ export class AuthService {
             tipo: 'Bearer',
             expira_em_milisegundos: expira_em_milisegundos,
             valido_ate_timestamp: valido_ate_timestamp,
-            usuario: payload,
+            usuario: usuarioDatabase,
             ultimo_login: acesso.ultimo_login,
           };
         }

@@ -1,3 +1,4 @@
+import { ApiHideProperty } from '@nestjs/swagger';
 import { IsEmail, IsInt, IsString } from 'class-validator';
 
 export class AuthServiceSignInArgs {
@@ -7,6 +8,7 @@ export class AuthServiceSignInArgs {
 
 export class AuthServiceSignUpData {
   usuario_tipo_id: number;
+  unidade_lotada_id: number;
   nome: string;
   cargo: string;
   senha: string;
@@ -18,6 +20,8 @@ export class AuthServiceSignUpData {
 export class AuthSignUpDto {
   @IsInt()
   usuario_tipo_id: number;
+  @IsInt()
+  unidade_lotada_id: number;
   @IsString()
   nome: string;
   @IsString()

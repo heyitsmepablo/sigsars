@@ -4,6 +4,7 @@ export class JwTPayload implements Prisma.usuarioGetPayload<true> {
   id: string;
   usuario_tipo_id: number;
   matricula: string;
+  unidade_lotada_id: number;
   cargo: string;
   nome: string;
   cpf: string;

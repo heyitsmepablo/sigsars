@@ -16,7 +16,7 @@ export class BoletimSindromeGripalService {
       new PrismaErrorHandler(error).handle();
     }
   }
-  async findAll() {
+  async findAll(options?: { where?: { unidade_id?: number } }) {
     try {
       return await this.#db.boletim_sindrome_gripal.findMany({
         select: {
@@ -27,6 +27,7 @@ export class BoletimSindromeGripalService {
           criado_em: true,
           atualizado_em: true,
         },
+        where: options?.where,
       });
     } catch (error) {
       new PrismaErrorHandler(error).handle();

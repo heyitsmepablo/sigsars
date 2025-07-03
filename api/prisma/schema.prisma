@@ -115,6 +115,7 @@ model unidade {
   ficha_spa                                       ficha_spa[]
   ficha_spa_destino_final_do_paciente             ficha_spa_destino_final_do_paciente[]
   unidade_tipo                                    unidade_tipo?                         @relation(fields: [unidade_tipo_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  usuario                                         usuario[]
 }
 
 model unidade_tipo {
@@ -141,6 +142,7 @@ model usuario {
   nome                        String
   cargo                       String
   matricula                   String                        @unique
+  unidade_lotada_id           Int
   cpf                         String                        @unique
   email                       String?
   usuario_tipo_id             Int
@@ -152,6 +154,7 @@ model usuario {
   boletim_saida               boletim_saida[]
   boletim_sindrome_gripal     boletim_sindrome_gripal[]
   ficha_spa                   ficha_spa[]
+  unidade                     unidade                       @relation(fields: [unidade_lotada_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   usuario_tipo                usuario_tipo                  @relation(fields: [usuario_tipo_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
@@ -192,7 +195,7 @@ model boletim_saida_item {
   boletim_saida_id   Int?
   local_de_saida     tipo_local_de_saida
   tipo_da_saida      tipo_saida
-  unidade_destino_id Int
+  unidade_destino_id Int?
   leito_de_destino   tipo_leito_de_destino?
   total_de_saida     Int
   criado_em          DateTime?              @default(now()) @db.Timestamp(6)
