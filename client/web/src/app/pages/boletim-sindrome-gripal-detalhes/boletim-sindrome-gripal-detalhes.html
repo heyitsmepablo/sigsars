@@ -48,7 +48,7 @@
         <input
           type="text"
           pInputText
-          [value]="boletimData['usuario']['nome'] ?? null"
+          [value]="boletimData['usuario']['nome']"
           pSize="large"
           disabled
         />
@@ -167,7 +167,9 @@
           disabled
         />
       </div>
-      <button class="button-back">Voltar</button>
+      <button class="button-back" routerLink="/boletim/sindrome-gripal">
+        Voltar
+      </button>
     </div>
   </div>
 </div>

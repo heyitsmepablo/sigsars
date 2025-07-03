@@ -1,7 +1,7 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { Header } from '../../shared/header/header';
 import { ESemusApiClient } from '../../services/e-semus-api';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { DatePipe } from '@angular/common';
 import { MenuItem } from 'primeng/api';

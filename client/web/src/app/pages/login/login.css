@@ -1,7 +1,7 @@
 @reference 'tailwindcss';
 
 .main-container {
-  @apply w-screen h-screen flex flex-col bg-gradient-to-br from-[#4AC1A8] to-[#2BA7DB] items-center justify-center max-md:relative lg:flex-row lg:justify-end from-25%;
+  @apply min-w-screen min-h-screen flex flex-col bg-gradient-to-br from-[#4AC1A8] to-[#2BA7DB] items-center justify-center max-md:relative lg:flex-row lg:justify-end from-25%;
 }
 
 .side-container {
