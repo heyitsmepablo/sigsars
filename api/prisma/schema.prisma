@@ -3,6 +3,11 @@ generator client {
   output   = "../generated/prisma"
 }
 
+generator enum {
+  provider = "node node_modules/prisma-enum-generator"
+  output   = "../generated"
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")

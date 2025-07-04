@@ -34,6 +34,7 @@ import { BoletimInternacaoOcupacaoController } from './controllers/boletim-inter
 import { BoletimSindromeGripalService } from './services/boletim-sindrome-gripal/boletim-sindrome-gripal.service';
 import { BoletimSindromeGripalController } from './controllers/boletim-sindrome-gripal/boletim-sindrome-gripal.controller';
 import { FichaSpaService } from './services/ficha-spa/ficha-spa.service';
+import { FichaSpaController } from './controllers/ficha-spa/ficha-spa.controller';
 
 @Module({
   imports: [
@@ -69,6 +70,7 @@ import { FichaSpaService } from './services/ficha-spa/ficha-spa.service';
     BoletimInternacaoAdmissaoController,
     BoletimInternacaoOcupacaoController,
     BoletimSindromeGripalController,
+    FichaSpaController,
   ],
   providers: [
     AppService,

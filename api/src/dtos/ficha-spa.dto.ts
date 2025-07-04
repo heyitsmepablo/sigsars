@@ -1,81 +1,155 @@
+import { ApiHideProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
-import { IsInt, IsUUID } from 'class-validator';
+import {
+  IsArray,
+  IsBoolean,
+  IsDateString,
+  IsEnum,
+  IsInt,
+  IsOptional,
+  IsString,
+  ValidateNested,
+} from 'class-validator';
 import { $Enums } from 'generated/prisma';
 
-enum tipo_genero {
-  M = 'M',
-  F = 'F',
-}
-
 class FichaSpaRecepcao {
-  hora_da_recepcao: string;
+  @IsDateString()
+  hora_da_recepcao: Date;
+  @IsBoolean()
   nao_identificado: boolean;
+  @IsString()
   nome_paciente: string;
-  genero: $Enums.tipo_genero;
+  @IsEnum($Enums.tipo_genero)
+  genero: $Enums.tipo_genero = 'M';
   data_de_nascimento: Date;
   cartao_sus_ou_cpf: string;
   municipio_rg_id: number;
-  raca_cor: $Enums.tipo_raca_cor;
-  procedencia: $Enums.tipo_origem;
+  @IsEnum($Enums.tipo_raca_cor)
+  raca_cor: $Enums.tipo_raca_cor = 'BRANCA';
+  @IsEnum($Enums.tipo_origem)
+  procedencia: $Enums.tipo_origem = 'DEMANDA_ESPONTANEA_SAO_LUIS';
+  @IsOptional()
+  @Type(() => Number)
+  @IsInt()
   municipio_procedencia_interior_id: number | null;
 }
 
 class FichaSpaDoencaPrexistente {
+  @IsBoolean()
   has: boolean;
+  @IsBoolean()
   dm: boolean;
+  @IsBoolean()
   drc: boolean;
+  @IsOptional()
+  @IsString()
   outros: string | null;
 }
 
 class FichaSpaProtocoloECondicaoEspecial {
+  @IsBoolean()
   sepse: boolean;
+  @IsBoolean()
   dor_toracica: boolean;
+  @IsBoolean()
   avc: boolean;
+  @IsBoolean()
   notificacao: boolean;
+  @IsOptional()
+  @Type(() => Number)
+  @IsInt()
   notificacao_agravo_id: number | null;
 }
 
-class FichaSpaEncaminhamento {}
+class FichaSpaEncaminhamento {
+  @IsEnum($Enums.tipo_encaminhamento)
+  encaminhado_para_1: $Enums.tipo_encaminhamento = 'ESTABILIZACAO';
+  @IsEnum($Enums.tipo_encaminhamento)
+  encaminhado_para_2: $Enums.tipo_encaminhamento = 'ECG';
+  @IsDateString()
+  hora_da_realizacao_ecg: Date | null;
+}
 
-export class FichaSpaCreateInput {
-  @IsUUID()
-  usuario_responsavel_preenchimento_id: string;
+class FichaSpaClassificacao {
+  @IsDateString()
+  hora_da_classificacao: Date;
+  @IsOptional()
   @Type(() => Number)
   @IsInt()
+  cauxar_externa_id: number | null;
+  @IsBoolean()
+  retornou_com_menos_ou_igual_48h: boolean;
+  doenca_prexistente: FichaSpaDoencaPrexistente;
+  protocolo_e_condicao_especial: FichaSpaProtocoloECondicaoEspecial;
+  encaminhamento: FichaSpaEncaminhamento;
+  @IsEnum($Enums.tipo_manchester)
+  manchester: $Enums.tipo_manchester = 'VERMELHO';
+  @IsOptional()
+  @IsArray()
+  queixa: {
+    causa_id: number;
+  }[];
+}
+
+class FichaSpaExameSolicitado {
+  @IsBoolean()
+  raio_x: boolean;
+  @IsBoolean()
+  tomografia: boolean;
+  @IsBoolean()
+  ecg: boolean;
+  @IsBoolean()
+  ultrassonografia: boolean;
+  @IsBoolean()
+  laboratorio: boolean;
+}
+
+class FichaSpaAtendimentoMedico {
+  @IsDateString()
+  horario_do_atendimento_medico: Date;
+  exame_solicitado: FichaSpaExameSolicitado;
+}
+
+class FichaSpaPlanoTerapeutico {
+  @IsDateString()
+  horario_do_atendimento_na_medicacao_observacao: Date;
+}
+
+class FichaSpaDestinoFinalDoPaciente {
+  @IsDateString()
+  horario_da_saida: Date;
+  @IsEnum($Enums.tipo_destino_final)
+  destino_final: $Enums.tipo_destino_final = 'ALTA';
+  @Type(() => Number)
+  @IsInt()
+  unidade_transferida_id: number;
+  @IsString()
+  horario_da_saida_para_o_sertor_de_Internacao: string;
+}
+export class FichaSpaCreateDto {
+  @ApiHideProperty()
+  usuario_responsavel_preenchimento_id: string;
+  @ApiHideProperty()
   unidade_id: number;
+  @IsDateString()
   data_da_ficha: Date;
-  ficha_spa_recepcao: FichaSpaRecepcao;
-  ficha_spa_classificacao: {
-    hora_da_classificacao: string;
-    cauxar_externa_id: number | null;
-    retornou_com_menos_ou_igual_48h: boolean;
-    ficha_spa_doenca_prexistente: FichaSpaDoencaPrexistente;
-    ficha_spa_protocolo_e_condicao_especial: FichaSpaProtocoloECondicaoEspecial;
-    ficha_spa_encaminhamento: {
-      encaminhado_para_1: $Enums.tipo_encaminhamento;
-      encaminhado_para_2: $Enums.tipo_encaminhamento;
-      hora_da_realizacao_ecg: string | null;
-    };
-    manchester: $Enums.tipo_manchester;
-    ficha_spa_queixa: { causa_id: number }[];
-  };
-  ficha_spa_atendimento_medico: {
-    horario_do_atendimento_medico: string;
-    ficha_spa_exame_solicitado: {
-      raio_x: boolean;
-      tomografia: boolean;
-      ecg: boolean;
-      ultrassonografia: boolean;
-      laboratorio: boolean;
-    };
-  };
-  ficha_spa_plano_terapeutico: {
-    horario_do_atendimento_na_medicacao_observacao: string;
-  };
-  ficha_spa_destino_final_do_paciente: {
-    horario_da_saida: string;
-    destino_final: $Enums.tipo_destino_final;
-    unidade_transferida_id: number;
-    horario_da_saida_para_o_sertor_de_Internacao: string;
-  };
+  @ValidateNested()
+  @Type(() => FichaSpaRecepcao)
+  recepcao: FichaSpaRecepcao;
+
+  @ValidateNested()
+  @Type(() => FichaSpaClassificacao)
+  classificacao: FichaSpaClassificacao;
+
+  @ValidateNested()
+  @Type(() => FichaSpaAtendimentoMedico)
+  atendimento_medico: FichaSpaAtendimentoMedico;
+
+  @ValidateNested()
+  @Type(() => FichaSpaPlanoTerapeutico)
+  plano_terapeutico: FichaSpaPlanoTerapeutico;
+
+  @ValidateNested()
+  @Type(() => FichaSpaDestinoFinalDoPaciente)
+  destino_final_do_paciente: FichaSpaDestinoFinalDoPaciente;
 }
