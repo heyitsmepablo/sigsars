@@ -3,11 +3,6 @@ generator client {
   output   = "../generated/prisma"
 }
 
-generator enum {
-  provider = "node node_modules/prisma-enum-generator"
-  output   = "../generated"
-}
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -354,7 +349,7 @@ model ficha_spa_exame_solicitado {
 model ficha_spa_plano_terapeutico {
   id                                             Int       @id @default(autoincrement())
   ficha_spa_id                                   Int
-  horario_do_atentimento_na_medicacao_observacao DateTime? @db.Time(6)
+  horario_do_atendimento_na_medicacao_observacao DateTime? @db.Time(6)
   criado_em                                      DateTime? @default(now()) @db.Timestamp(6)
   atualizado_em                                  DateTime? @db.Timestamp(6)
   ficha_spa                                      ficha_spa @relation(fields: [ficha_spa_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
