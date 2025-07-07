@@ -4,6 +4,8 @@ import { FichaSpaCreateDto } from 'src/dtos/ficha-spa.dto';
 export class PrismaMapper {
   static createFichaSpa(dto: FichaSpaCreateDto): Prisma.ficha_spaCreateInput {
     return {
+      numero_da_ficha: dto.numero_da_ficha,
+
       data_da_ficha: dto.data_da_ficha,
 
       unidade: { connect: { id: dto.unidade_id } },

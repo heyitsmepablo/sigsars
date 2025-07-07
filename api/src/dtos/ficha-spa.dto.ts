@@ -185,6 +185,9 @@ export class FichaSpaCreateDto {
   @ApiHideProperty()
   unidade_id: number;
 
+  @IsString()
+  numero_da_ficha: string;
+
   @IsDateString()
   data_da_ficha: Date;
 

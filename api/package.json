@@ -18,7 +18,8 @@
     "test:badges": "jest-coverage-badges --input ./coverage/coverage-summary.json --output ../.github/badges",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "types:gen": "openapi-typescript swagger.json --output ../client/web/src/app/types/api-types.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
@@ -60,8 +61,10 @@
     "jest-coverage-badges": "^1.1.2",
     "jest-extended": "^5.0.3",
     "jest-mock-extended": "^4.0.0-beta1",
+    "openapi-typescript": "^7.8.0",
     "prettier": "^3.4.2",
     "prisma": "^6.8.2",
+    "prisma-enum-generator": "^1.0.3",
     "source-map-support": "^0.5.21",
     "supertest": "^7.0.0",
     "ts-jest": "^29.2.5",

@@ -3,6 +3,7 @@ import axios, { Axios } from 'axios';
 import { environment } from '../../environments/environment';
 import { LoginPayload } from '../types/api-client.type';
 import { CookieService } from 'ngx-cookie-service';
+import { paths } from '../types/api-types';
 @Injectable({
   providedIn: 'root',
 })
@@ -35,11 +36,15 @@ export class ESemusApiClient {
     }
   }
 
+  private get headers() {
+    return { Authorization: `Bearer ${this.cookie.get('token')}` };
+  }
+
   async getAllBoletins() {
     this.haveLogin();
     try {
       const response = await this.client.get('/boletim/sindrome-gripal', {
-        headers: { Authorization: `Bearer ${this.cookie.get('token')}` },
+        headers: this.headers,
       });
       return response.data;
     } catch (error) {
@@ -53,7 +58,7 @@ export class ESemusApiClient {
     this.haveLogin();
     try {
       const response = await this.client.get(`/boletim/sindrome-gripal/${id}`, {
-        headers: { Authorization: `Bearer ${this.cookie.get('token')}` },
+        headers: this.headers,
       });
       return response.data;
     } catch (error) {
@@ -62,5 +67,14 @@ export class ESemusApiClient {
       }
       throw error;
     }
+  }
+
+  async getAllFichaSpa() {
+    this.haveLogin();
+    try {
+      const response = await this.client.get('/ficha-spa', {
+        headers: this.headers,
+      });
+    } catch (error) {}
   }
 }

@@ -3,6 +3,11 @@ generator client {
   output   = "../generated/prisma"
 }
 
+generator enum {
+  provider = "node node_modules/prisma-enum-generator"
+  output   = "../generated/types"
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -256,6 +261,7 @@ model estado {
 
 model ficha_spa {
   id                                   Int                                   @id @default(autoincrement())
+  numero_da_ficha                      String
   unidade_id                           Int
   usuario_responsavel_preenchimento_id String                                @db.Uuid
   data_da_ficha                        DateTime                              @db.Date
@@ -380,23 +386,23 @@ model ficha_spa_queixa {
 }
 
 model ficha_spa_recepcao {
-  id                                                                        Int            @id @default(autoincrement())
-  ficha_spa_id                                                              Int?
-  hora_da_recepcao                                                          DateTime       @db.Time(6)
-  nao_identificado                                                          Boolean?       @default(false)
-  nome_paciente                                                             String?
-  genero                                                                    tipo_genero?
-  data_de_nascimento                                                        DateTime?      @db.Date
-  cartao_sus_ou_cpf                                                         String?
-  municipio_rg_id                                                           Int?
-  raca_cor                                                                  tipo_raca_cor?
-  procedencia                                                               tipo_origem?
-  municipio_procedencia_interior_id                                         Int?
-  criado_em                                                                 DateTime?      @default(now()) @db.Timestamp(6)
-  atualizado_em                                                             DateTime?      @db.Timestamp(6)
-  ficha_spa                                                                 ficha_spa?     @relation(fields: [ficha_spa_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  municipio_ficha_spa_recepcao_municipio_procedencia_interior_idTomunicipio municipio?     @relation("ficha_spa_recepcao_municipio_procedencia_interior_idTomunicipio", fields: [municipio_procedencia_interior_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  municipio_ficha_spa_recepcao_municipio_rg_idTomunicipio                   municipio?     @relation("ficha_spa_recepcao_municipio_rg_idTomunicipio", fields: [municipio_rg_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  id                                Int            @id @default(autoincrement())
+  ficha_spa_id                      Int?
+  hora_da_recepcao                  DateTime       @db.Time(6)
+  nao_identificado                  Boolean?       @default(false)
+  nome_paciente                     String?
+  genero                            tipo_genero?
+  data_de_nascimento                DateTime?      @db.Date
+  cartao_sus_ou_cpf                 String?
+  municipio_rg_id                   Int?
+  raca_cor                          tipo_raca_cor?
+  procedencia                       tipo_origem?
+  municipio_procedencia_interior_id Int?
+  criado_em                         DateTime?      @default(now()) @db.Timestamp(6)
+  atualizado_em                     DateTime?      @db.Timestamp(6)
+  ficha_spa                         ficha_spa?     @relation(fields: [ficha_spa_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  municipio_procedencia_interior    municipio?     @relation("ficha_spa_recepcao_municipio_procedencia_interior_idTomunicipio", fields: [municipio_procedencia_interior_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  municipio_rg                      municipio?     @relation("ficha_spa_recepcao_municipio_rg_idTomunicipio", fields: [municipio_rg_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model municipio {
