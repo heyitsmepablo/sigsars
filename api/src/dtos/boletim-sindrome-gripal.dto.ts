@@ -1,6 +1,7 @@
 import { ApiHideProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsDateString, IsInt, IsUUID } from 'class-validator';
+import { Prisma } from 'generated/prisma';
 
 export class BoletimSindromeGripalServiceCreateArgs {
   unidade_id: number;
@@ -17,8 +18,7 @@ export class BoletimSindromeGripalServiceCreateArgs {
 }
 
 export class BoletimSindromeGripalCreateDto {
-  @Type(() => Number)
-  @IsInt()
+  @ApiHideProperty()
   unidade_id: number;
   @IsDateString()
   referente_ao_dia: Date;
@@ -48,4 +48,35 @@ export class BoletimSindromeGripalCreateDto {
   @Type(() => Number)
   @IsInt()
   total_transferencias: number;
+}
+
+export class BoletimSindromeGripalFindAllResponse
+  implements
+    Prisma.boletim_sindrome_gripalGetPayload<{
+      select: {
+        id: true;
+        unidade: { select: { id: true; nome: true } };
+        usuario: { omit: { usuario_tipo_id: true } };
+        referente_ao_dia: true;
+        criado_em: true;
+        atualizado_em: true;
+      };
+    }>
+{
+  referente_ao_dia: Date;
+  id: number;
+  unidade: { id: number; nome: string };
+  usuario: {
+    id: string;
+    criado_em: Date | null;
+    atualizado_em: Date | null;
+    nome: string;
+    cargo: string;
+    matricula: string;
+    unidade_lotada_id: number;
+    cpf: string;
+    email: string | null;
+  } | null;
+  criado_em: Date | null;
+  atualizado_em: Date | null;
 }

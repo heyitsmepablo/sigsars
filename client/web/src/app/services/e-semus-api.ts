@@ -70,11 +70,36 @@ export class ESemusApiClient {
   }
 
   async getAllFichaSpa() {
+    type apiResponse =
+      paths['/ficha-spa']['get']['responses']['200']['content']['application/json'];
     this.haveLogin();
     try {
-      const response = await this.client.get('/ficha-spa', {
+      const response = await this.client.get<apiResponse>('/ficha-spa', {
         headers: this.headers,
       });
-    } catch (error) {}
+      return response;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        throw error;
+      }
+      throw error;
+    }
+  }
+
+  async getOneFichaSpa(id: string) {
+    type apiResponse =
+      paths['/ficha-spa/{id}']['get']['responses']['200']['content']['application/json'];
+    this.haveLogin();
+    try {
+      const response = await this.client.get<apiResponse>('/ficha-spa/' + id, {
+        headers: this.headers,
+      });
+      return response.data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        throw error;
+      }
+      throw error;
+    }
   }
 }

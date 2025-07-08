@@ -34,7 +34,8 @@
           </ng-template>
         </p-breadcrumb>
         <div class="content-container">
-          @if(boletins){ @for ( boletim of boletins; track boletim?.['id']){
+          @if(boletins.length){ @for ( boletim of boletins; track
+          boletim?.['id']){
           <app-mobile-card-item
             [item]="boletim"
             [routerLink]="[boletim?.['id']]"

@@ -1,0 +1,11 @@
+.main-container {
+  @apply flex flex-col min-w-screen min-h-screen;
+}
+
+.body-wrapper {
+  @apply flex flex-col w-full h-full;
+}
+
+.content-wrapper {
+  @apply flex flex-col w-full h-full;
+}

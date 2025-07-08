@@ -31,7 +31,8 @@ export class BoletimSindomeGripal implements OnInit {
 
     this.items = [
       { label: 'Inicio', route: '/inicio' },
-      { label: 'Boletim Sindrome Gripal', route: '/boletim/sindrome-gripal' },
+      { label: 'Boletim Sindrome Gripal' },
     ];
+    console.log(this.boletins);
   }
 }

@@ -344,8 +344,33 @@ export interface components {
             pacientes_lsvp: number;
             pacientes_estabilizacao_vermelha: number;
         };
+        BoletimSindromeGripalFindAllResponse: {
+            /** Format: date-time */
+            referente_ao_dia: string;
+            id: number;
+            unidade: {
+                id: number;
+                nome: string;
+            };
+            usuario: {
+                id: string;
+                /** Format: date-time */
+                criado_em: string | null;
+                /** Format: date-time */
+                atualizado_em: string | null;
+                nome: string;
+                cargo: string;
+                matricula: string;
+                unidade_lotada_id: number;
+                cpf: string;
+                email: string | null;
+            };
+            /** Format: date-time */
+            criado_em: string | null;
+            /** Format: date-time */
+            atualizado_em: string | null;
+        };
         BoletimSindromeGripalCreateDto: {
-            unidade_id: number;
             /** Format: date-time */
             referente_ao_dia: string;
             total_atendimentos_sd_com_queixa_gripal: number;
@@ -444,6 +469,163 @@ export interface components {
             atendimento_medico: components["schemas"]["FichaSpaAtendimentoMedico"];
             plano_terapeutico: components["schemas"]["FichaSpaPlanoTerapeutico"];
             destino_final_do_paciente: components["schemas"]["FichaSpaDestinoFinalDoPaciente"];
+        };
+        FichaSpaFindOneResponse: {
+            numero_da_ficha: string;
+            /** Format: date-time */
+            data_da_ficha: string;
+            id: number;
+            usuario: {
+                nome: string;
+            };
+            unidade: {
+                id: number;
+                nome: string;
+                sigla: string | null;
+            };
+            ficha_spa_recepcao: {
+                /** Format: date-time */
+                hora_da_recepcao: string;
+                nao_identificado: boolean | null;
+                nome_paciente: string | null;
+                genero: Record<string, never> | null;
+                /** Format: date-time */
+                data_de_nascimento: string | null;
+                cartao_sus_ou_cpf: string | null;
+                raca_cor: Record<string, never> | null;
+                procedencia: Record<string, never> | null;
+                /** Format: date-time */
+                criado_em: string | null;
+                /** Format: date-time */
+                atualizado_em: string | null;
+                municipio_procedencia_interior: {
+                    id?: number;
+                    nome?: string;
+                    estado?: {
+                        id?: number;
+                        nome?: string;
+                        uf?: string;
+                    };
+                };
+                municipio_rg: {
+                    id?: number;
+                    nome?: string;
+                    estado?: {
+                        id?: number;
+                        nome?: string;
+                        uf?: string;
+                    };
+                };
+            }[];
+            ficha_spa_classificacao: {
+                /** Format: date-time */
+                hora_da_classificacao: string;
+                retornou_com_menos_ou_igual_48h: boolean;
+                manchester: Record<string, never>;
+                causa: {
+                    id?: number;
+                    /** Format: date-time */
+                    criado_em?: string | null;
+                    /** Format: date-time */
+                    atualizado_em?: string | null;
+                    nome?: string | null;
+                    tipo?: Record<string, never> | null;
+                };
+                ficha_spa_doenca_preexistente?: {
+                    has: boolean;
+                    dm: boolean;
+                    drc: boolean;
+                    outros: string | null;
+                    id: number;
+                    /** Format: date-time */
+                    criado_em: string | null;
+                    /** Format: date-time */
+                    atualizado_em: string | null;
+                    ficha_spa_classificacao_id: number;
+                }[];
+                ficha_spa_encaminhamento?: {
+                    encaminhado_para_1: Record<string, never>;
+                    encaminhado_para_2: Record<string, never>;
+                    /** Format: date-time */
+                    hora_da_realizacao_ecg: string | null;
+                    id: number;
+                    /** Format: date-time */
+                    criado_em: string | null;
+                    /** Format: date-time */
+                    atualizado_em: string | null;
+                    ficha_spa_classificacao_id: number | null;
+                }[];
+                ficha_spa_protocolo_e_condicao_especial?: {
+                    sepse: boolean;
+                    dor_toracica: boolean;
+                    avc: boolean;
+                    notificacao: boolean;
+                    notificacao_agravo_id: number | null;
+                    id: number;
+                    /** Format: date-time */
+                    criado_em: string | null;
+                    /** Format: date-time */
+                    atualizado_em: string | null;
+                    ficha_spa_classificacao_id: number;
+                }[];
+            }[];
+            ficha_spa_atendimento_medico: {
+                /** Format: date-time */
+                horario_do_atendimento_medico: string;
+                id: number;
+                /** Format: date-time */
+                criado_em: string | null;
+                /** Format: date-time */
+                atualizado_em: string | null;
+                ficha_spa_id: number;
+            }[];
+            ficha_spa_plano_terapeutico: {
+                /** Format: date-time */
+                horario_do_atendimento_na_medicacao_observacao: string | null;
+                id: number;
+                /** Format: date-time */
+                criado_em: string | null;
+                /** Format: date-time */
+                atualizado_em: string | null;
+                ficha_spa_id: number;
+            }[];
+            ficha_spa_destino_final_do_paciente: {
+                /** Format: date-time */
+                horario_da_saida: string | null;
+                destino_final: Record<string, never> | null;
+                unidade_transferida_id: number | null;
+                id: number;
+                /** Format: date-time */
+                criado_em: string | null;
+                /** Format: date-time */
+                atualizado_em: string | null;
+                ficha_spa_id: number;
+                /** Format: date-time */
+                horario_da_saida_para_o_setor_de_internacao: string | null;
+            }[];
+            /** Format: date-time */
+            criado_em: string | null;
+            /** Format: date-time */
+            atualizado_em: string | null;
+        };
+        FichaSpaFindAllResponse: {
+            numero_da_ficha: string;
+            /** Format: date-time */
+            data_da_ficha: string;
+            id: number;
+            usuario: {
+                id: string;
+                nome: string;
+            };
+            unidade: {
+                id: number;
+                nome: string;
+                sigla: string | null;
+            };
+            /** Format: date-time */
+            criado_em: string | null;
+            /** Format: date-time */
+            atualizado_em: string | null;
         };
     };
     responses: never;
@@ -734,7 +916,9 @@ export interface operations {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["BoletimSindromeGripalFindAllResponse"][];
+                };
             };
         };
     };
@@ -793,7 +977,9 @@ export interface operations {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["FichaSpaFindAllResponse"][];
+                };
             };
         };
     };
@@ -814,7 +1000,9 @@ export interface operations {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["FichaSpaFindOneResponse"];
+                };
             };
         };
     };

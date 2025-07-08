@@ -4,6 +4,7 @@ import { Home } from './pages/home/home';
 import { BoletimSindomeGripal } from './pages/boletim-sindome-gripal/boletim-sindome-gripal';
 import { BoletimSindromeGripalDetalhes } from './pages/boletim-sindrome-gripal-detalhes/boletim-sindrome-gripal-detalhes';
 import { FichaDeSpa } from './pages/ficha-de-spa/ficha-de-spa';
+import { FichaDeSpaDetalhes } from './pages/ficha-de-spa-detalhes/ficha-de-spa-detalhes';
 
 export const routes: Routes = [
   { component: Login, pathMatch: 'full', path: '' },
@@ -21,5 +22,9 @@ export const routes: Routes = [
       },
     ],
   },
-  { path: 'ficha-spa', component: FichaDeSpa },
+  {
+    path: 'ficha-spa',
+    component: FichaDeSpa,
+  },
+  { path: 'ficha-spa/:id', component: FichaDeSpaDetalhes },
 ];

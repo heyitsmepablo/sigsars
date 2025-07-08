@@ -9,7 +9,7 @@
 }
 
 .content-wrapper {
-  @apply flex;
+  @apply flex justify-center pt-5;
 }
 
 .mobile-card-content {

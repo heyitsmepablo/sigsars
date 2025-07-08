@@ -7,20 +7,29 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiCreatedResponse } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiCreatedResponse,
+  ApiOkResponse,
+} from '@nestjs/swagger';
 import { Prisma } from 'generated/prisma';
 import { Usuario } from 'src/decorators/usuario/usuario.decorator';
-import { FichaSpaCreateDto } from 'src/dtos/ficha-spa.dto';
+import {
+  FichaSpaCreateDto,
+  FichaSpaFindAllResponse,
+  FichaSpaFindOneResponse,
+} from 'src/dtos/ficha-spa.dto';
 import { UsuarioDecoratorPayload } from 'src/dtos/usuario.dto';
 import { AuthGuard } from 'src/guards/auth/auth.guard';
 import { FichaSpaService } from 'src/services/ficha-spa/ficha-spa.service';
-import { FichaSpaFindOneResponse } from 'src/types/ficha-spa.type';
+
 @UseGuards(AuthGuard)
 @ApiBearerAuth()
 @Controller('ficha-spa')
 export class FichaSpaController {
   constructor(private readonly fichaSpaService: FichaSpaService) {}
   @Post()
+  @ApiCreatedResponse({ type: FichaSpaFindOneResponse })
   async create(
     @Body() data: FichaSpaCreateDto,
     @Usuario() usuario: UsuarioDecoratorPayload,
@@ -30,6 +39,7 @@ export class FichaSpaController {
     return await this.fichaSpaService.create(data);
   }
 
+  @ApiOkResponse({ type: [FichaSpaFindAllResponse] })
   @Get()
   async findAll(@Usuario() usuario: UsuarioDecoratorPayload) {
     return await this.fichaSpaService.findAll({
