@@ -1,5 +1,5 @@
 <div class="main-container">
-  <app-header [headerTitle]="'Ficha N° '+ficha">
+  <app-header [headerTitle]="'Ficha N° '+ ficha.numero_da_ficha">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
@@ -31,6 +31,142 @@
         }
       </ng-template>
     </p-breadcrumb>
-    <div class="content-wrapper"></div>
+    <div class="content-wrapper">
+      <span class="section-title-wrapper"
+        ><svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="size-6"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm8.706-1.442c1.146-.573 2.437.463 2.126 1.706l-.709 2.836.042-.02a.75.75 0 0 1 .67 1.34l-.04.022c-1.147.573-2.438-.463-2.127-1.706l.71-2.836-.042.02a.75.75 0 1 1-.671-1.34l.041-.022ZM12 9a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"
+            clip-rule="evenodd"
+          />
+        </svg>
+        <p>Informações Gerais</p>
+      </span>
+      <span class="divider"></span>
+      <div class="fields">
+        <div class="input-container">
+          <label for="">Numero da Ficha</label>
+          <input
+            disabled
+            type="text"
+            pInputText
+            pSize="large"
+            [value]="ficha.numero_da_ficha"
+          />
+        </div>
+        <div class="input-container">
+          <label for="">Responsavel Pelo Preenchimento</label>
+          <input
+            disabled
+            type="text"
+            pInputText
+            pSize="large"
+            [value]="ficha.usuario.nome"
+          />
+        </div>
+        <div class="input-container">
+          <label for="">Unidade</label>
+          <input
+            disabled
+            type="text"
+            pInputText
+            pSize="large"
+            [value]="ficha.unidade.nome"
+          />
+        </div>
+        <div class="input-container">
+          <label for="">Data Referente</label>
+          <input
+            disabled
+            type="text"
+            pInputText
+            pSize="large"
+            [value]="ficha.data_da_ficha|date:'shortDate'"
+          />
+        </div>
+        <div class="input-container">
+          <label for="">Enviado Em</label>
+          <input
+            disabled
+            type="text"
+            pInputText
+            pSize="large"
+            [value]="ficha.data_da_ficha|date:'short'"
+          />
+        </div>
+      </div>
+      <span class="section-title-wrapper"
+        ><svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="size-6"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm8.706-1.442c1.146-.573 2.437.463 2.126 1.706l-.709 2.836.042-.02a.75.75 0 0 1 .67 1.34l-.04.022c-1.147.573-2.438-.463-2.127-1.706l.71-2.836-.042.02a.75.75 0 1 1-.671-1.34l.041-.022ZM12 9a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"
+            clip-rule="evenodd"
+          />
+        </svg>
+        <p>Atendimento Medico</p>
+      </span>
+      <span class="divider"></span>
+      <div class="fields">
+        <div class="input-container">
+          <label for="">Horario do Atendimento Medico</label>
+          <input
+            disabled
+            type="text"
+            pInputText
+            pSize="large"
+            [value]="ficha.ficha_spa_atendimento_medico[0].horario_do_atendimento_medico|date:'shortTime'"
+          />
+        </div>
+      </div>
+      <span class="section-title-wrapper"
+        ><svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="size-6"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm8.706-1.442c1.146-.573 2.437.463 2.126 1.706l-.709 2.836.042-.02a.75.75 0 0 1 .67 1.34l-.04.022c-1.147.573-2.438-.463-2.127-1.706l.71-2.836-.042.02a.75.75 0 1 1-.671-1.34l.041-.022ZM12 9a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"
+            clip-rule="evenodd"
+          />
+        </svg>
+        <p>Classificação</p>
+      </span>
+      <span class="divider"></span>
+      <div class="fields">
+        <div class="input-container">
+          <label for="">Causa Externa</label>
+          <input
+            disabled
+            type="text"
+            pInputText
+            pSize="large"
+            [value]="ficha.ficha_spa_classificacao[0].causa.nome"
+          />
+        </div>
+        <div class="checkbox-wrapper">
+          <p>Doenças Pre Existentes</p>
+          <div class="checkbox-container">
+            <p-checkbox
+              [(ngModel)]="doencasPreexistentes[0]['has']"
+              [value]="{has:true}"
+              (onChange)="debug(doencasPreexistentes)"
+            ></p-checkbox>
+            <p>HAS</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

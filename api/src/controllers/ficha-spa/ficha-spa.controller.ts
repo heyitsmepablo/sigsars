@@ -48,6 +48,7 @@ export class FichaSpaController {
   }
 
   @Get(':id')
+  @ApiOkResponse({ type: FichaSpaFindOneResponse })
   async findOne(
     @Usuario() usuario: UsuarioDecoratorPayload,
     @Param('id', new ParseIntPipe()) ficha_id: number,

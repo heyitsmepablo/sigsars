@@ -1,3 +1,4 @@
+@reference 'tailwindcss';
 .main-container {
   @apply flex flex-col min-w-screen min-h-screen;
 }
@@ -7,5 +8,29 @@
 }
 
 .content-wrapper {
-  @apply flex flex-col w-full h-full;
+  @apply flex flex-col w-full h-full pl-6 gap-2 mt-2;
+}
+
+.fields {
+  @apply flex flex-col w-full pl-4 gap-3 pt-2 pb-6;
+}
+
+.input-container {
+  @apply flex flex-col w-[22rem];
+}
+
+.section-title-wrapper {
+  @apply flex gap-2 items-end;
+}
+
+.divider {
+  @apply flex border-b w-96 text-gray-600/35;
+}
+
+.checkbox-wrapper {
+  @apply flex flex-col gap-2;
+}
+
+.checkbox-container {
+  @apply flex gap-2;
 }

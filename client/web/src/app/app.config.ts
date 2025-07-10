@@ -6,11 +6,11 @@ import {
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { providePrimeNG } from 'primeng/config';
 import { routes } from './app.routes';
 import { NoirTheme } from './primeng/themes';
 import { ESemusApiClient } from './services/e-semus-api';
 import { CookieService } from 'ngx-cookie-service';
+import { providePrimeNG } from 'primeng/config';
 
 export const appConfig: ApplicationConfig = {
   providers: [
