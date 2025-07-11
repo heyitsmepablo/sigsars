@@ -37,18 +37,32 @@ export class FichaDeSpaDetalhes implements OnInit {
   ];
   fichaId = signal<string>('');
   ficha!: FichaSpaPayload;
-  doencasPreexistentes!: { [key: string]: boolean }[] | [];
+
+  has!: boolean;
+  drc!: boolean;
+  dm!: boolean;
+  outros!: string | undefined | null;
+  hasOutros!: boolean;
   async ngOnInit(): Promise<void> {
     this.activatedRoute.params.subscribe((params) => {
       this.fichaId.set(params['id']);
     });
 
     this.ficha = await this.apiClient.getOneFichaSpa(this.fichaId());
-    const preexistente =
-      this.ficha.ficha_spa_classificacao?.[0]
-        ?.ficha_spa_doenca_preexistente?.[0];
-    this.doencasPreexistentes = preexistente ? [preexistente] : [];
     console.log(this.ficha);
+    this.has =
+      this.ficha.ficha_spa_classificacao[0].ficha_spa_doenca_preexistente?.[0]
+        .has ?? false;
+    this.drc =
+      this.ficha.ficha_spa_classificacao[0].ficha_spa_doenca_preexistente?.[0]
+        .drc ?? false;
+    this.dm =
+      this.ficha.ficha_spa_classificacao[0].ficha_spa_doenca_preexistente?.[0]
+        .dm ?? false;
+    this.outros =
+      this.ficha.ficha_spa_classificacao[0].ficha_spa_doenca_preexistente?.[0].outros;
+
+    this.hasOutros = this.outros ? true : false;
   }
 
   debug(arg: any) {

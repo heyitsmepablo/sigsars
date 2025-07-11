@@ -16,7 +16,7 @@
 }
 
 .input-container {
-  @apply flex flex-col w-[22rem];
+  @apply flex flex-col w-[22rem] gap-2 mb-2;
 }
 
 .section-title-wrapper {
@@ -28,9 +28,24 @@
 }
 
 .checkbox-wrapper {
-  @apply flex flex-col gap-2;
+  @apply flex flex-col gap-4;
 }
 
 .checkbox-container {
   @apply flex gap-2;
+}
+
+.checkbox-input-container {
+  @apply flex items-center gap-2;
+}
+
+.causa-externa-title-wrapper {
+  @apply flex w-full justify-between items-center;
+  p {
+    @apply text-sm;
+  }
+}
+
+.recepcao-title-wrapper {
+  @apply flex w-full;
 }
