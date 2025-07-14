@@ -57,7 +57,9 @@ export class ESemusApiClient {
   async getBoletimDetails(id: string) {
     this.haveLogin();
     try {
-      const response = await this.client.get(`/boletim/sindrome-gripal/${id}`, {
+      const response = await this.client.get<
+        paths['/boletim/sindrome-gripal/{id}']['get']['responses']['200']['content']['application/json']
+      >(`/boletim/sindrome-gripal/${id}`, {
         headers: this.headers,
       });
       return response.data;

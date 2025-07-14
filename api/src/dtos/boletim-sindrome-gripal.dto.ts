@@ -80,3 +80,30 @@ export class BoletimSindromeGripalFindAllResponse
   criado_em: Date | null;
   atualizado_em: Date | null;
 }
+
+export class BoletimSindromeGripalFindOneResponse
+  implements
+    Prisma.boletim_sindrome_gripalGetPayload<{
+      include: {
+        usuario: { select: { nome: true; cargo: true; matricula: true } };
+        unidade: { select: { nome: true; sigla: true } };
+      };
+    }>
+{
+  id: number;
+  unidade: { nome: string; sigla: string | null };
+  usuario: { nome: string; cargo: string; matricula: string } | null;
+  unidade_id: number;
+  referente_ao_dia: Date;
+  usuario_responsavel_preenchimento_id: string | null;
+  total_atendimentos_sd_com_queixa_gripal: number;
+  total_atendimentos_sd_sem_queixa_gripal: number;
+  total_atendimentos_sn_com_queixa_gripal: number;
+  total_atendimentos_sn_sem_queixa_gripal: number;
+  total_internacoes_apos_atendimento_urgencia_com_queixa_gripal: number;
+  total_internacoes_apos_atendimento_urgencia_sem_queixa_gripal: number;
+  total_obitos: number;
+  total_transferencias: number;
+  criado_em: Date | null;
+  atualizado_em: Date | null;
+}

@@ -1,6 +1,6 @@
 <div class="main-container">
   <app-header
-    [headerTitle]="`Boletim ${boletimData['referente_ao_dia']|date:'shortDate'}`"
+    [headerTitle]="`Boletim ${boletimData.referente_ao_dia|date:'shortDate'}`"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -32,140 +32,77 @@
         }
       </ng-template>
     </p-breadcrumb>
-    <div class="content-wrapper">
+    <div class="content-wrapper" [formGroup]="boletimForm">
       <div class="field">
         <label for="">Unidade</label>
-        <input
-          type="text"
-          pInputText
-          [value]="boletimData['unidade']['nome']"
-          pSize="large"
-          disabled
-        />
+        <input type="text" pInputText pSize="large" formControlName="unidade" />
       </div>
       <div class="field">
         <label for="">Responsavel Pelo Preenchimento </label>
-        <input
-          type="text"
-          pInputText
-          [value]="boletimData['usuario']['nome']"
-          pSize="large"
-          disabled
-        />
+        <input type="text" pSize="large" pInputText formControlName="usuario" />
       </div>
       <div class="field">
         <label for="">Data Referente </label>
-        <input
-          type="text"
-          pInputText
-          [value]="boletimData['referente_ao_dia']|date:'shortDate'"
-          pSize="large"
-          disabled
+        <p-datepicker
+          formControlName="referente_ao_dia"
+          dateFormat="dd/mm/yy"
+          size="large"
         />
       </div>
       <div class="field">
         <label for="">Enviado Em </label>
         <input
-          type="text"
+          type="date"
           pInputText
-          [value]="boletimData['criado_em']|date:'short'"
           pSize="large"
-          disabled
+          formControlName="enviado_em"
         />
       </div>
       <div class="field">
         <label for=""
           >Total de Atendimentos SD <strong>COM</strong> Queixa Gripal</label
         >
-        <input
-          type="text"
-          pInputText
-          [value]="boletimData['total_atendimentos_sd_com_queixa_gripal']"
-          pSize="large"
-          disabled
-        />
+        <input type="text" pInputText pSize="large" disabled />
       </div>
       <div class="field">
         <label for=""
           >Total de Atendimentos SD <strong>SEM</strong> Queixa Gripal</label
         >
-        <input
-          type="text"
-          pInputText
-          [value]="boletimData['total_atendimentos_sd_sem_queixa_gripal']"
-          pSize="large"
-          disabled
-        />
+        <input type="text" pInputText pSize="large" disabled />
       </div>
       <div class="field">
         <label for=""
           >Total de Atendimentos SN <strong>COM</strong> Queixa Gripal</label
         >
-        <input
-          type="text"
-          pInputText
-          [value]="boletimData['total_atendimentos_sn_com_queixa_gripal']"
-          pSize="large"
-          disabled
-        />
+        <input type="text" pInputText pSize="large" disabled />
       </div>
       <div class="field">
         <label for=""
           >Total de Atendimentos SN <strong>SEM</strong> Queixa Gripal</label
         >
-        <input
-          type="text"
-          pInputText
-          [value]="boletimData['total_atendimentos_sn_sem_queixa_gripal']"
-          pSize="large"
-          disabled
-        />
+        <input type="text" pInputText pSize="large" disabled />
       </div>
       <div class="field">
         <label for=""
           >Total de Internações Após Atendimento na Urgência
           <strong>SEM</strong> Relação a Queixa Gripal</label
         >
-        <input
-          type="text"
-          pInputText
-          [value]="boletimData['total_internacoes_apos_atendimento_urgencia_com_queixa_gripal']"
-          pSize="large"
-          disabled
-        />
+        <input type="text" pInputText pSize="large" disabled />
       </div>
       <div class="field">
         <label for=""
           >Total de Internações Após Atendimento na Urgência
           <strong>COM</strong> Relação a Queixa Gripal</label
         >
-        <input
-          type="text"
-          pInputText
-          [value]="boletimData['total_internacoes_apos_atendimento_urgencia_sem_queixa_gripal']"
-          pSize="large"
-          disabled
-        />
+        <input type="text" pInputText pSize="large" disabled />
       </div>
       <div class="field">
         <label for="">Total de Obitos</label>
-        <input
-          type="text"
-          pInputText
-          [value]="boletimData['total_obitos']"
-          pSize="large"
-          disabled
-        />
+        <input type="text" pInputText pSize="large" disabled />
       </div>
       <div class="field">
         <label for="">Total de Transferências</label>
-        <input
-          type="text"
-          pInputText
-          [value]="boletimData['total_transferencias']"
-          pSize="large"
-          disabled
-        />
+        <input type="text" pInputText pSize="large" disabled />
       </div>
       <button class="button-back" routerLink="/boletim/sindrome-gripal">
         Voltar

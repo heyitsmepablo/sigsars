@@ -382,6 +382,34 @@ export interface components {
             total_obitos: number;
             total_transferencias: number;
         };
+        BoletimSindromeGripalFindOneResponse: {
+            id: number;
+            unidade: {
+                nome: string;
+                sigla: string | null;
+            };
+            usuario: {
+                nome: string;
+                cargo: string;
+                matricula: string;
+            };
+            unidade_id: number;
+            /** Format: date-time */
+            referente_ao_dia: string;
+            usuario_responsavel_preenchimento_id: string | null;
+            total_atendimentos_sd_com_queixa_gripal: number;
+            total_atendimentos_sd_sem_queixa_gripal: number;
+            total_atendimentos_sn_com_queixa_gripal: number;
+            total_atendimentos_sn_sem_queixa_gripal: number;
+            total_internacoes_apos_atendimento_urgencia_com_queixa_gripal: number;
+            total_internacoes_apos_atendimento_urgencia_sem_queixa_gripal: number;
+            total_obitos: number;
+            total_transferencias: number;
+            /** Format: date-time */
+            criado_em: string | null;
+            /** Format: date-time */
+            atualizado_em: string | null;
+        };
         FichaSpaRecepcao: {
             /** Format: date-time */
             hora_da_recepcao: string;
@@ -959,7 +987,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": Record<string, never>;
+                    "application/json": components["schemas"]["BoletimSindromeGripalFindOneResponse"];
                 };
             };
         };

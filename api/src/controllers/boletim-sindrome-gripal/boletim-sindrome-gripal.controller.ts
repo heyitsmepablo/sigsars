@@ -13,6 +13,7 @@ import { Usuario } from 'src/decorators/usuario/usuario.decorator';
 import {
   BoletimSindromeGripalCreateDto,
   BoletimSindromeGripalFindAllResponse,
+  BoletimSindromeGripalFindOneResponse,
 } from 'src/dtos/boletim-sindrome-gripal.dto';
 import { UsuarioDecoratorPayload } from 'src/dtos/usuario.dto';
 import { AuthGuard } from 'src/guards/auth/auth.guard';
@@ -41,6 +42,7 @@ export class BoletimSindromeGripalController {
     return await this.boletimSindromeGripalService.create(data);
   }
   @Get(':id')
+  @ApiOkResponse({ type: BoletimSindromeGripalFindOneResponse })
   async findOne(@Param('id', new ParseIntPipe()) id: number) {
     return await this.boletimSindromeGripalService.findOne({ where: { id } });
   }
