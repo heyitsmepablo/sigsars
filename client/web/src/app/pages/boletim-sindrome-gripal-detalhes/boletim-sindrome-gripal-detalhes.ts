@@ -1,13 +1,18 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, Signal, signal } from '@angular/core';
 import { Header } from '../../shared/header/header';
 import { ESemusApiClient } from '../../services/e-semus-api';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
-import { DatePipe, formatDate } from '@angular/common';
+import { CommonModule, DatePipe, formatDate } from '@angular/common';
 import { MenuItem } from 'primeng/api';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { paths } from '../../types/api-types';
 import { DatePickerModule } from 'primeng/datepicker';
 @Component({
@@ -19,6 +24,7 @@ import { DatePickerModule } from 'primeng/datepicker';
     InputTextModule,
     ButtonModule,
     ReactiveFormsModule,
+    FormsModule,
     DatePipe,
     DatePickerModule,
   ],
@@ -54,39 +60,54 @@ export class BoletimSindromeGripalDetalhes implements OnInit {
       referente_ao_dia: [
         {
           value: new Date(this.boletimData.referente_ao_dia),
-          disabled: false,
-        },
-      ],
-      unidade: [{ value: this.boletimData.unidade.nome, disabled: true }],
-      usuario: [{ value: this.boletimData.usuario.nome, disabled: true }],
-      enviado_em: [
-        {
-          value: formatDate(this.boletimData.criado_em ?? '', 'dateTime', 'pt'),
           disabled: true,
         },
       ],
       total_atendimentos_sd_com_queixa_gripal: [
-        this.boletimData.total_atendimentos_sd_com_queixa_gripal,
+        {
+          value: this.boletimData.total_atendimentos_sd_com_queixa_gripal,
+          disabled: true,
+        },
       ],
       total_atendimentos_sd_sem_queixa_gripal: [
-        this.boletimData.total_atendimentos_sd_sem_queixa_gripal,
+        {
+          value: this.boletimData.total_atendimentos_sd_sem_queixa_gripal,
+          disabled: true,
+        },
       ],
       total_atendimentos_sn_com_queixa_gripal: [
-        this.boletimData.total_atendimentos_sn_com_queixa_gripal,
+        {
+          value: this.boletimData.total_atendimentos_sn_com_queixa_gripal,
+          disabled: true,
+        },
       ],
       total_atendimentos_sn_sem_queixa_gripal: [
-        this.boletimData.total_atendimentos_sn_sem_queixa_gripal,
+        {
+          value: this.boletimData.total_atendimentos_sn_sem_queixa_gripal,
+          disabled: true,
+        },
       ],
       total_internacoes_apos_atendimento_urgencia_com_queixa_gripal: [
-        this.boletimData
-          .total_internacoes_apos_atendimento_urgencia_com_queixa_gripal,
+        {
+          value:
+            this.boletimData
+              .total_internacoes_apos_atendimento_urgencia_com_queixa_gripal,
+          disabled: true,
+        },
       ],
       total_internacoes_apos_atendimento_urgencia_sem_queixa_gripal: [
-        this.boletimData
-          .total_internacoes_apos_atendimento_urgencia_sem_queixa_gripal,
+        {
+          value:
+            this.boletimData
+              .total_internacoes_apos_atendimento_urgencia_sem_queixa_gripal,
+          disabled: true,
+        },
       ],
-      total_obitos: [this.boletimData.total_obitos],
-      total_transferencias: [this.boletimData.total_transferencias],
+      total_obitos: [{ value: this.boletimData.total_obitos, disabled: true }],
+      total_transferencias: [
+        { value: this.boletimData.total_transferencias, disabled: true },
+      ],
     });
+    console.log(this.boletimForm.getRawValue());
   }
 }

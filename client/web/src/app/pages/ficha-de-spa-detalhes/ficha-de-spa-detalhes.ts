@@ -8,7 +8,7 @@ import { ESemusApiClient } from '../../services/e-semus-api';
 import { paths } from '../../types/api-types';
 import { DatePipe } from '@angular/common';
 import { CheckboxModule } from 'primeng/checkbox';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 type FichaSpaPayload =
   paths['/ficha-spa/{id}']['get']['responses']['200']['content']['application/json'];
 @Component({
@@ -21,6 +21,7 @@ type FichaSpaPayload =
     DatePipe,
     CheckboxModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   templateUrl: './ficha-de-spa-detalhes.html',
   styleUrl: './ficha-de-spa-detalhes.css',
@@ -28,7 +29,8 @@ type FichaSpaPayload =
 export class FichaDeSpaDetalhes implements OnInit {
   constructor(
     private readonly apiClient: ESemusApiClient,
-    private readonly activatedRoute: ActivatedRoute
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly formBuilder: FormBuilder
   ) {}
   items: MenuItem[] = [
     { label: 'Inicio', routerLink: '/inicio' },
@@ -50,19 +52,6 @@ export class FichaDeSpaDetalhes implements OnInit {
 
     this.ficha = await this.apiClient.getOneFichaSpa(this.fichaId());
     console.log(this.ficha);
-    this.has =
-      this.ficha.ficha_spa_classificacao[0].ficha_spa_doenca_preexistente?.[0]
-        .has ?? false;
-    this.drc =
-      this.ficha.ficha_spa_classificacao[0].ficha_spa_doenca_preexistente?.[0]
-        .drc ?? false;
-    this.dm =
-      this.ficha.ficha_spa_classificacao[0].ficha_spa_doenca_preexistente?.[0]
-        .dm ?? false;
-    this.outros =
-      this.ficha.ficha_spa_classificacao[0].ficha_spa_doenca_preexistente?.[0].outros;
-
-    this.hasOutros = this.outros ? true : false;
   }
 
   debug(arg: any) {

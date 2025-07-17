@@ -35,11 +35,23 @@
     <div class="content-wrapper" [formGroup]="boletimForm">
       <div class="field">
         <label for="">Unidade</label>
-        <input type="text" pInputText pSize="large" formControlName="unidade" />
+        <input
+          type="text"
+          pInputText
+          pSize="large"
+          disabled="true"
+          [value]="boletimData.unidade.nome"
+        />
       </div>
       <div class="field">
         <label for="">Responsavel Pelo Preenchimento </label>
-        <input type="text" pSize="large" pInputText formControlName="usuario" />
+        <input
+          type="text"
+          pSize="large"
+          pInputText
+          disabled="true"
+          [value]="boletimData.usuario.nome"
+        />
       </div>
       <div class="field">
         <label for="">Data Referente </label>
@@ -54,55 +66,96 @@
         <input
           type="date"
           pInputText
+          [value]="boletimData.criado_em ?? '' |date:'yyyy-MM-dd'"
+          disabled="true"
           pSize="large"
-          formControlName="enviado_em"
         />
       </div>
       <div class="field">
         <label for=""
           >Total de Atendimentos SD <strong>COM</strong> Queixa Gripal</label
         >
-        <input type="text" pInputText pSize="large" disabled />
+        <input
+          type="text"
+          pInputText
+          pSize="large"
+          formControlName="total_atendimentos_sd_com_queixa_gripal"
+        />
       </div>
       <div class="field">
         <label for=""
           >Total de Atendimentos SD <strong>SEM</strong> Queixa Gripal</label
         >
-        <input type="text" pInputText pSize="large" disabled />
+        <input
+          type="text"
+          pInputText
+          pSize="large"
+          formControlName="total_atendimentos_sd_sem_queixa_gripal"
+        />
       </div>
       <div class="field">
         <label for=""
           >Total de Atendimentos SN <strong>COM</strong> Queixa Gripal</label
         >
-        <input type="text" pInputText pSize="large" disabled />
+        <input
+          type="text"
+          pInputText
+          pSize="large"
+          formControlName="total_atendimentos_sn_com_queixa_gripal"
+        />
       </div>
       <div class="field">
         <label for=""
           >Total de Atendimentos SN <strong>SEM</strong> Queixa Gripal</label
         >
-        <input type="text" pInputText pSize="large" disabled />
+        <input
+          type="text"
+          pInputText
+          pSize="large"
+          formControlName="total_atendimentos_sn_sem_queixa_gripal"
+        />
       </div>
       <div class="field">
         <label for=""
           >Total de Internações Após Atendimento na Urgência
           <strong>SEM</strong> Relação a Queixa Gripal</label
         >
-        <input type="text" pInputText pSize="large" disabled />
+        <input
+          type="text"
+          pInputText
+          pSize="large"
+          formControlName="total_internacoes_apos_atendimento_urgencia_com_queixa_gripal"
+        />
       </div>
       <div class="field">
         <label for=""
           >Total de Internações Após Atendimento na Urgência
           <strong>COM</strong> Relação a Queixa Gripal</label
         >
-        <input type="text" pInputText pSize="large" disabled />
+        <input
+          type="text"
+          pInputText
+          pSize="large"
+          formControlName="total_internacoes_apos_atendimento_urgencia_sem_queixa_gripal"
+        />
       </div>
       <div class="field">
         <label for="">Total de Obitos</label>
-        <input type="text" pInputText pSize="large" disabled />
+        <input
+          type="text"
+          pInputText
+          pSize="large"
+          formControlName="total_obitos"
+        />
       </div>
       <div class="field">
         <label for="">Total de Transferências</label>
-        <input type="text" pInputText pSize="large" disabled />
+        <input
+          type="text"
+          pInputText
+          pSize="large"
+          formControlName="total_transferencias"
+        />
       </div>
       <button class="button-back" routerLink="/boletim/sindrome-gripal">
         Voltar

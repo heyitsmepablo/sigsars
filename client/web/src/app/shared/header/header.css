@@ -9,7 +9,7 @@
 }
 
 .header-info-container {
-  @apply flex text-white w-full text-2xl lg:pl-4  items-center gap-2 lg:text-lg;
+  @apply flex  text-white w-full text-2xl lg:ml-20  items-center gap-2 lg:text-lg;
 }
 
 .header-icon-container {
@@ -17,7 +17,7 @@
 }
 
 .header-body-container {
-  @apply w-full h-full  justify-end pr-6 hidden lg:flex;
+  @apply w-full h-full  justify-end pr-12  hidden lg:flex;
 }
 
 .user-info-container {
