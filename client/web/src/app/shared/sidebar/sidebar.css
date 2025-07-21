@@ -1,7 +1,7 @@
 @reference 'tailwindcss';
 
 .main-container {
-  @apply hidden flex-col border h-full w-52 bg-[#1F3A52] lg:flex;
+  @apply hidden flex-col h-full w-52 bg-[#1F3A52] lg:flex;
 }
 
 .buttons-wrapper {

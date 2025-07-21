@@ -61,3 +61,35 @@
     }
   }
 }
+
+.mobile-content-wrapper {
+  @apply flex lg:hidden;
+}
+
+.form-wrapper {
+  @apply flex-1;
+  /* Aqui aplicamos o scroll somente no conteúdo do formulário */
+  .section-wrapper {
+    @apply flex flex-col gap-2 p-4 h-fit w-full lg:px-8;
+
+    .section-title {
+      @apply flex gap-2;
+    }
+
+    .section-field-group {
+      @apply flex flex-col items-center lg:px-8 lg:grid lg:grid-cols-2 w-full h-fit gap-4 mt-2;
+    }
+  }
+  .divider {
+    @apply flex w-full border-b border-gray-600/35;
+  }
+  .field {
+    @apply flex flex-col w-70;
+  }
+  .buttons-footer-wrapper {
+    @apply flex h-20 w-full justify-evenly  items-center;
+  }
+  .button-cancel {
+    @apply rounded-md border w-80 h-12;
+  }
+}

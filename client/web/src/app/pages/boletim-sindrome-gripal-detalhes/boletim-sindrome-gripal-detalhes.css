@@ -1,14 +1,21 @@
 @reference 'tailwindcss';
 .main-container {
-  @apply min-w-screen min-h-screen flex flex-col;
+  @apply flex flex-col h-screen max-w-screen;
 }
 
 .body-wrapper {
-  @apply flex flex-col w-full h-full border border-blue-800;
+  @apply flex flex-1 flex-col lg:flex-row w-full  overflow-hidden;
+  /* flex-1 aqui garante que preencha o restante do .main-container */
 }
 
 .content-wrapper {
-  @apply flex flex-col w-full h-full gap-6  items-center py-6;
+  @apply flex-1 flex flex-col overflow-y-auto;
+  /* overflow-hidden evita scroll duplo, que será controlado abaixo */
+}
+
+.form-wrapper {
+  @apply flex-1  px-4 py-6;
+  /* Aqui aplicamos o scroll somente no conteúdo do formulário */
 }
 
 .field {
@@ -16,5 +23,25 @@
 }
 
 .button-back {
-  @apply flex  py-4 px-14 rounded-lg bg-black text-white font-bold;
+  @apply flex py-4 px-14 rounded-lg bg-black text-white font-bold;
+}
+
+.section-wrapper {
+  @apply flex flex-col gap-2 p-4 h-fit w-full lg:px-8;
+
+  .section-title {
+    @apply flex gap-2;
+  }
+
+  .section-field-group {
+    @apply flex flex-col items-center lg:px-8 lg:grid lg:grid-cols-2 w-full h-fit gap-y-4 mt-2;
+  }
+}
+
+.buttons-footer-wrapper {
+  @apply flex  justify-center  mt-10;
+}
+
+.divider {
+  @apply flex w-full border-b border-gray-600/35;
 }

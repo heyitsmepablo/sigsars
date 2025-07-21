@@ -6,6 +6,7 @@ export type UsuarioPayload = {
   cpf: string;
   email: string;
   usuario_tipo_id: number;
+  unidade:{nome:string,sigla:string},
   criado_em: string;
   autalizado_em: string;
 } | null;

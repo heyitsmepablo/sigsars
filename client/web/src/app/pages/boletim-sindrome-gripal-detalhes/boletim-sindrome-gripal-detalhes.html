@@ -19,147 +19,241 @@
     </svg>
   </app-header>
   <div class="body-wrapper">
-    <p-breadcrumb [model]="items">
-      <ng-template #item let-item>
-        @if(item.route){
-        <a [routerLink]="item.route">
-          <span class="text-primary font-semibold">{{ item.label }}</span>
-        </a>
-        } @else {
-        <a>
-          <span class="text-color">{{ item.label }}</span>
-        </a>
-        }
-      </ng-template>
-    </p-breadcrumb>
-    <div class="content-wrapper" [formGroup]="boletimForm">
-      <div class="field">
-        <label for="">Unidade</label>
-        <input
-          type="text"
-          pInputText
-          pSize="large"
-          disabled="true"
-          [value]="boletimData.unidade.nome"
-        />
-      </div>
-      <div class="field">
-        <label for="">Responsavel Pelo Preenchimento </label>
-        <input
-          type="text"
-          pSize="large"
-          pInputText
-          disabled="true"
-          [value]="boletimData.usuario.nome"
-        />
-      </div>
-      <div class="field">
-        <label for="">Data Referente </label>
-        <p-datepicker
-          formControlName="referente_ao_dia"
-          dateFormat="dd/mm/yy"
-          size="large"
-        />
-      </div>
-      <div class="field">
-        <label for="">Enviado Em </label>
-        <input
-          type="date"
-          pInputText
-          [value]="boletimData.criado_em ?? '' |date:'yyyy-MM-dd'"
-          disabled="true"
-          pSize="large"
-        />
-      </div>
-      <div class="field">
-        <label for=""
-          >Total de Atendimentos SD <strong>COM</strong> Queixa Gripal</label
-        >
-        <input
-          type="text"
-          pInputText
-          pSize="large"
-          formControlName="total_atendimentos_sd_com_queixa_gripal"
-        />
-      </div>
-      <div class="field">
-        <label for=""
-          >Total de Atendimentos SD <strong>SEM</strong> Queixa Gripal</label
-        >
-        <input
-          type="text"
-          pInputText
-          pSize="large"
-          formControlName="total_atendimentos_sd_sem_queixa_gripal"
-        />
-      </div>
-      <div class="field">
-        <label for=""
-          >Total de Atendimentos SN <strong>COM</strong> Queixa Gripal</label
-        >
-        <input
-          type="text"
-          pInputText
-          pSize="large"
-          formControlName="total_atendimentos_sn_com_queixa_gripal"
-        />
-      </div>
-      <div class="field">
-        <label for=""
-          >Total de Atendimentos SN <strong>SEM</strong> Queixa Gripal</label
-        >
-        <input
-          type="text"
-          pInputText
-          pSize="large"
-          formControlName="total_atendimentos_sn_sem_queixa_gripal"
-        />
-      </div>
-      <div class="field">
-        <label for=""
-          >Total de Internações Após Atendimento na Urgência
-          <strong>SEM</strong> Relação a Queixa Gripal</label
-        >
-        <input
-          type="text"
-          pInputText
-          pSize="large"
-          formControlName="total_internacoes_apos_atendimento_urgencia_com_queixa_gripal"
-        />
-      </div>
-      <div class="field">
-        <label for=""
-          >Total de Internações Após Atendimento na Urgência
-          <strong>COM</strong> Relação a Queixa Gripal</label
-        >
-        <input
-          type="text"
-          pInputText
-          pSize="large"
-          formControlName="total_internacoes_apos_atendimento_urgencia_sem_queixa_gripal"
-        />
-      </div>
-      <div class="field">
-        <label for="">Total de Obitos</label>
-        <input
-          type="text"
-          pInputText
-          pSize="large"
-          formControlName="total_obitos"
-        />
-      </div>
-      <div class="field">
-        <label for="">Total de Transferências</label>
-        <input
-          type="text"
-          pInputText
-          pSize="large"
-          formControlName="total_transferencias"
-        />
-      </div>
-      <button class="button-back" routerLink="/boletim/sindrome-gripal">
-        Voltar
-      </button>
+    <app-sidebar></app-sidebar>
+    <div class="content-wrapper">
+      <p-breadcrumb [model]="items">
+        <ng-template #item let-item>
+          @if(item.route){
+          <a [routerLink]="item.route">
+            <span class="text-primary font-semibold">{{ item.label }}</span>
+          </a>
+          } @else {
+          <a>
+            <span class="text-color">{{ item.label }}</span>
+          </a>
+          }
+        </ng-template>
+      </p-breadcrumb>
+      <form action="" class="form-wrapper" [formGroup]="boletimForm">
+        <button class="p-5 border" (click)="openEdit()">editar</button>
+        <button class="p-5 border" (click)="closeEdit()">fechar</button>
+        <div class="section-wrapper">
+          <div class="section-title">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="size-6"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm8.706-1.442c1.146-.573 2.437.463 2.126 1.706l-.709 2.836.042-.02a.75.75 0 0 1 .67 1.34l-.04.022c-1.147.573-2.438-.463-2.127-1.706l.71-2.836-.042.02a.75.75 0 1 1-.671-1.34l.041-.022ZM12 9a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <h1>Informações Gerais</h1>
+          </div>
+          <div class="divider"></div>
+          <div class="section-field-group">
+            <div class="field">
+              <label for="">Unidade</label>
+              <input
+                type="text"
+                pInputText
+                pSize="large"
+                disabled="true"
+                [value]="boletimData.unidade.nome"
+              />
+            </div>
+            <div class="field">
+              <label for="">Responsavel Pelo Preenchimento </label>
+              <input
+                type="text"
+                pSize="large"
+                pInputText
+                disabled="true"
+                [value]="boletimData.usuario.nome"
+              />
+            </div>
+            <div class="field">
+              <label for="">Data Referente </label>
+              <p-datepicker
+                formControlName="referente_ao_dia"
+                dateFormat="dd/mm/yy"
+                size="large"
+              />
+            </div>
+            <div class="field">
+              <label for="">Enviado Em </label>
+              <input
+                type="date"
+                pInputText
+                [value]="boletimData.criado_em ?? '' |date:'yyyy-MM-dd'"
+                disabled="true"
+                pSize="large"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="section-wrapper">
+          <div class="section-title">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="size-6"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm8.706-1.442c1.146-.573 2.437.463 2.126 1.706l-.709 2.836.042-.02a.75.75 0 0 1 .67 1.34l-.04.022c-1.147.573-2.438-.463-2.127-1.706l.71-2.836-.042.02a.75.75 0 1 1-.671-1.34l.041-.022ZM12 9a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <h1>Informações Gerais</h1>
+          </div>
+          <div class="divider"></div>
+          <div class="section-field-group">
+            <div class="field">
+              <label for=""
+                >Total de Atendimentos SD <strong>COM</strong> Queixa
+                Gripal</label
+              >
+              <input
+                type="text"
+                pInputText
+                pSize="large"
+                formControlName="total_atendimentos_sd_com_queixa_gripal"
+              />
+            </div>
+            <div class="field">
+              <label for=""
+                >Total de Atendimentos SD <strong>SEM</strong> Queixa
+                Gripal</label
+              >
+              <input
+                type="text"
+                pInputText
+                pSize="large"
+                formControlName="total_atendimentos_sd_sem_queixa_gripal"
+              />
+            </div>
+            <div class="field">
+              <label for=""
+                >Total de Atendimentos SN <strong>COM</strong> Queixa
+                Gripal</label
+              >
+              <input
+                type="text"
+                pInputText
+                pSize="large"
+                formControlName="total_atendimentos_sn_com_queixa_gripal"
+              />
+            </div>
+            <div class="field">
+              <label for=""
+                >Total de Atendimentos SN <strong>SEM</strong> Queixa
+                Gripal</label
+              >
+              <input
+                type="text"
+                pInputText
+                pSize="large"
+                formControlName="total_atendimentos_sn_sem_queixa_gripal"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="section-wrapper">
+          <div class="section-title">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="size-6"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm8.706-1.442c1.146-.573 2.437.463 2.126 1.706l-.709 2.836.042-.02a.75.75 0 0 1 .67 1.34l-.04.022c-1.147.573-2.438-.463-2.127-1.706l.71-2.836-.042.02a.75.75 0 1 1-.671-1.34l.041-.022ZM12 9a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <h1>Internações</h1>
+          </div>
+          <div class="divider"></div>
+          <div class="section-field-group">
+            <div class="field">
+              <label for=""
+                >Total de Internações Após Atendimento na Urgência
+                <strong>SEM</strong> Relação a Queixa Gripal</label
+              >
+              <input
+                type="text"
+                pInputText
+                pSize="large"
+                formControlName="total_internacoes_apos_atendimento_urgencia_com_queixa_gripal"
+              />
+            </div>
+            <div class="field">
+              <label for=""
+                >Total de Internações Após Atendimento na Urgência
+                <strong>COM</strong> Relação a Queixa Gripal</label
+              >
+              <input
+                type="text"
+                pInputText
+                pSize="large"
+                formControlName="total_internacoes_apos_atendimento_urgencia_sem_queixa_gripal"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="section-wrapper">
+          <div class="section-title">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="size-6"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm8.706-1.442c1.146-.573 2.437.463 2.126 1.706l-.709 2.836.042-.02a.75.75 0 0 1 .67 1.34l-.04.022c-1.147.573-2.438-.463-2.127-1.706l.71-2.836-.042.02a.75.75 0 1 1-.671-1.34l.041-.022ZM12 9a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <h1>Desfechos</h1>
+          </div>
+          <div class="divider"></div>
+          <div class="section-field-group">
+            <div class="field">
+              <label for="">Total de Obitos</label>
+              <input
+                type="text"
+                pInputText
+                pSize="large"
+                formControlName="total_obitos"
+              />
+            </div>
+            <div class="field">
+              <label for="">Total de Transferências</label>
+              <input
+                type="text"
+                pInputText
+                pSize="large"
+                formControlName="total_transferencias"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="buttons-footer-wrapper">
+          <button
+            class="button-back"
+            [routerLink]="['/boletim','sindrome-gripal']"
+          >
+            Voltar
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

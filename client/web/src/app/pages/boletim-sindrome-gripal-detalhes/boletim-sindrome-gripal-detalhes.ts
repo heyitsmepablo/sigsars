@@ -15,6 +15,7 @@ import {
 } from '@angular/forms';
 import { paths } from '../../types/api-types';
 import { DatePickerModule } from 'primeng/datepicker';
+import { Sidebar } from '../../shared/sidebar/sidebar';
 @Component({
   selector: 'app-boletim-sindrome-gripal-detalhes',
   imports: [
@@ -27,6 +28,7 @@ import { DatePickerModule } from 'primeng/datepicker';
     FormsModule,
     DatePipe,
     DatePickerModule,
+    Sidebar,
   ],
   templateUrl: './boletim-sindrome-gripal-detalhes.html',
   styleUrl: './boletim-sindrome-gripal-detalhes.css',
@@ -35,6 +37,7 @@ export class BoletimSindromeGripalDetalhes implements OnInit {
   boletimId = signal('');
   boletimData!: paths['/boletim/sindrome-gripal/{id}']['get']['responses']['200']['content']['application/json'];
   boletimForm!: FormGroup;
+  initValuesForm: any;
   items: MenuItem[] = [
     { label: 'Inicio', route: '/inicio' },
     {
@@ -108,6 +111,13 @@ export class BoletimSindromeGripalDetalhes implements OnInit {
         { value: this.boletimData.total_transferencias, disabled: true },
       ],
     });
-    console.log(this.boletimForm.getRawValue());
+    this.initValuesForm = this.boletimForm.getRawValue();
+  }
+  openEdit() {
+    this.boletimForm.enable();
+  }
+  closeEdit() {
+    this.boletimForm.reset(this.initValuesForm);
+    this.boletimForm.disable();
   }
 }
