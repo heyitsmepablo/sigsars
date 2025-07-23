@@ -104,4 +104,18 @@ export class ESemusApiClient {
       throw error;
     }
   }
+
+  async createBoletimSG(
+    data: paths['/boletim/sindrome-gripal']['post']['requestBody']['content']['application/json']
+  ) {
+    this.haveLogin();
+
+    try {
+      await this.client.post('/boletim/sindrome-gripal', data, {
+        headers: this.headers,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }

@@ -98,7 +98,6 @@ export class BoletimSindomeGripal implements OnInit {
       total_obitos: ['', [Validators.required, RxwebValidators.digit]],
       total_transferencias: ['', [Validators.required, RxwebValidators.digit]],
     });
-    console.log(this.boletins);
   }
 
   showNovaFicha() {
@@ -107,5 +106,14 @@ export class BoletimSindomeGripal implements OnInit {
   closeNovaFicha() {
     this.novaFichaVisible = false;
     this.newBoletimForm.reset();
+  }
+  async submitNovaFicha() {
+    try {
+      await this.apiClient.createBoletimSG(this.newBoletimForm.getRawValue());
+      this.boletins = await this.apiClient.getAllBoletins();
+      this.closeNovaFicha();
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
