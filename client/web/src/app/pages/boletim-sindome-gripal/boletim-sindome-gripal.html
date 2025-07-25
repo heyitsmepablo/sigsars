@@ -35,8 +35,7 @@
         </p-breadcrumb>
         <div class="content-container">
           <div class="mobile-content-wrapper">
-            @if(boletins.length){ @for ( boletim of boletins; track
-            boletim?.['id']){
+            @if(boletins){ @for ( boletim of boletins; track boletim?.['id']){
             <app-mobile-card-item
               [item]="boletim"
               [routerLink]="[boletim?.['id']]"
@@ -363,7 +362,7 @@
                     <p-button
                       class="button-send"
                       [styleClass]="'w-80 h-12'"
-                      (click)="closeNovaFicha()"
+                      (click)="submitNovaFicha()"
                       severity="success"
                     >
                       Enviar
@@ -374,13 +373,7 @@
             </ng-template>
           </p-dialog>
           @if(boletins){
-          <p-table
-            [value]="boletins"
-            size="large"
-            class="hidden lg:flex"
-            [tableStyle]="{'min-width': '50rem'}"
-            [showGridlines]="true"
-          >
+          <p-table [value]="boletins" size="large" class="hidden lg:flex" d>
             <ng-template #header>
               <tr>
                 <th>Nome</th>
@@ -406,10 +399,11 @@
                   </svg>
                   {{boletim.usuario.nome}}
                 </td>
-                <td>{{boletim.referente_ao_dia|date}}</td>
+                <td>{{boletim.criado_em|date}}</td>
               </tr>
             </ng-template>
           </p-table>
+
           } @else {
           <p>Não encontrado nenhuma ficha cadastrada</p>
           }

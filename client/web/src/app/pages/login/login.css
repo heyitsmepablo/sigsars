@@ -1,12 +1,13 @@
 @reference 'tailwindcss';
 
 .main-container {
-  @apply min-w-screen min-h-screen flex flex-col bg-gradient-to-br from-[#4AC1A8] to-[#2BA7DB] items-center justify-center max-md:relative lg:flex-row lg:justify-end from-25%;
+  @apply w-full h-screen flex flex-col bg-gradient-to-br from-[#4AC1A8] to-[#2BA7DB] items-center justify-center max-md:relative lg:flex-row lg:justify-end from-25%;
 }
 
 .side-container {
-  @apply hidden lg:flex flex-col h-full w-[50%]  justify-center items-center;
+  @apply hidden  lg:flex flex-col h-full w-[50%]  justify-center items-center;
 }
+
 .text-container {
   @apply lg:mb-4;
   p {
@@ -16,8 +17,9 @@
     @apply font-normal;
   }
 }
+
 .form-container {
-  @apply flex flex-col h-[30rem] w-96 bg-white text-black items-center max-lg:rounded-xl justify-center lg:h-full lg:w-[50%]  lg:relative;
+  @apply flex flex-col h-[30rem]    w-96 bg-white text-black items-center max-lg:rounded-xl justify-center lg:h-full lg:w-[50%]  lg:relative;
 }
 
 .input-container {

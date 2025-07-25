@@ -63,7 +63,7 @@
 }
 
 .mobile-content-wrapper {
-  @apply flex lg:hidden;
+  @apply flex flex-col gap-6 lg:hidden;
 }
 
 .form-wrapper {

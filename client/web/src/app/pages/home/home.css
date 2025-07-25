@@ -1,7 +1,7 @@
 @reference 'tailwindcss';
 
 .main-container {
-  @apply min-w-screen min-h-screen flex flex-col;
+  @apply w-full h-screen flex flex-col;
 }
 
 .home-text {
